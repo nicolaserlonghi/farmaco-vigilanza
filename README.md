@@ -1,4 +1,4 @@
-# FarmacoVigilanza
+# Farmaco Vigilanza
 
 This repository contains the source code of an Android App for a university project.
 
