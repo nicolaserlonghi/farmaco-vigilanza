@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Farmaco Vigilanza</string>
+    <string name="activity_login_title">Login</string>
 </resources>
