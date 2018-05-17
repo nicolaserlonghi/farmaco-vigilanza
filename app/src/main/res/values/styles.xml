@@ -37,4 +37,12 @@
         <item name="android:textSize">@dimen/secondary_text_size</item>
         <item name="android:textStyle">normal</item>
     </style>
+    
+    <style name="contained_Button" parent="android:Widget.Button">
+        <item name="android:textColor">@color/contained_button_text</item>
+        <item name="android:background">@color/primary</item>
+        <item name="android:radius">@dimen/contained_button_corners</item>
+        <item name="android:elevation">@dimen/contained_button_elevation</item>
+    </style>
+
 </resources>
