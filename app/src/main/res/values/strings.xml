@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Farmaco Vigilanza</string>
     <string name="activity_login_title">Login</string>
-<<<<<<< HEAD
     <string name="main_doctor_activity_manage_patients">Gestisci pazienti</string>
     <string name="main_doctor_activity_manage_factors">Gestisci fattori di rischio</string>
     <string name="main_doctor_activity_manage_reports">Gestisci segnalazioni</string>
@@ -12,16 +11,11 @@
     <string name="main_dcotor_activity_menu_logout">Logout</string>
     <string name="main_doctor_activity_menu_reports_cronology">Cronologia segnalazioni</string>
     <string name="activity_reports_chronology">Cronologia segnalazioni</string>d
-=======
-
     <string name="activity_login_edit_text_cf">Fiscal Code</string>
     <string name="activity_login_edit_text_password">Password</string>
     <string name="activity_login_btn_login">Login</string>
-
     <string name="snackBar_activity_login_empty_field">There are empty field</string>
     <string name="snackBar_activity_login_generic_error">Error! Please try again.</string>
     <string name="snackBar_activity_login_wrong_credential">The Fiscal Code or Password is incorrect</string>
-
     <string name="progress_dialog_activity_login_login">Authenticating...</string>
->>>>>>> login-page
 </resources>
