@@ -5,13 +5,13 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-public class LoginViewModel extends BaseViewModel {
+public class AddEditReportViewModel extends BaseViewModel {
     /**
      * Initializes a new instance of this class
      *
      * @param application
      */
-    public LoginViewModel(@NonNull Application application) {
+    public AddEditReportViewModel(@NonNull Application application) {
         super(application);
     }
 
@@ -36,17 +36,10 @@ public class LoginViewModel extends BaseViewModel {
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new LoginViewModel(application);
+            return (T) new AddEditReportViewModel(application);
         }
 
         @NonNull
         private final Application application;
-    }
-
-    public Boolean doLogin(String cf, String password) {
-
-        // Call correct activity
-
-        return true;
     }
 }
