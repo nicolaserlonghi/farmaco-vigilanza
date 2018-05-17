@@ -42,4 +42,11 @@ public class LoginViewModel extends BaseViewModel {
         @NonNull
         private final Application application;
     }
+
+    public Boolean doLogin(String cf, String password) {
+
+        // Call correct activity
+
+        return true;
+    }
 }
