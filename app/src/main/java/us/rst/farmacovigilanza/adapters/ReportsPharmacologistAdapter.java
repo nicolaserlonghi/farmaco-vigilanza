@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import us.rst.farmacovigilanza.R;
 import us.rst.farmacovigilanza.models.Report;
-import us.rst.farmacovigilanza.databinding.RowReportsAdapterBinding;
+import us.rst.farmacovigilanza.databinding.RowReportsPharmacologistAdapterBinding;
 
 
 public class ReportsPharmacologistAdapter extends RecyclerView.Adapter<ReportsPharmacologistAdapter.ViewHolder> {
@@ -25,10 +25,10 @@ public class ReportsPharmacologistAdapter extends RecyclerView.Adapter<ReportsPh
     }
 
     public ReportsPharmacologistAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RowReportsAdapterBinding binding =  DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.row_reports_adapter, parent, false);
+        RowReportsPharmacologistAdapterBinding binding =  DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.row_reports_pharmacologist_adapter, parent, false);
 
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_reports_adapter, parent, false);
+                .inflate(R.layout.row_reports_pharmacologist_adapter, parent, false);
 
         return new ViewHolder(binding.getRoot());
     }
@@ -41,7 +41,7 @@ public class ReportsPharmacologistAdapter extends RecyclerView.Adapter<ReportsPh
         public ViewHolder(View itemView) {
             super(itemView);
 
-            RowReportsAdapterBinding binding = DataBindingUtil.bind(itemView);
+            RowReportsPharmacologistAdapterBinding binding = DataBindingUtil.bind(itemView);
             report_layout = binding.report;
             name_report_text_view = binding.textViewNameReport;
             reaction_date_text_view = binding.textViewReactionDate;
