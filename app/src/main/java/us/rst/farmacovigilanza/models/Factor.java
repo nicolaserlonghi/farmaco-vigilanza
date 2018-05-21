@@ -2,50 +2,27 @@ package us.rst.farmacovigilanza.models;
 
 public interface Factor {
     /**
-     * Gets the name of this patient
-     * @return patient name
+     * Gets the name of this factor
+     * @return factor
      */
     String getName();
 
     /**
-     * Sets the name of this patient
-     * @param name patient name
+     * Sets the name of this factor
+     * @param name factor
      */
     void setName(String name);
 
     /**
-     * Gets the birth date of this patient
-     * @return birth date of this patient
+     * Gets the description of this factor
+     * @return description
      */
-    int getBirthDate();
+    String getDescription();
 
     /**
-     * Sets the birth date of this patient
-     * @param birthDate birth date of this patient
+     * Sets the description of this factor
+     * @param description description
      */
-    void setBirthDate(int birthDate);
+    void setDescription(String description);
 
-    /**
-     * Gets the province where this patient lives
-     * @return province where this patient lives
-     */
-    String getProvince();
-
-    /**
-     * Sets the province where this patient lives
-     * @param province province where this patient lives
-     */
-    void setProvince(String province);
-
-    /**
-     * Gets the current job of this patient
-     * @return current job of this patient
-     */
-    String getJob();
-
-    /**
-     * Sets the current job of this patient
-     * @param job current job of this patient
-     */
-    void setJob(String job);
 }
