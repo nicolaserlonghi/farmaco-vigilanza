@@ -41,7 +41,7 @@ public interface Report {
      * @param date date
      */
     void setReactionDate(Date date);
-
+  
     /**
      * Gets the date when the report has been recorded
      * @return date when the report has been recorded

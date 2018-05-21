@@ -24,5 +24,4 @@ public interface Factor {
      * @param description description
      */
     void setDescription(String description);
-
 }
