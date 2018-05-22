@@ -3,8 +3,6 @@ package us.rst.farmacovigilanza.views;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.Toolbar;
-import android.widget.EditText;
-
 import us.rst.farmacovigilanza.R;
 import us.rst.farmacovigilanza.databinding.ActivityAddEditReportsBinding;
 import us.rst.farmacovigilanza.viewmodels.AddEditReportViewModel;
@@ -12,7 +10,7 @@ import us.rst.farmacovigilanza.viewmodels.BaseViewModel;
 
 // dovrebbe essere solo "ADD", non può modificare una segnalazione una volta effetuata e inviata al sistema di gestione delle segnalazini
 
-public class AddEditReportActivity extends BaseActivity{
+public class AddEditReportsActivity extends BaseActivity{
 
     @Override protected int getLayoutId() {
         return R.layout.activity_add_edit_reports;
