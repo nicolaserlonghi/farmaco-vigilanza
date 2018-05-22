@@ -56,7 +56,7 @@ public class MainDoctorActivity extends BaseActivity implements View.OnClickList
             startActivity(i);
         }
         else{
-            Intent i = new Intent(MainDoctorActivity.this, AddEditReportActivity.class);
+            Intent i = new Intent(MainDoctorActivity.this, AddEditReportsActivity.class);
             startActivity(i);
         }
     }

@@ -1,6 +1,9 @@
 package us.rst.farmacovigilanza.database.entity;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import us.rst.farmacovigilanza.models.Factor;
 
 /**
@@ -40,6 +43,7 @@ public class FactorEntity implements Factor {
         this.description = description;
     }
 
+    @PrimaryKey @NonNull
     private String name;
     private String description;
 }

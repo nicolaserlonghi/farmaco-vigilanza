@@ -2,6 +2,7 @@ package us.rst.farmacovigilanza.database.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
 
 /**
  * Represents the many to many relationship between reports and avverse reactions
@@ -64,6 +65,7 @@ public class ReportAvverseReactionEntity {
         this.levelOfGravity = levelOfGravity;
     }
 
+    @PrimaryKey
     private int reportId;
     private String avverseReactionName;
     private int levelOfGravity;

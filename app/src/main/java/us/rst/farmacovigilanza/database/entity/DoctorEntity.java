@@ -1,6 +1,8 @@
 package us.rst.farmacovigilanza.database.entity;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import us.rst.farmacovigilanza.models.Doctor;
 
 /**
@@ -24,5 +26,6 @@ public class DoctorEntity implements Doctor {
         this.id = id;
     }
 
+    @PrimaryKey
     private int id;
 }
