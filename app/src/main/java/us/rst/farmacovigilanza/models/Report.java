@@ -55,16 +55,16 @@ public interface Report {
     void setReportDate(Date date);
 
     /**
-     * Gets the id of the patient
-     * @return patient id
+     * Gets the fiscal code of the patient
+     * @return patient fiscal code
      */
-    int getPatientId();
+    FiscalCode getPatientFiscalCode();
 
     /**
-     * Sets the id of the patient
-     * @param patientId patient id
+     * Sets the fiscal code of the patient
+     * @param fiscalCode fiscal code
      */
-    void setPatientId(int patientId);
+    void setPatientFiscalCode(FiscalCode fiscalCode);
 
     /**
      * Gets the name of the avverse reaction

@@ -2,7 +2,11 @@ package us.rst.farmacovigilanza.database.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
+
 import java.sql.Date;
+
+import us.rst.farmacovigilanza.models.FiscalCode;
 import us.rst.farmacovigilanza.models.Patient;
 import us.rst.farmacovigilanza.models.Report;
 
@@ -12,8 +16,8 @@ import us.rst.farmacovigilanza.models.Report;
 @Entity(tableName = "reports",
     foreignKeys = {
         @ForeignKey(entity = PatientEntity.class,
-            parentColumns = "id",
-            childColumns = "patientId"),
+            parentColumns = "fiscalCode",
+            childColumns = "patientFiscalCode"),
         @ForeignKey(entity = AvverseReactionEntity.class,
             parentColumns = "name",
             childColumns = "avverseReactionName")
@@ -84,19 +88,19 @@ public class ReportEntity implements Report {
     }
 
     /**
-     * Gets the id of the patient
-     * @return patient id
+     * Gets the fiscal code of the patient
+     * @return patient fiscal code
      */
-    @Override public int getPatientId() {
-        return patientId;
+    @Override public FiscalCode getPatientFiscalCode() {
+        return patientFiscalCode;
     }
 
     /**
-     * Sets the id of the patient
-     * @param patientId patient id
+     * Sets the fiscal code of the patient
+     * @param fiscalCode fiscal code
      */
-    @Override public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    @Override public void setPatientFiscalCode(FiscalCode fiscalCode) {
+        this.patientFiscalCode = fiscalCode;
     }
 
     /**
@@ -115,11 +119,11 @@ public class ReportEntity implements Report {
         this.avverseReactionName = avverseReactionName;
     }
 
+    @PrimaryKey
     private int id;
     private String description;
     private Date reactionDate;
     private Date reportDate;
-    private Patient patient;
-    private int patientId;
+    private FiscalCode patientFiscalCode;
     private String avverseReactionName;
 }

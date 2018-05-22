@@ -2,6 +2,9 @@ package us.rst.farmacovigilanza.database.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import us.rst.farmacovigilanza.models.FiscalCode;
 
 /**
@@ -10,7 +13,7 @@ import us.rst.farmacovigilanza.models.FiscalCode;
 @Entity(tableName = "patientFactor",
         foreignKeys = {
                 @ForeignKey(entity = PatientEntity.class,
-                        parentColumns = "cf",
+                        parentColumns = "fiscalCode",
                         childColumns = "patientCf"),
                 @ForeignKey(entity = FactorEntity.class,
                         parentColumns = "name",
@@ -65,6 +68,7 @@ public class PatientFactorEntity {
         this.levelOfRisk = levelOfRisk;
     }
 
+    @PrimaryKey @NonNull
     private FiscalCode patientCf;
     private String factorName;
     private int levelOfRisk;

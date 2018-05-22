@@ -2,6 +2,9 @@ package us.rst.farmacovigilanza.database.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import us.rst.farmacovigilanza.models.FiscalCode;
 import us.rst.farmacovigilanza.models.Patient;
 
@@ -95,6 +98,7 @@ public class PatientEntity implements Patient {
         this.doctorId = id;
     }
 
+    @PrimaryKey @NonNull
     private FiscalCode fiscalCode;
     private int birthDate;
     private String province;

@@ -31,5 +31,14 @@ public class FiscalCode {
         return this.fiscalCode;
     }
 
+    /**
+     * Parse a cf (string) into an instance of {@link FiscalCode}
+     * @param cf "stringed" fiscal code
+     * @return an instance of {@link FiscalCode}
+     */
+    public static FiscalCode parse(String cf) {
+        return new FiscalCode(cf);
+    }
+
     private final String fiscalCode;
 }
