@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
-
 import us.rst.farmacovigilanza.Logger;
 import us.rst.farmacovigilanza.R;
 import us.rst.farmacovigilanza.databinding.ActivityLoginBinding;

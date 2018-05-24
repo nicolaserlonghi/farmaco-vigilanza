@@ -1,6 +1,10 @@
 package us.rst.farmacovigilanza;
 
+import android.arch.persistence.room.Room;
 import android.content.Context;
+import us.rst.farmacovigilanza.database.AppDatabase;
+import us.rst.farmacovigilanza.repositories.DoctorsRepository;
+import us.rst.farmacovigilanza.repositories.ReportsRepository;
 
 /**
  * Wraps every repository of this project
@@ -23,8 +27,13 @@ public class DataRepository {
     }
 
     private DataRepository(final Context context, final AppExecutors appExecutors) {
-
+        database = Room.databaseBuilder(context, AppDatabase.class, "appDatabase").build();
+        doctorsRepository = new DoctorsRepository(database);
+        reportsRepository = new ReportsRepository(database);
     }
 
+    private final AppDatabase database;
+    private final DoctorsRepository doctorsRepository;
+    private final ReportsRepository reportsRepository;
     private static DataRepository instance;
 }

@@ -17,18 +17,6 @@ public interface Patient {
     void setFiscalCode(FiscalCode fiscalCode);
 
     /**
-     * Gets the name of this patient
-     * @return patient name
-     */
-    String getName();
-
-    /**
-     * Sets the name of this patient
-     * @param name patient name
-     */
-    void setName(String name);
-
-    /**
      * Gets the birth date of this patient
      * @return birth date of this patient
      */
@@ -63,4 +51,16 @@ public interface Patient {
      * @param job current job of this patient
      */
     void setJob(String job);
+
+    /**
+     * Gets the doctor id
+     * @return doctor id
+     */
+    int getDoctorId();
+
+    /**
+     * Sets the doctor id
+     * @param id doctor id
+     */
+    void setDoctorId(int id);
 }

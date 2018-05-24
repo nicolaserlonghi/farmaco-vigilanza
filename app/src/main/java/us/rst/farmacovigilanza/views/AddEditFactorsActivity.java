@@ -3,7 +3,6 @@ package us.rst.farmacovigilanza.views;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.Toolbar;
-
 import us.rst.farmacovigilanza.R;
 import us.rst.farmacovigilanza.databinding.ActivityAddEditFactorsBinding;
 import us.rst.farmacovigilanza.viewmodels.AddEditFactorsViewModel;

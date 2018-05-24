@@ -16,7 +16,7 @@ public interface Report {
      * Sets the id for this report
      * @param id id
      */
-    void setId(String id);
+    void setId(int id);
 
     /**
      * Gets the description of this report
@@ -41,4 +41,40 @@ public interface Report {
      * @param date date
      */
     void setReactionDate(Date date);
+  
+    /**
+     * Gets the date when the report has been recorded
+     * @return date when the report has been recorded
+     */
+    Date getReportDate();
+
+    /**
+     * Sets the date when the report has been recorded
+     * @param date date
+     */
+    void setReportDate(Date date);
+
+    /**
+     * Gets the fiscal code of the patient
+     * @return patient fiscal code
+     */
+    FiscalCode getPatientFiscalCode();
+
+    /**
+     * Sets the fiscal code of the patient
+     * @param fiscalCode fiscal code
+     */
+    void setPatientFiscalCode(FiscalCode fiscalCode);
+
+    /**
+     * Gets the name of the avverse reaction
+     * @return avverse reaciton
+     */
+    String getAvverseReactionName();
+
+    /**
+     * Sets the name of the avverse reaction
+     * @param avverseReactionName avverse reaction name
+     */
+    void setAvverseReactionName(String avverseReactionName);
 }
