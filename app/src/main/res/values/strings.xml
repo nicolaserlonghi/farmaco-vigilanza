@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Farmaco Vigilanza</string>
+    
     <string name="activity_login_title">Login</string>
     <string name="main_doctor_activity_manage_patients">Gestisci pazienti</string>
     <string name="main_doctor_activity_manage_factors">Gestisci fattori di rischio</string>
@@ -18,4 +19,9 @@
     <string name="snackBar_activity_login_generic_error">Error! Please try again.</string>
     <string name="snackBar_activity_login_wrong_credential">The Fiscal Code or Password is incorrect</string>
     <string name="progress_dialog_activity_login_login">Authenticating...</string>
+    <string name="activity_pharmacologist_tab_title_reports">Reports</string>
+    <string name="activity_pharmacologist_tab_title_drugs">Drugs</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

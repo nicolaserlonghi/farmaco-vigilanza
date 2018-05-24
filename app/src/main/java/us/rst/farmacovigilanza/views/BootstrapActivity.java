@@ -21,6 +21,7 @@ public class BootstrapActivity extends BaseActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, PharmacologistActivity.class)); // test
+        //startActivity(new Intent(this, LoginActivity.class));
     }
 }
