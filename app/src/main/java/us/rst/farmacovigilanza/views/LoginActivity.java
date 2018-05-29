@@ -10,7 +10,7 @@ import us.rst.farmacovigilanza.R;
 import us.rst.farmacovigilanza.databinding.ActivityLoginBinding;
 import us.rst.farmacovigilanza.helpers.ProgressDialogHelper;
 import us.rst.farmacovigilanza.helpers.SnackBarHelper;
-import us.rst.farmacovigilanza.helpers.UtilityHelper;
+import us.rst.farmacovigilanza.helpers.KeyboardHelper;
 import us.rst.farmacovigilanza.viewmodels.LoginViewModel;
 
 public class LoginActivity extends BaseActivity {
@@ -47,7 +47,7 @@ public class LoginActivity extends BaseActivity {
         binding.activityLoginBtnLogin.setOnClickListener(v -> {
             // Login button  disable
             binding.activityLoginBtnLogin.setEnabled(false);
-            UtilityHelper.hideKeyboard(LoginActivity.this);
+            KeyboardHelper.hideKeyboard(LoginActivity.this);
             String cf = binding.activityLoginInputCf.getText().toString();
             String password = binding.activityLoginInputPassword.getText().toString();
             // Check if the fields are empty
