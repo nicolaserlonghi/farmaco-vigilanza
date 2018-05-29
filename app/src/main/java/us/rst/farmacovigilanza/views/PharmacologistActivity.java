@@ -48,21 +48,21 @@ public class PharmacologistActivity extends BaseActivity
         super.onCreate(savedInstanceState);
 
         // Set tabLayout
-        TabLayout tabLayout = (TabLayout)binding.tabLayout;
+        TabLayout tabLayout = (TabLayout)binding.activityPharmacologistTabLayout;
         tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.activity_pharmacologist_tab_title_reports)));
         tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.activity_pharmacologist_tab_title_drugs)));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         // Set viewPager adapter
-        final ViewPager viewPager = (ViewPager)binding.viewPager;
+        final ViewPager viewPager = (ViewPager)binding.activityPharmacologistViewPager;
         final PharmacologistViewPagerAdapter adapter = new PharmacologistViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
 
         // Listener of gesture to change tab
-        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         // Listener of click on tab
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
