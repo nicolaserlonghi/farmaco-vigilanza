@@ -4,14 +4,13 @@ import android.app.ProgressDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.view.View;
+
 import us.rst.farmacovigilanza.Logger;
 import us.rst.farmacovigilanza.R;
 import us.rst.farmacovigilanza.databinding.ActivityLoginBinding;
 import us.rst.farmacovigilanza.helpers.ProgressDialogHelper;
 import us.rst.farmacovigilanza.helpers.SnackBarHelper;
 import us.rst.farmacovigilanza.helpers.UtilityHelper;
-import us.rst.farmacovigilanza.viewmodels.BaseViewModel;
 import us.rst.farmacovigilanza.viewmodels.LoginViewModel;
 
 public class LoginActivity extends BaseActivity {
@@ -53,19 +52,19 @@ public class LoginActivity extends BaseActivity {
             String password = binding.activityLoginInputPassword.getText().toString();
             // Check if the fields are empty
             if(cf.isEmpty() || password.isEmpty()) {
-                SnackBarHelper.showShort(v, getResources().getString(R.string.snackBar_activity_login_empty_field));
+                SnackBarHelper.showShort(v, getResources().getString(R.string.error_empty_field));
                 // Login button enable
                 binding.activityLoginBtnLogin.setEnabled(true);
             }  else {
                 // Start animation of authenticating
-                progressDialogAuthenticating = ProgressDialogHelper.start(LoginActivity.this, getResources().getString(R.string.progress_dialog_activity_login_login));
+                progressDialogAuthenticating = ProgressDialogHelper.start(LoginActivity.this, getResources().getString(R.string.waiting));
                 // Try to do login
                 if(getViewModel().doLogin(cf, password)) {
                     // User logged correctly
                     Logger.d("LoginActivity", "user correctly logged");
                 } else {
                     // Wrong credential
-                    SnackBarHelper.showShort(v, getResources().getString(R.string.snackBar_activity_login_wrong_credential));
+                    SnackBarHelper.showShort(v, getResources().getString(R.string.error_wrong_credentials));
                     Logger.w("LoginActivity", "wrong credential");
                 }
                 // Stop animation of authenticating
