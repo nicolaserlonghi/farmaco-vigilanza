@@ -19,5 +19,5 @@ import us.rst.farmacovigilanza.database.entity.ReportEntity;
         PatientEntity.class, PatientFactorEntity.class, ReportAvverseReactionEntity.class, ReportEntity.class }, version = 1)
 @TypeConverters({ DateConverter.class, FiscalCodeConverter.class })
 public abstract class AppDatabase extends RoomDatabase {
-    public DoctorsDao doctorsDao;
+    public abstract DoctorsDao doctorsDao();
 }
