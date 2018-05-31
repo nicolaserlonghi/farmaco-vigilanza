@@ -32,5 +32,9 @@ public class FarmacoVigilanzaApp extends Application {
         return DataRepository.getInstance(getApplicationContext(), appExecutors);
     }
 
+    public AppExecutors getAppExecutors() {
+        return appExecutors;
+    }
+
     private AppExecutors appExecutors;
 }

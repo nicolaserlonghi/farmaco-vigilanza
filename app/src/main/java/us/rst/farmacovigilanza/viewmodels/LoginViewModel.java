@@ -1,9 +1,12 @@
 package us.rst.farmacovigilanza.viewmodels;
 
 import android.app.Application;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
+import us.rst.farmacovigilanza.database.entity.DoctorEntity;
 import us.rst.farmacovigilanza.models.Doctor;
 import us.rst.farmacovigilanza.repositories.DoctorsRepository;
 
@@ -24,7 +27,7 @@ public class LoginViewModel extends BaseViewModel {
      * @param password doctor password
      * @return an instance of {@link Doctor} if doctor exists; otherwise null
      */
-    public Doctor getDoctor(String id, String password) {
+    public LiveData<DoctorEntity> getDoctor(String id, String password) {
         return repository.getDoctor(id, password);
     }
 

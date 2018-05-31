@@ -1,8 +1,10 @@
 package us.rst.farmacovigilanza.repositories;
 
+import android.arch.lifecycle.LiveData;
 import java.util.List;
 
 import us.rst.farmacovigilanza.database.AppDatabase;
+import us.rst.farmacovigilanza.database.entity.DoctorEntity;
 import us.rst.farmacovigilanza.models.Doctor;
 
 /**
@@ -23,12 +25,7 @@ public class DoctorsRepository extends BaseRepository {
      * @param password password dottore
      * @return un'istanza di {@link Doctor} se il dottore esiste; altrimenti null
      */
-    public Doctor getDoctor(String id, String password) {
-        List<Doctor> doctors = getDatabase().doctorsDao().getDoctor(id, password);
-        if (doctors.size() == 0) {
-            return null;
-        }
-
-        return doctors.get(0);
+    public LiveData<DoctorEntity> getDoctor(String id, String password) {
+        return getDatabase().doctorsDao().getDoctor(id, password);
     }
 }

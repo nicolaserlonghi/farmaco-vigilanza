@@ -60,14 +60,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             return;
         }
 
-        if (getViewModel().getDoctor(id, password) != null) {
-            // User logged correctly
-            Logger.d("LoginActivity", "user correctly logged");
-        } else {
-            // Wrong credential
-            SnackBarHelper.showShort(v, getResources().getString(R.string.error_wrong_credentials));
-            Logger.w("LoginActivity", "wrong credential");
-        }
+        getViewModel().getDoctor(id, password).observe(this, doctorEntity -> {
+            if (doctorEntity != null) {
+                // User logged correctly
+                Logger.d("LoginActivity", "user correctly logged");
+            } else {
+                // Wrong credential
+                SnackBarHelper.showShort(v, getResources().getString(R.string.error_wrong_credentials));
+                Logger.w("LoginActivity", "wrong credential");
+            }
+        });
     }
 
     private ActivityLoginBinding binding;
