@@ -5,9 +5,19 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.inputmethod.InputMethodManager;
 
-public class UtilityHelper {
+/**
+ * Static functions to handle keyboard
+ */
+public class KeyboardHelper {
+    /**
+     * Hides the keyboard
+     * @param activity current activity
+     */
+    public static void hideKeyboard(Activity activity) {
+        if (activity == null || activity.getCurrentFocus() == null) {
+            return;
+        }
 
-    public static void hideKeyboard(@NonNull Activity activity) {
         InputMethodManager inputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }

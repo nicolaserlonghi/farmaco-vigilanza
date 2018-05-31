@@ -32,6 +32,14 @@ public class DataRepository {
         reportsRepository = new ReportsRepository(database);
     }
 
+    public DoctorsRepository getDoctorsRepository() {
+        return doctorsRepository;
+    }
+
+    public ReportsRepository getReportsRepository() {
+        return reportsRepository;
+    }
+
     private final AppDatabase database;
     private final DoctorsRepository doctorsRepository;
     private final ReportsRepository reportsRepository;

@@ -8,11 +8,23 @@ public interface Doctor {
      * Gets the id of the doctor
      * @return doctor id
      */
-    int getId();
+    String getId();
 
     /**
      * Sets the id of the doctor
      * @param id doctor id
      */
-    void setId(int id);
+    void setId(String id);
+
+    /**
+     * Restituisce la password del dottore
+     * @return password del dottore
+     */
+    String getPassword();
+
+    /**
+     * Imposta la password del dottore
+     * @param password password del dottore
+     */
+    void setPassword(String password);
 }

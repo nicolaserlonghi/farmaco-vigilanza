@@ -2,26 +2,24 @@
     <string name="app_name">Farmaco Vigilanza</string>
     
     <string name="activity_login_title">Login</string>
-    <string name="main_doctor_activity_manage_patients">Gestisci pazienti</string>
-    <string name="main_doctor_activity_manage_factors">Gestisci fattori di rischio</string>
-    <string name="main_doctor_activity_manage_reports">Gestisci segnalazioni</string>
+    <string name="activity_main_doctor_manage_patients">Gestisci pazienti</string>
+    <string name="activity_main_doctor_manage_factors">Gestisci fattori di rischio</string>
+    <string name="activity_main_doctor_manage_reports">Gestisci segnalazioni</string>
     <string name="activity_main_doctor_title">Pagina iniziale dottore</string>
     <string name="activity_add_edit_reports_title">Aggiungi o modifica report</string>
     <string name="activity_add_edit_patients_title">Aggiungi o rimuovi pazienti</string>
     <string name="activity_add_edit_factors_title">Aggiungi o modifica fattori di rischio</string>
-    <string name="main_dcotor_activity_menu_logout">Logout</string>
-    <string name="main_doctor_activity_menu_reports_cronology">Cronologia segnalazioni</string>
+    <string name="activity_main_doctor_menu_logout">Logout</string>
+    <string name="activity_main_doctor_menu_reports_cronology">Cronologia segnalazioni</string>
     <string name="activity_reports_chronology">Cronologia segnalazioni</string>d
-    <string name="activity_login_edit_text_cf">Fiscal Code</string>
+    <string name="activity_login_edit_text_cf">Id dottore</string>
     <string name="activity_login_edit_text_password">Password</string>
     <string name="activity_login_btn_login">Login</string>
-    <string name="snackBar_activity_login_empty_field">There are empty field</string>
-    <string name="snackBar_activity_login_generic_error">Error! Please try again.</string>
-    <string name="snackBar_activity_login_wrong_credential">The Fiscal Code or Password is incorrect</string>
-    <string name="progress_dialog_activity_login_login">Authenticating...</string>
     <string name="activity_pharmacologist_tab_title_reports">Reports</string>
     <string name="activity_pharmacologist_tab_title_drugs">Drugs</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_empty_field">Uno o più campi sono vuoti</string>
+    <string name="error_generic">Ops! Riprova</string>
+    <string name="error_wrong_credentials">L\'id o la password non sono corretti</string>
+    <string name="waiting">Attendere prego</string>
 </resources>
