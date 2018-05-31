@@ -3,6 +3,7 @@ package us.rst.farmacovigilanza;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import us.rst.farmacovigilanza.database.AppDatabase;
+import us.rst.farmacovigilanza.repositories.CredentialsRepository;
 import us.rst.farmacovigilanza.repositories.DoctorsRepository;
 import us.rst.farmacovigilanza.repositories.ReportsRepository;
 
@@ -30,6 +31,7 @@ public class DataRepository {
         database = Room.databaseBuilder(context, AppDatabase.class, "appDatabase").build();
         doctorsRepository = new DoctorsRepository(database);
         reportsRepository = new ReportsRepository(database);
+        credentialsRepository = new CredentialsRepository(database);
     }
 
     public DoctorsRepository getDoctorsRepository() {
@@ -40,8 +42,13 @@ public class DataRepository {
         return reportsRepository;
     }
 
+    public CredentialsRepository getCredentialsRepository() {
+        return credentialsRepository;
+    }
+
     private final AppDatabase database;
     private final DoctorsRepository doctorsRepository;
     private final ReportsRepository reportsRepository;
+    private final CredentialsRepository credentialsRepository;
     private static DataRepository instance;
 }

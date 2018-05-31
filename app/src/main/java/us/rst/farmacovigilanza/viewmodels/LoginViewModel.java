@@ -2,13 +2,11 @@ package us.rst.farmacovigilanza.viewmodels;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
-import us.rst.farmacovigilanza.database.entity.DoctorEntity;
-import us.rst.farmacovigilanza.models.Doctor;
-import us.rst.farmacovigilanza.repositories.DoctorsRepository;
+import us.rst.farmacovigilanza.database.entity.CredentialsEntity;
+import us.rst.farmacovigilanza.repositories.CredentialsRepository;
 
 public class LoginViewModel extends BaseViewModel {
     /**
@@ -16,18 +14,18 @@ public class LoginViewModel extends BaseViewModel {
      *
      * @param application
      */
-    public LoginViewModel(@NonNull Application application, DoctorsRepository repository) {
+    public LoginViewModel(@NonNull Application application, CredentialsRepository repository) {
         super(application);
         this.repository = repository;
     }
 
     /**
-     * Gets the doctor
-     * @param id doctor id
-     * @param password doctor password
-     * @return an instance of {@link Doctor} if doctor exists; otherwise null
+     * Effettua il login dati id e password
+     * @param id id utente
+     * @param password password utente
+     * @return oggetto osservabile che invierà i dati delle credenziali a utente connesso
      */
-    public LiveData<DoctorEntity> getDoctor(String id, String password) {
+    public LiveData<CredentialsEntity> getUser(String id, String password) {
         return repository.getDoctor(id, password);
     }
 
@@ -40,7 +38,7 @@ public class LoginViewModel extends BaseViewModel {
          *
          * @param application
          */
-        public Factory(@NonNull Application application, DoctorsRepository repository) {
+        public Factory(@NonNull Application application, CredentialsRepository repository) {
             this.application = application;
             this.repository = repository;
         }
@@ -60,8 +58,8 @@ public class LoginViewModel extends BaseViewModel {
 
         @NonNull
         private final Application application;
-        private final DoctorsRepository repository;
+        private final CredentialsRepository repository;
     }
 
-    private final DoctorsRepository repository;
+    private final CredentialsRepository repository;
 }

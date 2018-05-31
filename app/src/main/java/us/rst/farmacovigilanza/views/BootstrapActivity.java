@@ -2,6 +2,8 @@ package us.rst.farmacovigilanza.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import com.pixplicity.easyprefs.library.Prefs;
+import us.rst.farmacovigilanza.models.Credentials.UserType;
 import us.rst.farmacovigilanza.viewmodels.BaseViewModel;
 
 public class BootstrapActivity extends BaseActivity {
@@ -21,6 +23,18 @@ public class BootstrapActivity extends BaseActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        startActivity(new Intent(this, LoginActivity.class));
+        if (!Prefs.getBoolean("isLoggedIn", false)) {
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+        else {
+            // Get user type
+            String userType = Prefs.getString("userType", null);
+            if (UserType.valueOf(userType) == UserType.DOCTOR) {
+                startActivity(new Intent(this, MainDoctorActivity.class));
+            }
+            else {
+                // TODO:
+            }
+        }
     }
 }

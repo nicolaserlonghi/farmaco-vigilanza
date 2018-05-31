@@ -22,10 +22,9 @@ public class DoctorsRepository extends BaseRepository {
     /**
      * Restituisce il dottore date le credenziali di accesso al sistema
      * @param id id dottore
-     * @param password password dottore
      * @return un'istanza di {@link Doctor} se il dottore esiste; altrimenti null
      */
-    public LiveData<DoctorEntity> getDoctor(String id, String password) {
-        return getDatabase().doctorsDao().getDoctor(id, password);
+    public LiveData<DoctorEntity> getDoctor(String id) {
+        return getDatabase().doctorsDao().getDoctor(id);
     }
 }
