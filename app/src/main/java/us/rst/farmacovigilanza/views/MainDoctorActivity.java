@@ -9,10 +9,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import us.rst.farmacovigilanza.FarmacoVigilanzaApp;
 import us.rst.farmacovigilanza.R;
 import us.rst.farmacovigilanza.databinding.ActivityMainDoctorBinding;
 import us.rst.farmacovigilanza.viewmodels.BaseViewModel;
-import us.rst.farmacovigilanza.viewmodels.MainDoctorViewModel;
+import us.rst.farmacovigilanza.viewmodels.ReportViewModel;
 
 public class MainDoctorActivity extends BaseActivity implements View.OnClickListener {
     @Override protected int getLayoutId() {
@@ -25,8 +26,8 @@ public class MainDoctorActivity extends BaseActivity implements View.OnClickList
 
     @Override protected BaseViewModel getViewModel() {
         if (viewModel == null) {
-            MainDoctorViewModel.Factory factory = new MainDoctorViewModel.Factory(getApplication());
-            viewModel = ViewModelProviders.of(this, factory).get(MainDoctorViewModel.class);
+            ReportViewModel.Factory factory = new ReportViewModel.Factory(getApplication(), ((FarmacoVigilanzaApp)getApplication()).getDataRepository().getReportsRepository());
+            viewModel = ViewModelProviders.of(this, factory).get(ReportViewModel.class);
         }
 
         return viewModel;
@@ -84,5 +85,5 @@ public class MainDoctorActivity extends BaseActivity implements View.OnClickList
     }
 
     private ActivityMainDoctorBinding binding;
-    private MainDoctorViewModel viewModel;
+    private ReportViewModel viewModel;
 }
