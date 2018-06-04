@@ -1,28 +1,26 @@
 package us.rst.farmacovigilanza.database.entity;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
-
-import us.rst.farmacovigilanza.models.Doctor;
+import us.rst.farmacovigilanza.models.Pharmacologist;
 
 /**
- * Represents the entity of {@link Doctor}
+ * Rappresenta l'entità del farmacologo nel database
  */
-@Entity(tableName = "doctors")
-public class DoctorEntity implements Doctor {
+@Entity(tableName = "pharamacologist")
+public class PharmacologistEntity implements Pharmacologist {
     /**
-     * Gets the id of the doctor
-     * @return doctor id
+     * Restituisce l'id del farmacologo
+     * @return id farmacologo
      */
     @Override public String getId() {
         return id;
     }
 
     /**
-     * Sets the id of the doctor
-     * @param id doctor id
+     * Imposta l'id del farmacologo
+     * @param id id farmacologo
      */
     @Override public void setId(String id) {
         this.id = id;
