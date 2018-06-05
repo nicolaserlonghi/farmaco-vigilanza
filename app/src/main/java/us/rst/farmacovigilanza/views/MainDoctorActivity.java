@@ -53,7 +53,7 @@ public class MainDoctorActivity extends BaseActivity implements View.OnClickList
             startActivity(i);
         }
         else if(v.getId() == R.id.activity_main_doctor_manage_factors_button){
-            Intent i = new Intent(MainDoctorActivity.this, AddEditFactorsActivity.class);
+            Intent i = new Intent(MainDoctorActivity.this, AddAdverseReactionActivity.class);
             startActivity(i);
         }
         else{

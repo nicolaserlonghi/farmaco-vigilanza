@@ -3,6 +3,7 @@ package us.rst.farmacovigilanza;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import us.rst.farmacovigilanza.database.AppDatabase;
+import us.rst.farmacovigilanza.repositories.AdverseReactionRepository;
 import us.rst.farmacovigilanza.repositories.CredentialsRepository;
 import us.rst.farmacovigilanza.repositories.DoctorsRepository;
 import us.rst.farmacovigilanza.repositories.ReportsRepository;
@@ -32,7 +33,9 @@ public class DataRepository {
         doctorsRepository = new DoctorsRepository(database);
         reportsRepository = new ReportsRepository(database);
         credentialsRepository = new CredentialsRepository(database);
+        adverseReactionRepository = new AdverseReactionRepository(database, appExecutors);
     }
+    final AdverseReactionRepository adverseReactionRepository;
 
     public DoctorsRepository getDoctorsRepository() {
         return doctorsRepository;
@@ -44,6 +47,10 @@ public class DataRepository {
 
     public CredentialsRepository getCredentialsRepository() {
         return credentialsRepository;
+    }
+
+    public AdverseReactionRepository getAdverseReactionRepository(){
+        return adverseReactionRepository;
     }
 
     private final AppDatabase database;

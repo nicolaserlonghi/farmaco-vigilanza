@@ -30,8 +30,8 @@
             android:name=".views.AddEditPatientActivity"
             android:label="@string/activity_add_edit_patients_title" />
         <activity
-            android:name=".views.AddEditFactorsActivity"
-            android:label="@string/activity_add_edit_factors_title" />
+            android:name=".views.AddAdverseReactionActivity"
+            android:label="@string/activity_add_adverse_reaction_title" />
         <activity
             android:name=".views.ReportsChronologyActivity"
             android:label="@string/activity_reports_chronology" />

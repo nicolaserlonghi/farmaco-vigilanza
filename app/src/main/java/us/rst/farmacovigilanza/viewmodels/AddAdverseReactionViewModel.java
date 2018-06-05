@@ -1,18 +1,24 @@
 package us.rst.farmacovigilanza.viewmodels;
 
 import android.app.Application;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-public class AddEditFactorsViewModel extends BaseViewModel {
+import us.rst.farmacovigilanza.FarmacoVigilanzaApp;
+import us.rst.farmacovigilanza.database.entity.AvverseReactionEntity;
+import us.rst.farmacovigilanza.repositories.AdverseReactionRepository;
+
+public class AddAdverseReactionViewModel extends BaseViewModel {
     /**
      * Initializes a new instance of this class
      *
      * @param application
      */
-    public AddEditFactorsViewModel(@NonNull Application application) {
+    public AddAdverseReactionViewModel(@NonNull Application application, AdverseReactionRepository repository) {
         super(application);
+        this.repository = repository;
     }
 
     /**
@@ -25,6 +31,7 @@ public class AddEditFactorsViewModel extends BaseViewModel {
          */
         public Factory(@NonNull Application application) {
             this.application = application;
+            this.repository = ((FarmacoVigilanzaApp) application).getDataRepository().getAdverseReactionRepository();
         }
 
         /**
@@ -36,10 +43,21 @@ public class AddEditFactorsViewModel extends BaseViewModel {
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new AddEditFactorsViewModel(application);
+            return (T) new AddAdverseReactionViewModel(application, repository);
         }
 
         @NonNull
         private final Application application;
+        private final AdverseReactionRepository repository;
+    }
+
+    final AdverseReactionRepository repository;
+
+    public LiveData<AvverseReactionEntity> getAdverseReaction(String name){
+        return repository.getAdverseReaction(name);
+    }
+
+    public void add(AvverseReactionEntity avverseReactionEntity){
+        repository.add(avverseReactionEntity);
     }
 }

@@ -17,4 +17,7 @@ public interface AvverseReactionsDao {
 
     @Insert
     void insert(AvverseReactionEntity avverseReactionEntity);
+
+    @Query("SELECT * FROM avverseReactions WHERE name=:name")
+    LiveData<AvverseReactionEntity> getOne(String name);
 }

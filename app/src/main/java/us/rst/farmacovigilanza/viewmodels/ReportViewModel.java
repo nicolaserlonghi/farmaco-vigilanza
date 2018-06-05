@@ -45,7 +45,7 @@ public class ReportViewModel extends BaseViewModel {
      * @param cf codice fiscale
      * @return una lista osservabile di {@link FactorEntity}
      */
-    public MutableLiveData<List<FactorEntity>> getFactors(String cf) {
+    public LiveData<List<FactorEntity>> getFactors(String cf) {
         FiscalCode fiscalCode = FiscalCode.parse(cf);
         return reportsRepository.getFactors(fiscalCode);
     }
@@ -54,7 +54,7 @@ public class ReportViewModel extends BaseViewModel {
      * Restituisce una lista osservabile di {@link AvverseReactionEntity}
      * @return una lista osservabile di {@link AvverseReactionEntity}
      */
-    public MutableLiveData<List<AvverseReactionEntity>> getAvverseReactions() {
+    public LiveData<List<AvverseReactionEntity>> getAvverseReactions() {
         return reportsRepository.getAvverseReactions();
     }
 
