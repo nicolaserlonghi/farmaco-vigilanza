@@ -30,9 +30,9 @@ public class DataRepository {
 
     private DataRepository(final Context context, final AppExecutors appExecutors) {
         database = Room.databaseBuilder(context, AppDatabase.class, "appDatabase").build();
-        doctorsRepository = new DoctorsRepository(database);
-        reportsRepository = new ReportsRepository(database);
-        credentialsRepository = new CredentialsRepository(database);
+        doctorsRepository = new DoctorsRepository(database, appExecutors);
+        reportsRepository = new ReportsRepository(database, appExecutors);
+        credentialsRepository = new CredentialsRepository(database, appExecutors);
         adverseReactionRepository = new AdverseReactionRepository(database, appExecutors);
     }
     final AdverseReactionRepository adverseReactionRepository;

@@ -21,6 +21,10 @@ public class AddAdverseReactionViewModel extends BaseViewModel {
         this.repository = repository;
     }
 
+    public void add(AvverseReactionEntity avverseReactionEntity){
+        repository.add(avverseReactionEntity);
+    }
+
     /**
      * This class Factory
      */
@@ -51,13 +55,5 @@ public class AddAdverseReactionViewModel extends BaseViewModel {
         private final AdverseReactionRepository repository;
     }
 
-    final AdverseReactionRepository repository;
-
-    public LiveData<AvverseReactionEntity> getAdverseReaction(String name){
-        return repository.getAdverseReaction(name);
-    }
-
-    public void add(AvverseReactionEntity avverseReactionEntity){
-        repository.add(avverseReactionEntity);
-    }
+    private final AdverseReactionRepository repository;
 }

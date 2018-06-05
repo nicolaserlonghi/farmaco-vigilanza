@@ -30,12 +30,14 @@ public class DummyContentLoader {
         application.getAppExecutors().diskIO().execute(() -> {
             try {
                 // Credentials
+                // mario.rossi --> doctor
                 CredentialsEntity credentialsEntity = new CredentialsEntity();
                 credentialsEntity.setId("mario.rossi");
                 credentialsEntity.setPassword("1234");
                 credentialsEntity.setUserType(UserType.DOCTOR);
                 application.getDataRepository().getCredentialsRepository().getDatabase().credentialsDao().insert(credentialsEntity);
 
+                // bianchi.luca --> pharmacology
                 credentialsEntity = new CredentialsEntity();
                 credentialsEntity.setId("bianchi.luca");
                 credentialsEntity.setPassword("1234");

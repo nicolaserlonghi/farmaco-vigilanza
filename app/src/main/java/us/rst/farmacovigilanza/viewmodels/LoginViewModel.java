@@ -26,7 +26,7 @@ public class LoginViewModel extends BaseViewModel {
      * @return oggetto osservabile che invierà i dati delle credenziali a utente connesso
      */
     public LiveData<CredentialsEntity> getUser(String id, String password) {
-        return repository.getDoctor(id, password);
+        return repository.getCredentials(id, password);
     }
 
     /**

@@ -1,28 +1,40 @@
 package us.rst.farmacovigilanza.repositories;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+import us.rst.farmacovigilanza.AppExecutors;
 import us.rst.farmacovigilanza.database.AppDatabase;
 import us.rst.farmacovigilanza.database.entity.CredentialsEntity;
 
 /**
- * Gestisce le interrogazioni al database per il dominio degli utenti
+ * Gestisce l'interazione con database per il login di dottore o farmacologo
  */
 public class CredentialsRepository extends BaseRepository {
     /**
      * Inizializza una nuova istanza di questa classe
-     * @param database un'istanza di {@link AppDatabase}
+     *
+     * @param database database
+     * @param appExecutors pool thread per esecuzione operazioni I/O
      */
-    public CredentialsRepository(AppDatabase database) {
-        super(database);
+    public CredentialsRepository(AppDatabase database, AppExecutors appExecutors) {
+        super(database, appExecutors);
+
+        credentialsEntity = new MutableLiveData<>();
     }
 
     /**
-     * Restituisce le credenziali dell'utente collegato
+     * Ricerca un utente dati id e password
      * @param id id utente
      * @param password password utente
-     * @return un oggetto osservabile con le credenziali dell'utente connesso
+     * @return un'istanza di {@link CredentialsEntity} osservabile
      */
-    public LiveData<CredentialsEntity> getDoctor(String id, String password) {
-        return getDatabase().credentialsDao().getUser(id, password);
+    public LiveData<CredentialsEntity> getCredentials(final String id, final String password) {
+        getAppExecutors().diskIO().execute(() -> {
+            credentialsEntity.setValue(getDatabase().credentialsDao().getUser(id, password).getValue());
+        });
+
+        return credentialsEntity;
     }
+
+    private final MutableLiveData<CredentialsEntity> credentialsEntity;
 }

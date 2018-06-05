@@ -1,8 +1,7 @@
 package us.rst.farmacovigilanza.repositories;
 
 import android.arch.lifecycle.LiveData;
-import java.util.List;
-
+import us.rst.farmacovigilanza.AppExecutors;
 import us.rst.farmacovigilanza.database.AppDatabase;
 import us.rst.farmacovigilanza.database.entity.DoctorEntity;
 import us.rst.farmacovigilanza.models.Doctor;
@@ -13,10 +12,12 @@ import us.rst.farmacovigilanza.models.Doctor;
 public class DoctorsRepository extends BaseRepository {
     /**
      * Inizializza una nuova istanza di questa classe
-     * @param database un'istanza di {@link AppDatabase}
+     *
+     * @param database database
+     * @param appExecutors pool thread per esecuzione operazioni I/O
      */
-    public DoctorsRepository(AppDatabase database) {
-        super(database);
+    public DoctorsRepository(AppDatabase database, AppExecutors appExecutors) {
+        super(database, appExecutors);
     }
 
     /**

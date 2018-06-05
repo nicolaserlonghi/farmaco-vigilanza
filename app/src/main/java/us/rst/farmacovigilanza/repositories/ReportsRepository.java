@@ -3,6 +3,7 @@ package us.rst.farmacovigilanza.repositories;
 import android.arch.lifecycle.LiveData;
 import java.util.Date;
 import java.util.List;
+import us.rst.farmacovigilanza.AppExecutors;
 import us.rst.farmacovigilanza.database.AppDatabase;
 import us.rst.farmacovigilanza.database.entity.AvverseReactionEntity;
 import us.rst.farmacovigilanza.database.entity.FactorEntity;
@@ -16,10 +17,12 @@ import us.rst.farmacovigilanza.models.FiscalCode;
 public class ReportsRepository extends BaseRepository {
     /**
      * Inizializza una nuova istanza di questa classe
-     * @param database un'istanza di {@link AppDatabase}
+     *
+     * @param database database
+     * @param appExecutors pool thread per esecuzione operazioni I/O
      */
-    public ReportsRepository(AppDatabase database) {
-        super(database);
+    public ReportsRepository(AppDatabase database, AppExecutors appExecutors) {
+        super(database, appExecutors);
     }
 
     /**
