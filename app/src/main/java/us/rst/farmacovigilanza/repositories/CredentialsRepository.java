@@ -29,11 +29,7 @@ public class CredentialsRepository extends BaseRepository {
      * @return un'istanza di {@link CredentialsEntity} osservabile
      */
     public LiveData<CredentialsEntity> getCredentials(final String id, final String password) {
-        getAppExecutors().diskIO().execute(() -> {
-            credentialsEntity.setValue(getDatabase().credentialsDao().getUser(id, password).getValue());
-        });
-
-        return credentialsEntity;
+        return getDatabase().credentialsDao().getUser(id, password);
     }
 
     private final MutableLiveData<CredentialsEntity> credentialsEntity;
