@@ -6,6 +6,7 @@ import us.rst.farmacovigilanza.database.AppDatabase;
 import us.rst.farmacovigilanza.repositories.AdverseReactionRepository;
 import us.rst.farmacovigilanza.repositories.CredentialsRepository;
 import us.rst.farmacovigilanza.repositories.DoctorsRepository;
+import us.rst.farmacovigilanza.repositories.DrugsRepository;
 import us.rst.farmacovigilanza.repositories.ReportsRepository;
 
 /**
@@ -34,6 +35,8 @@ public class DataRepository {
         reportsRepository = new ReportsRepository(database, appExecutors);
         credentialsRepository = new CredentialsRepository(database, appExecutors);
         adverseReactionRepository = new AdverseReactionRepository(database, appExecutors);
+        drugsRepository = new DrugsRepository(database, appExecutors);
+
     }
     final AdverseReactionRepository adverseReactionRepository;
 
@@ -53,9 +56,14 @@ public class DataRepository {
         return adverseReactionRepository;
     }
 
+    public DrugsRepository getDrugsRepository() {
+        return drugsRepository;
+    }
+
     private final AppDatabase database;
     private final DoctorsRepository doctorsRepository;
     private final ReportsRepository reportsRepository;
     private final CredentialsRepository credentialsRepository;
+    private final DrugsRepository drugsRepository;
     private static DataRepository instance;
 }

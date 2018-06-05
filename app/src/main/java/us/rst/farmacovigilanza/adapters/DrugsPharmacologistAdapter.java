@@ -64,7 +64,7 @@ public class DrugsPharmacologistAdapter extends RecyclerView.Adapter<DrugsPharma
         return drugs.size();
     }
 
-    public void updateList(ArrayList<Drug> drugs){
+    public void update(ArrayList<Drug> drugs){
         this.drugs = drugs;
         notifyDataSetChanged();
     }
