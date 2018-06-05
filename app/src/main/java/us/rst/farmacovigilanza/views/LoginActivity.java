@@ -80,7 +80,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 startActivity(new Intent(this, MainDoctorActivity.class));
             }
             else {
-                // TODO:
+                startActivity(new Intent(this, MainPharmacologistActivity.class));
             }
         });
     }

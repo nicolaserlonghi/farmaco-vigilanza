@@ -12,15 +12,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import us.rst.farmacovigilanza.R;
+import us.rst.farmacovigilanza.database.entity.ReportEntity;
 import us.rst.farmacovigilanza.models.Report;
 import us.rst.farmacovigilanza.databinding.RowReportsPharmacologistAdapterBinding;
 
 
 public class ReportsPharmacologistAdapter extends RecyclerView.Adapter<ReportsPharmacologistAdapter.ViewHolder> {
 
-    private ArrayList<Report> reports;
+    private ArrayList<ReportEntity> reports;
 
-    public ReportsPharmacologistAdapter(ArrayList<Report> reports) {
+    public ReportsPharmacologistAdapter(ArrayList<ReportEntity> reports) {
         this.reports = reports;
     }
 
@@ -54,11 +55,8 @@ public class ReportsPharmacologistAdapter extends RecyclerView.Adapter<ReportsPh
 
         holder.name_report_text_view.setText(report.getDescription());
         holder.reaction_date_text_view.setText(report.getReactionDate().toString());
-        holder.report_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: Start reports detail activity
-            }
+        holder.report_layout.setOnClickListener(v -> {
+            // TODO: Start reports detail activity
         });
     }
 
@@ -67,7 +65,7 @@ public class ReportsPharmacologistAdapter extends RecyclerView.Adapter<ReportsPh
         return reports.size();
     }
 
-    public void updateList(ArrayList<Report> reports){
+    public void update(ArrayList<ReportEntity> reports){
         this.reports = reports;
         notifyDataSetChanged();
     }

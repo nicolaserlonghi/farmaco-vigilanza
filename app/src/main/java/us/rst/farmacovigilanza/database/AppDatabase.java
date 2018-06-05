@@ -12,6 +12,7 @@ import us.rst.farmacovigilanza.database.dao.DoctorsDao;
 import us.rst.farmacovigilanza.database.dao.FactorsDao;
 import us.rst.farmacovigilanza.database.dao.MedicationsDao;
 import us.rst.farmacovigilanza.database.dao.PatientsDao;
+import us.rst.farmacovigilanza.database.dao.ReportsDao;
 import us.rst.farmacovigilanza.database.entity.AvverseReactionEntity;
 import us.rst.farmacovigilanza.database.entity.CredentialsEntity;
 import us.rst.farmacovigilanza.database.entity.DoctorEntity;
@@ -33,4 +34,5 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract MedicationsDao medicationsDao();
     public abstract FactorsDao factorsDao();
     public abstract AvverseReactionsDao avverseReactionsDao();
+    public abstract ReportsDao reportsDao();
 }

@@ -8,8 +8,10 @@ import us.rst.farmacovigilanza.database.AppDatabase;
 import us.rst.farmacovigilanza.database.entity.AvverseReactionEntity;
 import us.rst.farmacovigilanza.database.entity.FactorEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
+import us.rst.farmacovigilanza.database.entity.ReportEntity;
 import us.rst.farmacovigilanza.models.AvverseReaction;
 import us.rst.farmacovigilanza.models.FiscalCode;
+import us.rst.farmacovigilanza.models.Report;
 
 /**
  * Gestisce le interrogazioni al database per il dominio dei pazienti
@@ -62,5 +64,9 @@ public class ReportsRepository extends BaseRepository {
      */
     public void saveReport(FiscalCode fiscalCode, String description, Date reactionDate, Date reportDate, AvverseReaction avverseReaction, int levelOfGravity) {
         // TODO
+    }
+
+    public LiveData<List<ReportEntity>> getReports() {
+        return getDatabase().reportsDao().getAll();
     }
 }

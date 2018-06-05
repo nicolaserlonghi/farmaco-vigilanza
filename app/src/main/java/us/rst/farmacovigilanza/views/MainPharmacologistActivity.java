@@ -10,17 +10,15 @@ import android.support.v7.widget.Toolbar;
 import us.rst.farmacovigilanza.R;
 import us.rst.farmacovigilanza.adapters.PharmacologistViewPagerAdapter;
 import us.rst.farmacovigilanza.viewmodels.BaseViewModel;
-import us.rst.farmacovigilanza.databinding.ActivityPharmacologistBinding;
+import us.rst.farmacovigilanza.databinding.MainActivityPharmacologistBinding;
 
-public class PharmacologistActivity extends BaseActivity
-        implements ReportsPharmacologistFragment.OnFragmentInteractionListener,
-        DrugsPharmacologistFragment.OnFragmentInteractionListener {
+public class MainPharmacologistActivity extends BaseActivity {
 
-    private ActivityPharmacologistBinding binding;
+    private MainActivityPharmacologistBinding binding;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_pharmacologist;
+        return R.layout.main_activity_pharmacologist;
     }
 
     @Override
@@ -48,7 +46,7 @@ public class PharmacologistActivity extends BaseActivity
         super.onCreate(savedInstanceState);
 
         // Set tabLayout
-        TabLayout tabLayout = (TabLayout)binding.activityPharmacologistTabLayout;
+        TabLayout tabLayout = binding.activityPharmacologistTabLayout;
         tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.activity_pharmacologist_tab_title_reports)));
         tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.activity_pharmacologist_tab_title_drugs)));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -78,10 +76,5 @@ public class PharmacologistActivity extends BaseActivity
 
             }
         });
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 }
