@@ -6,10 +6,8 @@ import us.rst.farmacovigilanza.FarmacoVigilanzaApp;
 import us.rst.farmacovigilanza.Logger;
 import us.rst.farmacovigilanza.database.entity.AvverseReactionEntity;
 import us.rst.farmacovigilanza.database.entity.CredentialsEntity;
-import us.rst.farmacovigilanza.database.entity.DoctorEntity;
 import us.rst.farmacovigilanza.database.entity.FactorEntity;
 import us.rst.farmacovigilanza.models.Credentials.UserType;
-import us.rst.farmacovigilanza.models.Medication;
 
 /**
  * Classe di supporto per l'inserimento di dati di test per la demo al cliente

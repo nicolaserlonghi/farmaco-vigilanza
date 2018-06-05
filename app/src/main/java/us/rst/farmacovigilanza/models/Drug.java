@@ -3,7 +3,7 @@ package us.rst.farmacovigilanza.models;
 /**
  * Represents a medication
  */
-public interface Medication {
+public interface Drug {
     /**
      * Gets the medication id
      * @return medication id

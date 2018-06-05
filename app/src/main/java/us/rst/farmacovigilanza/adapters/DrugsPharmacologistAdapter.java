@@ -14,13 +14,13 @@ import java.util.ArrayList;
 
 import us.rst.farmacovigilanza.R;
 import us.rst.farmacovigilanza.databinding.RowDrugsPharmacologistAdapterBinding;
-import us.rst.farmacovigilanza.models.Medication;
+import us.rst.farmacovigilanza.models.Drug;
 
 public class DrugsPharmacologistAdapter extends RecyclerView.Adapter<DrugsPharmacologistAdapter.ViewHolder> {
 
-    private ArrayList<Medication> drugs;
+    private ArrayList<Drug> drugs;
 
-    public DrugsPharmacologistAdapter(ArrayList<Medication> drugs) {
+    public DrugsPharmacologistAdapter(ArrayList<Drug> drugs) {
         this.drugs = drugs;
     }
 
@@ -48,7 +48,7 @@ public class DrugsPharmacologistAdapter extends RecyclerView.Adapter<DrugsPharma
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Medication drug = drugs.get(position);
+        final Drug drug = drugs.get(position);
 
         holder.name_drug_text_view.setText(drug.getName());
         holder.drug_layout.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +64,7 @@ public class DrugsPharmacologistAdapter extends RecyclerView.Adapter<DrugsPharma
         return drugs.size();
     }
 
-    public void updateList(ArrayList<Medication> drugs){
+    public void updateList(ArrayList<Drug> drugs){
         this.drugs = drugs;
         notifyDataSetChanged();
     }

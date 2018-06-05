@@ -2,13 +2,14 @@ package us.rst.farmacovigilanza.database.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import us.rst.farmacovigilanza.models.Medication;
+
+import us.rst.farmacovigilanza.models.Drug;
 
 /**
- * Rappresenta il modello {@link Medication} nel database
+ * Rappresenta il modello {@link Drug} nel database
  */
-@Entity(tableName = "medications")
-public class MedicationEntity implements Medication {
+@Entity(tableName = "drugs")
+public class DrugEntity implements Drug {
 
     /**
      * Restituisce l'id univoco del farmaco
