@@ -17,11 +17,11 @@ import us.rst.farmacovigilanza.R;
 import us.rst.farmacovigilanza.adapters.ReportsPharmacologistAdapter;
 import us.rst.farmacovigilanza.databinding.FragmentReportsPharmacologistBinding;
 import us.rst.farmacovigilanza.helpers.SimpleDividerItemDecoration;
-import us.rst.farmacovigilanza.viewmodels.ReportsViewModel;
+import us.rst.farmacovigilanza.viewmodels.ReportViewModel;
 
 public class ReportsPharmacologistFragment extends Fragment {
 
-    private ReportsViewModel reportsViewModel;
+    private ReportViewModel reportViewModel;
     private FragmentReportsPharmacologistBinding binding;
 
     @Override
@@ -35,9 +35,9 @@ public class ReportsPharmacologistFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ReportsViewModel.Factory factory = new ReportsViewModel.Factory(getActivity().getApplication(),
+        ReportViewModel.Factory factory = new ReportViewModel.Factory(getActivity().getApplication(),
                 ((FarmacoVigilanzaApp)getActivity().getApplication()).getDataRepository().getReportsRepository());
-        reportsViewModel = ViewModelProviders.of(this, factory).get(ReportsViewModel.class);
+        reportViewModel = ViewModelProviders.of(this, factory).get(ReportViewModel.class);
 
 
         RecyclerView recyclerView = binding.recyclerView;
@@ -45,7 +45,7 @@ public class ReportsPharmacologistFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new ReportsPharmacologistAdapter(new ArrayList<>()));
 
-        reportsViewModel.getReports().observe(this, reports -> {
+        reportViewModel.getReports().observe(this, reports -> {
             if(reports == null)
                 return;
 

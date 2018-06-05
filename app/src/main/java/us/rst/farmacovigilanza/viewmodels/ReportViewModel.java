@@ -11,6 +11,7 @@ import java.util.List;
 import us.rst.farmacovigilanza.database.entity.AvverseReactionEntity;
 import us.rst.farmacovigilanza.database.entity.FactorEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
+import us.rst.farmacovigilanza.database.entity.ReportEntity;
 import us.rst.farmacovigilanza.models.AvverseReaction;
 import us.rst.farmacovigilanza.models.FiscalCode;
 import us.rst.farmacovigilanza.repositories.ReportsRepository;
@@ -19,6 +20,10 @@ import us.rst.farmacovigilanza.repositories.ReportsRepository;
  * Classe di collegamento tra interfaccia e dati della segnalazione
  */
 public class ReportViewModel extends BaseViewModel {
+
+    private final ReportsRepository reportsRepository;
+
+
     /**
      * Inizializza una nuova istanza di questa classe
      * @param application istanza corrente dell'applicazione
@@ -102,5 +107,7 @@ public class ReportViewModel extends BaseViewModel {
         private final ReportsRepository reportsRepository;
     }
 
-    private final ReportsRepository reportsRepository;
+    public LiveData<List<ReportEntity>> getReports() {
+        return reportsRepository.getReports();
+    }
 }
