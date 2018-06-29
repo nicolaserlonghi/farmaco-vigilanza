@@ -24,7 +24,7 @@
             android:name=".views.MainDoctorActivity"
             android:label="@string/activity_main_doctor_title" />
         <activity
-            android:name=".views.AddEditReportActivity"
+            android:name=".views.AddEditReportsActivity"
             android:label="@string/activity_add_edit_reports_title" />
         <activity
             android:name=".views.AddEditPatientActivity"
