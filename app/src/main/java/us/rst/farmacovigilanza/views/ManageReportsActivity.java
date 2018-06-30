@@ -96,10 +96,14 @@ public class ManageReportsActivity extends BaseActivity implements View.OnClickL
                     binding.activityManageReportsInputProvince.setText(patient.getProvince());
                     binding.activityManageReportsInputJob.setText(patient.getJob());
                     binding.activityManageReportsCardViewDataPatient.setVisibility(View.VISIBLE);
+                    // TODO: Setto i valori dei fattori di rischio
                 });
                 break;
             case R.id.activity_manage_reports_btn_modify_patient:
                 // TODO: Chiamo la pagina per l'inserimento paziente precaricando i dati
+                break;
+            case R.id.activity_manage_reports_btn_modify_factor:
+                // TODO: Chiamo la pagina per l'inserimento fattori di rischio precaricando i dati
                 break;
         }
     }

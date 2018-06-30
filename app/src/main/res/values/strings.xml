@@ -9,10 +9,20 @@
     <string name="activity_main_doctor_title">Pagina iniziale dottore</string>
    
     <string name="activity_add_edit_reports_title">Aggiungi o modifica report</string>
+    <string name="activity_add_edit_reports_text_view_patient_data">Dati paziente</string>
+    <string name="activity_add_edit_reports_text_view_factor">Fattori di rischio</string>
+    <string name="activity_add_edit_reports_text_view_therapy">Terapie</string>
     <string name="activity_add_edit_reports_edit_text_cf">Inerisci il codice fiscale</string>
     <string name="activity_add_edit_reports_edit_text_birthdate">Data di nascita</string>
     <string name="activity_add_edit_reports_edit_text_province">Provincia</string>
     <string name="activity_add_edit_reports_edit_text_job">Professione</string>
+    <string name="activity_add_edit_reports_edit_text_name">Nome</string>
+    <string name="activity_add_edit_reports_edit_text_description">Descrizione</string>
+    <string name="activity_add_edit_reports_edit_text_unit">Dosaggio</string>
+    <string name="activity_add_edit_reports_edit_text_frequency">Frequenza</string>
+    <string name="activity_add_edit_reports_edit_text_start_date">Inizio terapia</string>
+    <string name="activity_add_edit_reports_edit_text_end_date">Fine terapia</string>
+    <string name="activity_add_edit_reports_edit_text_level_gravity">Livello di gravità</string>
     <string name="activity_add_edit_reports_button_add">Inerisci</string>
     <string name="activity_add_edit_reports_button_modify">Modifica</string>
 
