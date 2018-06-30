@@ -42,6 +42,7 @@
                         android:hint="@string/activity_add_edit_reports_edit_text_cf" />
                 </android.support.design.widget.TextInputLayout>
 
+                <!-- Button add CF -->
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/activity_manage_reports_btn_add_cf"
                     app:theme="@style/contained_button"
@@ -51,6 +52,74 @@
                     android:padding="12dp"
                     android:layout_gravity="right"
                     android:text="@string/activity_add_edit_reports_button_add" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/activity_manage_reports_card_view_data_patient"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_huge"
+            card_view:cardCornerRadius="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/spacing_medium">
+
+                <!-- Birthdate Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginBottom="@dimen/spacing_medium">
+                    <EditText android:id="@+id/activity_manage_reports_input_birthdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapCharacters"
+                        android:hint="@string/activity_add_edit_reports_edit_text_cf"
+                        android:enabled="false" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!-- Province Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginBottom="@dimen/spacing_medium">
+                    <EditText android:id="@+id/activity_manage_reports_input_province"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapCharacters"
+                        android:hint="@string/activity_add_edit_reports_edit_text_province"
+                        android:enabled="false" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!-- Job Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginBottom="@dimen/spacing_medium">
+                    <EditText android:id="@+id/activity_manage_reports_input_job"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapCharacters"
+                        android:hint="@string/activity_add_edit_reports_edit_text_job"
+                        android:enabled="false" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/activity_manage_reports_btn_modify_patient"
+                    app:theme="@style/contained_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:padding="12dp"
+                    android:layout_gravity="right"
+                    android:text="@string/activity_add_edit_reports_button_modify" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>

@@ -10,7 +10,11 @@
    
     <string name="activity_add_edit_reports_title">Aggiungi o modifica report</string>
     <string name="activity_add_edit_reports_edit_text_cf">Inerisci il codice fiscale</string>
+    <string name="activity_add_edit_reports_edit_text_birthdate">Data di nascita</string>
+    <string name="activity_add_edit_reports_edit_text_province">Provincia</string>
+    <string name="activity_add_edit_reports_edit_text_job">Professione</string>
     <string name="activity_add_edit_reports_button_add">Inerisci</string>
+    <string name="activity_add_edit_reports_button_modify">Modifica</string>
 
     <string name="activity_add_edit_patients_title">Aggiungi o rimuovi pazienti</string>
     

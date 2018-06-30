@@ -67,9 +67,10 @@ public class ManageReportsActivity extends BaseActivity implements View.OnClickL
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         binding.activityManageReportsBtnAddCf.setOnClickListener(this);
+        binding.activityManageReportsBtnModifyPatient.setOnClickListener(this);
     }
 
     @Override
@@ -91,8 +92,14 @@ public class ManageReportsActivity extends BaseActivity implements View.OnClickL
                     }
 
                     this.patient = patient;
-                    // TODO: VIsualizzo ed aggiungo i dati nella seconda CardView
+                    binding.activityManageReportsInputBirthdate.setText(patient.getBirthDate());
+                    binding.activityManageReportsInputProvince.setText(patient.getProvince());
+                    binding.activityManageReportsInputJob.setText(patient.getJob());
+                    binding.activityManageReportsCardViewDataPatient.setVisibility(View.VISIBLE);
                 });
+                break;
+            case R.id.activity_manage_reports_btn_modify_patient:
+                // TODO: Chiamo la pagina per l'inserimento paziente precaricando i dati
                 break;
         }
     }
