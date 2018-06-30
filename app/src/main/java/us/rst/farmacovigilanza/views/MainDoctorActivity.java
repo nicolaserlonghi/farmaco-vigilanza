@@ -58,9 +58,11 @@ public class MainDoctorActivity extends BaseActivity implements View.OnClickList
             case R.id.activity_main_doctor_manage_factors_button:
                 intent = new Intent(MainDoctorActivity.this, AddAdverseReactionActivity.class);
                 startActivity(intent);
+                break;
             case R.id.activity_main_doctor_manage_reports_button:
-                intent = new Intent(MainDoctorActivity.this, AddEditReportsActivity.class);
+                intent = new Intent(MainDoctorActivity.this, ManageReportsActivity.class);
                 startActivity(intent);
+                break;
         }
     }
 

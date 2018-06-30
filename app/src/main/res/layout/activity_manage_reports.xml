@@ -16,7 +16,7 @@
             layout="@layout/toolbar" />
 
         <android.support.v7.widget.CardView
-            android:id="@+id/card_view"
+            android:id="@+id/activity_manage_reports_card_view_cf"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_medium"
                     android:layout_marginBottom="@dimen/spacing_medium">
-                    <EditText android:id="@+id/input_cf"
+                    <EditText android:id="@+id/activity_manage_reports_input_cf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textCapCharacters"
@@ -43,7 +43,7 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/activity_login_btn_login"
+                    android:id="@+id/activity_manage_reports_btn_add_cf"
                     app:theme="@style/contained_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

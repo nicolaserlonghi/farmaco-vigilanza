@@ -52,7 +52,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
 
         // Login button disable
-        // KeyboardHelper.hideKeyboard(LoginActivity.this);
+        KeyboardHelper.hideKeyboard(LoginActivity.this);
 
         String id = binding.activityLoginInputCf.getText().toString();
         String password = binding.activityLoginInputPassword.getText().toString();
