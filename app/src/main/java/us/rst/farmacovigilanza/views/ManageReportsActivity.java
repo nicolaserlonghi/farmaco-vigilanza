@@ -71,6 +71,7 @@ public class ManageReportsActivity extends BaseActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         binding.activityManageReportsBtnAddCf.setOnClickListener(this);
         binding.activityManageReportsBtnModifyPatient.setOnClickListener(this);
+        binding.activityManageReportsBtnAddAdverseReaction.setOnClickListener(this);
     }
 
     @Override
@@ -95,15 +96,33 @@ public class ManageReportsActivity extends BaseActivity implements View.OnClickL
                     binding.activityManageReportsInputBirthdate.setText(patient.getBirthDate());
                     binding.activityManageReportsInputProvince.setText(patient.getProvince());
                     binding.activityManageReportsInputJob.setText(patient.getJob());
+                    binding.activityManageReportsCardViewDataPatientTitle.setVisibility((View.VISIBLE));
                     binding.activityManageReportsCardViewDataPatient.setVisibility(View.VISIBLE);
+                    binding.activityManageReportsCardViewFactorTitle.setVisibility(View.VISIBLE);
+                    binding.activityManageReportsRecyclerViewFactor.setVisibility(View.VISIBLE);
+                    binding.activityManageReportsCardViewTherapyTitle.setVisibility(View.VISIBLE);
+                    binding.activityManageReportsCardViewTherapyTitle.setVisibility(View.VISIBLE);
+                    binding.activityManageReportsCardViewAdverseReactionTitle.setVisibility(View.VISIBLE);
+                    binding.activityManageReportsCardViewAdverseReaction.setVisibility(View.VISIBLE);
+
                     // TODO: Setto i valori dei fattori di rischio
                 });
                 break;
             case R.id.activity_manage_reports_btn_modify_patient:
-                // TODO: Chiamo la pagina per l'inserimento paziente precaricando i dati
+                // TODO: Chiamo la classe di aggiunta/modifica paziente
                 break;
-            case R.id.activity_manage_reports_btn_modify_factor:
-                // TODO: Chiamo la pagina per l'inserimento fattori di rischio precaricando i dati
+            case  R.id.activity_manage_reports_btn_add_adverse_reaction:
+                // Hide keyboard and disable button
+                binding.activityManageReportsBtnAddCf.setEnabled(false);
+                String name_reaction = binding.activityManageReportsInputAdverseReactionName.getText().toString();
+                String level_reaction = binding.activityManageReportsInputAdverseReactionLevelGravity.getText().toString();
+                String description = binding.activityManageReportsInputAdverseReactionDescription.getText().toString();
+                if(name_reaction.isEmpty() || level_reaction.isEmpty()) {
+                    SnackBarHelper.showShort(v, getResources().getString(R.string.error_empty_field));
+                    binding.activityManageReportsBtnAddCf.setEnabled(false);
+                    return;
+                }
+                // TODO: setReaction();
                 break;
         }
     }
