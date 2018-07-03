@@ -48,17 +48,21 @@ public class MainDoctorActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.activity_main_doctor_manage_patient_button) {
-            Intent i = new Intent(MainDoctorActivity.this, AddEditPatientActivity.class);
-            startActivity(i);
-        }
-        else if(v.getId() == R.id.activity_main_doctor_manage_factors_button){
-            Intent i = new Intent(MainDoctorActivity.this, AddAdverseReactionActivity.class);
-            startActivity(i);
-        }
-        else{
-            Intent i = new Intent(MainDoctorActivity.this, AddEditReportsActivity.class);
-            startActivity(i);
+        Intent intent;
+
+        switch (v.getId()) {
+            case R.id.activity_main_doctor_manage_patient_button:
+                intent = new Intent(MainDoctorActivity.this, AddEditPatientActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.activity_main_doctor_manage_factors_button:
+                intent = new Intent(MainDoctorActivity.this, AddAdverseReactionActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.activity_main_doctor_manage_reports_button:
+                intent = new Intent(MainDoctorActivity.this, ManageReportsActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
