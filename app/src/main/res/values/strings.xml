@@ -1,37 +1,67 @@
 <resources>
     <string name="app_name">Farmaco Vigilanza</string>
 
-    <string name="activity_login_title">Login</string>
-    
-    <string name="activity_main_doctor_manage_patients">Gestisci pazienti</string>
-    <string name="activity_main_doctor_manage_factors">Gestisci fattori di rischio</string>
-    <string name="activity_main_doctor_manage_reports">Gestisci segnalazioni</string>
-    <string name="activity_main_doctor_title">Pagina iniziale dottore</string>
-    <string name="activity_add_edit_reports_title">Aggiungi o modifica report</string>
-    <string name="activity_add_edit_patients_title">Aggiungi o rimuovi pazienti</string>
-    <string name="activity_add_adverse_reaction_name_hint">Nome reazione avversa</string>
-    <string name="activity_add_adverse_reaction_description_hint">Descrizione reazione avversa</string>
-    <string name="activity_add_adverse_reaction_title">Aggiungi o modifica reazione avversa</string>
-    <string name="activity_add_adverse_reaction_save">Salva</string>
-
-    <string name="item_therapies_button_remove">Rimuovi Terapia</string>
-    <string name="item_risk_factors_button_remove">Rimuovi Fattore di Rischio</string>
-
-    <string name="activity_reports_chronology">Cronologia segnalazioni</string>d
-    
-    <string name="activity_login_edit_text_cf">Id dottore</string>
-    <string name="activity_login_edit_text_password">Password</string>
-    
-    <string name="activity_login_btn_login">Login</string>
-    
-    <string name="activity_pharmacologist_tab_title_reports">Reports</string>
-    <string name="activity_pharmacologist_tab_title_drugs">Drugs</string>
-    
-    <string name="activity_add_adverse_reaction_save">Save</string>
-
+    <!-- General purpose strings -->
     <string name="error_empty_field">Uno o più campi sono vuoti</string>
     <string name="error_generic">Ops! Riprova</string>
     <string name="error_wrong_credentials">L\'id o la password non sono corretti</string>
     <string name="waiting">Attendere prego</string>
-    
+
+    <!-- Login activity -->
+    <string name="activity_login_title">Login</string>
+    <string name="activity_login_edit_text_cf">Id dottore</string>
+    <string name="activity_login_edit_text_password">Password</string>
+    <string name="activity_login_btn_login">Login</string>
+
+    <!-- Main doctor activity -->
+    <string name="activity_main_doctor_manage_patients">Gestisci pazienti</string>
+    <string name="activity_main_doctor_manage_factors">Gestisci fattori di rischio</string>
+    <string name="activity_main_doctor_manage_reports">Gestisci segnalazioni</string>
+    <string name="activity_main_doctor_title">Pagina iniziale dottore</string>
+    <string name="activity_main_doctor_menu_logout">Logout</string>
+    <string name="activity_main_doctor_menu_reports_cronology">Cronologia segnalazioni</string>
+
+    <!-- Add edit reports -->
+    <string name="activity_add_edit_reports_title">Aggiungi o modifica report</string>
+    <string name="activity_add_edit_reports_text_view_patient_data">Dati paziente</string>
+    <string name="activity_add_edit_reports_text_view_factor">Fattori di rischio</string>
+    <string name="activity_add_edit_reports_text_view_therapy">Terapie</string>
+    <string name="activity_add_edit_reports_edit_text_cf">Inerisci il codice fiscale</string>
+    <string name="activity_add_edit_reports_edit_text_birthdate">Data di nascita</string>
+    <string name="activity_add_edit_reports_edit_text_province">Provincia</string>
+    <string name="activity_add_edit_reports_edit_text_job">Professione</string>
+    <string name="activity_add_edit_reports_edit_text_name">Nome</string>
+    <string name="activity_add_edit_reports_edit_text_description">Descrizione</string>
+    <string name="activity_add_edit_reports_edit_text_unit">Dosaggio</string>
+    <string name="activity_add_edit_reports_edit_text_frequency">Frequenza</string>
+    <string name="activity_add_edit_reports_edit_text_start_date">Inizio terapia</string>
+    <string name="activity_add_edit_reports_edit_text_end_date">Fine terapia</string>
+    <string name="activity_add_edit_reports_edit_text_level_gravity">Livello di gravità</string>
+    <string name="activity_add_edit_reports_button_add">Inerisci</string>
+    <string name="activity_add_edit_reports_button_modify">Modifica</string>
+
+    <!-- Add edit patient activity -->
+    <string name="activity_add_edit_patients_title">Aggiungi o modifica pazienti</string>
+    <string name="activity_add_edit_patient_edit_text_cf">Inserisci codice fiscale</string>
+    <string name="activity_add_edit_patient_edit_text_birthday">Inserisci anno di nascita</string>
+    <string name="activity_add_edit_patient_edit_text_province">Inserisci provincia</string>
+    <string name="activity_add_edit_patient_edit_text_job">Inserisci professione</string>
+    <string name="activity_add_edit_patient_button_save">Salva</string>
+    <string name="activity_add_edit_patient_button_add_therapies">Aggiungi Terapia Farmacologica</string>
+    <string name="activity_add_edit_patient_button_add_risk_factor">Aggiungi Fattore di Rischio</string>
+    <!-- REFACTOR -->
+    <string name="item_risk_factors_button_remove">Rimuovi Fattore di Rischio</string>
+    <string name="item_therapies_button_remove">Rimuovi Terapia</string>
+
+    <!-- Add adverse reaction activity -->
+    <string name="activity_add_adverse_reaction_name_hint">Nome reazione avversa</string>
+    <string name="activity_add_adverse_reaction_description_hint">Descrizione reazione avversa</string>
+    <string name="activity_add_adverse_reaction_title">Aggiungi o modifica reazione avversa</string>
+    <string name="activity_add_adverse_reaction_save">Save</string>
+
+    <!-- Pharmacologist activity -->
+    <string name="activity_pharmacologist_tab_title_reports">Reports</string>
+    <string name="activity_pharmacologist_tab_title_drugs">Drugs</string>
+    <!-- REFACTOR -->
+    <string name="activity_reports_chronology">Cronologia segnalazioni</string>
 </resources>
