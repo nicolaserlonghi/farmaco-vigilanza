@@ -5,22 +5,144 @@
     <data>
 
     </data>
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        tools:context=".vies.MainActivity"
+        android:orientation="vertical">
 
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
 
-        <LinearLayout
+        <!--Card View Dati paziente-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/activity_add_edit_patient_card_view_patient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            tools:context=".views.MainActivity"
-            android:orientation="vertical">
+            android:layout_gravity="center">
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    </RelativeLayout>
+                <!--Codice Fiscale-->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/activity_add_edit_patient_edit_text_cf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="@string/activity_add_edit_patient_edit_text_cf"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <!--Anno di nascita-->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/activity_add_edit_patient_edit_text_birthday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="@string/activity_add_edit_patient_edit_text_birthday"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <!--Provincia-->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/activity_add_edit_patient_edit_text_province"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="@string/activity_add_edit_patient_edit_text_province"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <!--Professione-->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/activity_add_edit_patient_edit_text_job"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="@string/activity_add_edit_patient_edit_text_job"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--Card View Fattori di Rischio-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/activity_add_edit_patient_card_view_factors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/activity_add_edit_patient_recycler_view_factors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:visibility="gone">
+            </android.support.v7.widget.RecyclerView>
+            
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/activity_add_edit_patient_button_add_risk_factor"
+                app:theme="@style/contained_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_add_edit_patient_button_add_risk_factor"/>
+
+        </android.support.v7.widget.CardView>
+
+        <!--Card View Terapie Farmacologiche-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/activity_add_edit_patient_card_view_therapies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/activity_add_edit_patient_recycler_view_therapies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:visibility="gone">
+
+            </android.support.v7.widget.RecyclerView>
+            
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/activity_add_edit_patient_button_add_therapies"
+                app:theme="@style/contained_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_add_edit_patient_button_add_therapies"/>
+
+        </android.support.v7.widget.CardView>
+
+        <!--Bottone salvataggio-->
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/activity_add_edit_patient_button_save"
+            app:theme="@style/contained_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_add_edit_patient_button_save"/>
+
+    </LinearLayout>
 </layout>
