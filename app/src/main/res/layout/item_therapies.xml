@@ -39,6 +39,7 @@
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/item_therapies_button_remove"
+            app:theme="@style/contained_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/item_therapies_button_remove"/>
