@@ -24,7 +24,7 @@ public class BootstrapActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         if (!Prefs.getBoolean("isLoggedIn", false)) {
-            startActivity(new Intent(this, AddEditPatientActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
         }
         else {
             // Get user type
