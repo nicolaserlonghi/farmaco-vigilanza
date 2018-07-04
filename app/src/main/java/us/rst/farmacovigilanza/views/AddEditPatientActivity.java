@@ -44,15 +44,18 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /*
         adapter = new RiskFactorsAdapter();
         binding.activityAddEditPatientButtonSave.setOnClickListener(this);
         binding.activityAddEditPatientButtonAddRiskFactor.setOnClickListener(this);
         binding.activityAddEditPatientButtonAddTherapies.setOnClickListener(this);
         patientEntity = new PatientEntity();
+        */
     }
 
     @Override
     public void onClick(View v) {
+        /*
         patientEntity.setFiscalCode(FiscalCode.parse(binding.activityAddEditPatientEditTextCf.getText().toString()));
         patientEntity.setBirthDate(Integer.parseInt(binding.activityAddEditPatientEditTextBirthday.getText().toString()));
         patientEntity.setJob(binding.activityAddEditPatientEditTextJob.getText().toString());
@@ -79,6 +82,7 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
             binding.activityAddEditPatientRecyclerViewTherapies.setVisibility(View.VISIBLE);
             therapiesAdapter.update(therapies);
         });
+        */
     }
 
     private ActivityAddEditPatientBinding binding;
@@ -86,7 +90,7 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
     private PatientEntity patientEntity;
     private List<FactorEntity> riskFactors;
     private RiskFactorsAdapter riskFactorsAdapter;
-    private List<TherapiesEntity> therapies;
+    // private List<TherapiesEntity> therapies;
     private TherapiesAdapter therapiesAdapter;
 
 }
