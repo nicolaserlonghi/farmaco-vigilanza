@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import us.rst.farmacovigilanza.R;
-import us.rst.farmacovigilanza.database.entity.AvverseReactionEntity;
+import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
 import us.rst.farmacovigilanza.databinding.ActivityAddAdverseReactionBinding;
 import us.rst.farmacovigilanza.viewmodels.AddAdverseReactionViewModel;
 
@@ -38,17 +38,17 @@ public class AddAdverseReactionActivity extends BaseActivity implements View.OnC
         super.onCreate(savedInstanceState);
 
         binding.activityAddAdverseReactionSaveButton.setOnClickListener(this);
-        avverseReactionEntity = new AvverseReactionEntity();
+        adverseReactionEntity = new AdverseReactionEntity();
     }
 
     @Override
     public void onClick(View v) {
-        avverseReactionEntity.setName(binding.activityAddAdverseReactionNameText.getText().toString());
-        avverseReactionEntity.setDescription((binding.activityAddAdverseReactionDescriptionText.getText().toString()));
-        getViewModel().add(avverseReactionEntity);
+        adverseReactionEntity.setName(binding.activityAddAdverseReactionNameText.getText().toString());
+        adverseReactionEntity.setDescription((binding.activityAddAdverseReactionDescriptionText.getText().toString()));
+        getViewModel().add(adverseReactionEntity);
     }
 
     private ActivityAddAdverseReactionBinding binding;
     private AddAdverseReactionViewModel viewModel;
-    private AvverseReactionEntity avverseReactionEntity;
+    private AdverseReactionEntity adverseReactionEntity;
 }

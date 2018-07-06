@@ -5,13 +5,13 @@ import java.util.Date;
 import java.util.List;
 import us.rst.farmacovigilanza.AppExecutors;
 import us.rst.farmacovigilanza.database.AppDatabase;
-import us.rst.farmacovigilanza.database.entity.AvverseReactionEntity;
-import us.rst.farmacovigilanza.database.entity.FactorEntity;
+import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
+import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
 import us.rst.farmacovigilanza.database.entity.ReportEntity;
-import us.rst.farmacovigilanza.models.AvverseReaction;
+import us.rst.farmacovigilanza.database.entity.TherapyEntity;
+import us.rst.farmacovigilanza.models.AdverseReaction;
 import us.rst.farmacovigilanza.models.FiscalCode;
-import us.rst.farmacovigilanza.models.Report;
 
 /**
  * Gestisce le interrogazioni al database per il dominio dei pazienti
@@ -32,38 +32,51 @@ public class ReportsRepository extends BaseRepository {
      * @param fiscalCode un'istanza di {@link FiscalCode} che rappresenta il codice fiscale del paziente
      * @return un oggetto osservabile di {@link PatientEntity}
      */
-    public LiveData<PatientEntity> getOne(FiscalCode fiscalCode) {
+    public LiveData<PatientEntity> getPatient(FiscalCode fiscalCode) {
         return getDatabase().patientsDao().getOne(fiscalCode);
     }
 
     /**
-     * Restituisce una lista osservabile di {@link FactorEntity}
+     * Restituisce una lista osservabile di {@link PatientFactorEntity}
      * @param fiscalCode un'istanza di {@link FiscalCode} che rappresenta il codice fiscale del paziente
-     * @return una lista osservabile di {@link FactorEntity}
+     * @return una lista osservabile di {@link PatientFactorEntity}
      */
-    public LiveData<List<FactorEntity>> getFactors(FiscalCode fiscalCode) {
-        return getDatabase().factorsDao().getByFiscalCode(fiscalCode);
+    public LiveData<List<PatientFactorEntity>> getFactors(FiscalCode fiscalCode) {
+        return getDatabase().factorsDao().getFactorsLinkedToPatient(fiscalCode);
     }
 
     /**
-     * Restituisce una lista osservabile di {@link AvverseReactionEntity}
-     * @return una lista osservabile di {@link AvverseReactionEntity}
+     * Restituisce una lista osservabile di {@link AdverseReactionEntity}
+     * @return una lista osservabile di {@link AdverseReactionEntity}
      */
-    public LiveData<List<AvverseReactionEntity>> getAvverseReactions() {
+    public LiveData<List<AdverseReactionEntity>> getAdverseReactions() {
         return getDatabase().avverseReactionsDao().getAll();
+    }
+
+    /**
+     * Restituisce una lista osservabile di {@link TherapyEntity}
+     * @param fiscalCode un'istanza di {@link FiscalCode} che rappresenta il codice fiscale del paziente
+     * @return una lista osservabile di {@link TherapyEntity}
+     */
+    public LiveData<List<TherapyEntity>> getTherapies(FiscalCode fiscalCode) {
+        return getDatabase().therapyDao().getTherapiesLinkedToPatient(fiscalCode);
     }
 
     /**
      * Salva la segnalazione
      * @param fiscalCode codice fiscale
-     * @param description descrizione segnalazione
      * @param reactionDate data di reazione
      * @param reportDate data di segnalazione
-     * @param avverseReaction tipologia reazione avversa
+     * @param adverseReaction nome reazione avversa
      * @param levelOfGravity livello di gravità della reazione avversa
      */
-    public void saveReport(FiscalCode fiscalCode, String description, Date reactionDate, Date reportDate, AvverseReaction avverseReaction, int levelOfGravity) {
-        // TODO
+    public void saveReport(FiscalCode fiscalCode, String adverseReaction, Date reactionDate, Date reportDate, int levelOfGravity, int therapyId) {
+        getAppExecutors().diskIO().execute(() -> {
+            ReportEntity report = new ReportEntity();
+            report.setAvverseReactionName(adverseReaction);
+            report.setPatientFiscalCode(fiscalCode);
+            report.setTherapyId(therapyId);
+        });
     }
 
     public LiveData<List<ReportEntity>> getReports() {

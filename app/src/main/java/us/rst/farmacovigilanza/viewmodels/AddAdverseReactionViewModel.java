@@ -1,13 +1,12 @@
 package us.rst.farmacovigilanza.viewmodels;
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
 import us.rst.farmacovigilanza.FarmacoVigilanzaApp;
-import us.rst.farmacovigilanza.database.entity.AvverseReactionEntity;
+import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
 import us.rst.farmacovigilanza.repositories.AdverseReactionRepository;
 
 public class AddAdverseReactionViewModel extends BaseViewModel {
@@ -21,8 +20,8 @@ public class AddAdverseReactionViewModel extends BaseViewModel {
         this.repository = repository;
     }
 
-    public void add(AvverseReactionEntity avverseReactionEntity){
-        repository.add(avverseReactionEntity);
+    public void add(AdverseReactionEntity adverseReactionEntity){
+        repository.add(adverseReactionEntity);
     }
 
     /**

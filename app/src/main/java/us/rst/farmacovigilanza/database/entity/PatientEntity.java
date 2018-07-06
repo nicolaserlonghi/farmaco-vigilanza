@@ -10,12 +10,7 @@ import us.rst.farmacovigilanza.models.Patient;
 /**
  * Represents the entity of {@link Patient}
  */
-@Entity(tableName = "patients",
-        foreignKeys = {
-                @ForeignKey(entity = DoctorEntity.class,
-                        parentColumns = "id",
-                        childColumns = "doctorId")
-        })
+@Entity(tableName = "patients")
 public class PatientEntity implements Patient {
     /**
      * Gets the fiscal code of this patient
@@ -81,26 +76,9 @@ public class PatientEntity implements Patient {
         this.job = job;
     }
 
-    /**
-     * Gets the doctor id
-     * @return doctor id
-     */
-    @Override public int getDoctorId() {
-        return doctorId;
-    }
-
-    /**
-     * Sets the doctor id
-     * @param id doctor id
-     */
-    @Override public void setDoctorId(int id) {
-        this.doctorId = id;
-    }
-
     @PrimaryKey @NonNull
     private FiscalCode fiscalCode;
     private int birthDate;
     private String province;
     private String job;
-    private int doctorId;
 }

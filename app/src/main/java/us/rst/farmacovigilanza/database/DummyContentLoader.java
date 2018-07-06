@@ -4,7 +4,7 @@ import android.app.Application;
 import android.support.annotation.NonNull;
 import us.rst.farmacovigilanza.FarmacoVigilanzaApp;
 import us.rst.farmacovigilanza.Logger;
-import us.rst.farmacovigilanza.database.entity.AvverseReactionEntity;
+import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
 import us.rst.farmacovigilanza.database.entity.CredentialsEntity;
 import us.rst.farmacovigilanza.database.entity.FactorEntity;
 import us.rst.farmacovigilanza.models.Credentials.UserType;
@@ -46,35 +46,32 @@ public class DummyContentLoader {
                 FactorEntity factor = new FactorEntity();
                 factor.setName("Ipertensione");
                 factor.setDescription("Pressione arteriosa a risposta più alta rispetto agli standard");
-                // TODO: add factor
+                application.getDataRepository().getPatientRepository().getDatabase().factorsDao().insert(factor);
 
                 factor = new FactorEntity();
                 factor.setName("Sovrappeso");
                 factor.setDescription("Peso superiore allo standard");
-                // TODO: add factor
+                application.getDataRepository().getPatientRepository().getDatabase().factorsDao().insert(factor);
 
                 factor = new FactorEntity();
                 factor.setName("Fumatore");
                 factor.setDescription("Paziente fumatore");
-                // TODO: add factor
+                application.getDataRepository().getPatientRepository().getDatabase().factorsDao().insert(factor);
 
-                AvverseReactionEntity avverseReactionEntity = new AvverseReactionEntity();
-                avverseReactionEntity.setName("Asma");
-                avverseReactionEntity.setDescription("Difficoltà respiratorie");
-                // TODO: add avverse reaction
-                // TODO: modify database
+                AdverseReactionEntity adverseReactionEntity = new AdverseReactionEntity();
+                adverseReactionEntity.setName("Asma");
+                adverseReactionEntity.setDescription("Difficoltà respiratorie");
+                application.getDataRepository().getAdverseReactionRepository().add(adverseReactionEntity);
 
-                avverseReactionEntity = new AvverseReactionEntity();
-                avverseReactionEntity.setName("Dermatite");
-                avverseReactionEntity.setDescription("Infiammazione della cute");
-                // TODO: add avverse reaction
+                adverseReactionEntity = new AdverseReactionEntity();
+                adverseReactionEntity.setName("Dermatite");
+                adverseReactionEntity.setDescription("Infiammazione della cute");
+                application.getDataRepository().getAdverseReactionRepository().add(adverseReactionEntity);
 
-                avverseReactionEntity = new AvverseReactionEntity();
-                avverseReactionEntity.setName("Insufficienza renale");
-                avverseReactionEntity.setDescription("Incapacità dei reni di adempiere alle proprie funzioni");
-                // TODO: add avverse reaction
-
-                
+                adverseReactionEntity = new AdverseReactionEntity();
+                adverseReactionEntity.setName("Insufficienza renale");
+                adverseReactionEntity.setDescription("Incapacità dei reni di adempiere alle proprie funzioni");
+                application.getDataRepository().getAdverseReactionRepository().add(adverseReactionEntity);
             }
             catch (Exception ex) {
                 Logger.w(DummyContentLoader.class.getSimpleName(), ex.getMessage());

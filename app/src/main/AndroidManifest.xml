@@ -21,11 +21,8 @@
             android:name=".views.LoginActivity"
             android:label="@string/activity_login_title" />
         <activity
-            android:name=".views.MainDoctorActivity"
-            android:label="@string/activity_main_doctor_title" />
-        <activity
-            android:name=".views.ManageReportsActivity"
-            android:label="@string/activity_add_edit_reports_title" />
+            android:name=".views.AddReportsActivity"
+            android:label="@string/activity_add_reports_title" />
         <activity
             android:name=".views.AddEditPatientActivity"
             android:label="@string/activity_add_edit_patients_title" />

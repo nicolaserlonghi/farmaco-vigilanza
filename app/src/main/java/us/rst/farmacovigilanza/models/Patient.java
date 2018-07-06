@@ -51,16 +51,4 @@ public interface Patient {
      * @param job current job of this patient
      */
     void setJob(String job);
-
-    /**
-     * Gets the doctor id
-     * @return doctor id
-     */
-    int getDoctorId();
-
-    /**
-     * Sets the doctor id
-     * @param id doctor id
-     */
-    void setDoctorId(int id);
 }

@@ -3,7 +3,7 @@ package us.rst.farmacovigilanza.models;
 /**
  * Represents a reaction to a medication
  */
-public interface AvverseReaction {
+public interface AdverseReaction {
     /**
      * Gets the name of the reaction
      * @return reaction name

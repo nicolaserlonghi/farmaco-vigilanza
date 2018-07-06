@@ -22,36 +22,53 @@
     <string name="activity_main_doctor_menu_reports_cronology">Cronologia segnalazioni</string>
 
     <!-- Add edit reports -->
-    <string name="activity_add_edit_reports_title">Aggiungi o modifica report</string>
-    <string name="activity_add_edit_reports_text_view_patient_data">Dati paziente</string>
-    <string name="activity_add_edit_reports_text_view_factor">Fattori di rischio</string>
-    <string name="activity_add_edit_reports_text_view_therapy">Terapie</string>
-    <string name="activity_add_edit_reports_edit_text_cf">Inerisci il codice fiscale</string>
-    <string name="activity_add_edit_reports_edit_text_birthdate">Data di nascita</string>
-    <string name="activity_add_edit_reports_edit_text_province">Provincia</string>
-    <string name="activity_add_edit_reports_edit_text_job">Professione</string>
-    <string name="activity_add_edit_reports_edit_text_name">Nome</string>
-    <string name="activity_add_edit_reports_edit_text_description">Descrizione</string>
-    <string name="activity_add_edit_reports_edit_text_unit">Dosaggio</string>
-    <string name="activity_add_edit_reports_edit_text_frequency">Frequenza</string>
-    <string name="activity_add_edit_reports_edit_text_start_date">Inizio terapia</string>
-    <string name="activity_add_edit_reports_edit_text_end_date">Fine terapia</string>
-    <string name="activity_add_edit_reports_edit_text_level_gravity">Livello di gravità</string>
-    <string name="activity_add_edit_reports_button_add">Inerisci</string>
-    <string name="activity_add_edit_reports_button_modify">Modifica</string>
+    <string name="activity_add_reports_title">Nuova segnalazione</string>
+    <string name="activity_add_reports_edit_text_cf">Inserisci il codice fiscale</string>
+    <string name="activity_add_reports_no_patient">Nessun paziente trovato. Vuoi aggiungerlo?</string>
+    <string name="activity_add_reports_add_patient">Aggiungi paziente</string>
+    <string name="activity_add_reports_edit_patient">Modifica paziente</string>
 
     <!-- Add edit patient activity -->
     <string name="activity_add_edit_patients_title">Aggiungi o modifica pazienti</string>
-    <string name="activity_add_edit_patient_edit_text_cf">Inserisci codice fiscale</string>
-    <string name="activity_add_edit_patient_edit_text_birthday">Inserisci anno di nascita</string>
-    <string name="activity_add_edit_patient_edit_text_province">Inserisci provincia</string>
-    <string name="activity_add_edit_patient_edit_text_job">Inserisci professione</string>
+    <string name="activity_add_edit_patient_edit_text_cf">Codice fiscale</string>
+    <string name="activity_add_edit_patient_edit_text_birthday">Anno di nascita</string>
+    <string name="activity_add_edit_patient_edit_text_province">Provincia</string>
+    <string name="activity_add_edit_patient_edit_text_job">Professione</string>
     <string name="activity_add_edit_patient_button_save">Salva</string>
     <string name="activity_add_edit_patient_button_add_therapies">Aggiungi Terapia Farmacologica</string>
     <string name="activity_add_edit_patient_button_add_risk_factor">Aggiungi Fattore di Rischio</string>
-    <!-- REFACTOR -->
-    <string name="item_risk_factors_button_remove">Rimuovi Fattore di Rischio</string>
-    <string name="item_therapies_button_remove">Rimuovi Terapia</string>
+    <string name="activity_add_edit_patient_no_factor">Nessun fattore di rischio registrato</string>
+    <string name="activity_add_edit_patient_no_therapies">Nessuna terapia registrata</string>
+    <string name="activity_add_edit_patient_risk_factor_name">Nome fattore di rischio</string>
+    <string name="activity_add_edit_patient_risk_factor_level">Livello di rischio</string>
+    <string name="activity_add_edit_patient_button_save_risk_factor">Salva</string>
+    <string name="activity_add_edit_patient_button_save_therapy">Salva</string>
+    <string name="activity_add_edit_patient_therapy_medicine">Farmaco</string>
+    <string name="activity_add_edit_patient_therapy_frequency">Frequenza</string>
+    <string name="activity_add_edit_patient_therapy_unit">Quantità</string>
+    <string name="activity_add_edit_patient_therapy_start_date">Data inizio</string>
+    <string name="activity_add_edit_patient_therapy_end_date">Data fine</string>
+    <string name="item_risk_factors_button_remove">Rimuovi</string>
+    <string name="item_therapies_button_remove">Rimuovi</string>
+
+
+
+    <string name="activity_add_reports_text_view_patient_data">Dati paziente</string>
+    <string name="activity_add_reports_text_view_factor">Fattori di rischio</string>
+    <string name="activity_add_reports_text_view_therapy">Terapie</string>
+
+    <string name="activity_add_reports_edit_text_birthdate">Data di nascita</string>
+    <string name="activity_add_reports_edit_text_province">Provincia</string>
+    <string name="activity_add_reports_edit_text_job">Professione</string>
+    <string name="activity_add_reports_edit_text_name">Nome</string>
+    <string name="activity_add_reports_edit_text_description">Descrizione</string>
+    <string name="activity_add_reports_edit_text_unit">Dosaggio</string>
+    <string name="activity_add_reports_edit_text_frequency">Frequenza</string>
+    <string name="activity_add_reports_edit_text_start_date">Inizio terapia</string>
+    <string name="activity_add_reports_edit_text_end_date">Fine terapia</string>
+    <string name="activity_add_reports_edit_text_level_gravity">Livello di gravità</string>
+    <string name="activity_add_reports_button_add">Continua</string>
+    <string name="activity_add_reports_button_modify">Modifica</string>
 
     <!-- Add adverse reaction activity -->
     <string name="activity_add_adverse_reaction_name_hint">Nome reazione avversa</string>

@@ -3,66 +3,90 @@ package us.rst.farmacovigilanza.models;
 import java.sql.Date;
 
 /**
- * Represents a therapy
+ * Rappresenta una terapia
  */
 public interface Therapy {
     /**
-     * Gets the name of the therapy
-     * @return therapy name
+     * Restituisce l'id della terapia
+     * @return id terapia
      */
-    String getName();
+    int getId();
 
     /**
-     * Sets the name of the therapy
-     * @param name therapy name
+     * Imposta l'id della terapia
+     * @param id id terapia
      */
-    void setName(String name);
+    void setId(int id);
 
     /**
-     * Gets the amount of therapy taken
-     * @return amount of therapy takne
+     * Restituisce il farmaco legato alla terapia
+     * @return farmaco legato alla terapia
+     */
+    String getMedicine();
+
+    /**
+     * Imposta il farmaco legato alla terapia
+     * @param medicine farmaco legato alla terapia
+     */
+    void setMedicine(String medicine);
+
+    /**
+     * Restituisce il numero di volte che la terapia va presa
+     * @return numero di volte che la terapia va presa
      */
     int getUnit();
 
     /**
-     * Sets the amount of therapy taken
-     * @param unit amount of therapy taken
+     * Imposta il numero di volte che la terapia va presa
+     * @param unit numero di volte che la terapia va presa
      */
     void setUnit(int unit);
 
     /**
-     * Gets the frequency of the therapy
-     * @return frequency of the therapy
+     * Restituisce la frequenza della terapia
+     * @return frequenza della terapia
      */
     int getFrequency();
 
     /**
-     * Sets the frequency of the therapy
-     * @param frequency therapy frequency
+     * Imposta la frequenza della terapia
+     * @param frequency frequenza della terapia
      */
     void setFrequency(int frequency);
 
     /**
-     * Gets the start date of the therapy
-     * @return start date of the therapy
+     * Restituisce la data di inizio della terapia
+     * @return data di inizio della terapia
      */
     Date getStartDate();
 
     /**
-     * Sets the start date of the therapy
-     * @param startDate therapy start date
+     * Imposta la data di inizio della terapia
+     * @param startDate data di inizio della terapia
      */
     void setStartDate(Date startDate);
 
     /**
-     * Gets the end date of the therapy
-     * @return therapy end date
+     * Restituisce la data di fine della terapia
+     * @return data di fine della terapia
      */
     Date getEndDate();
 
     /**
-     * Sets the end date of the therapy
-     * @param endDate therapy end date
+     * Imposta la data di fine della terapia
+     * @param endDate data di fine della terapia
      */
     void setEndDate(Date endDate);
+
+    /**
+     * Restituisce il codice fiscale del paziente legato a questa terapia
+     * @return il codice fiscale del paziente legato a questa terapia
+     */
+    FiscalCode getPatient();
+
+    /**
+     * Imposta il codice fiscale del paziente legato a questa terapia
+     * @param cf codice fiscale del paziente legato a questa terapia
+     */
+    void setPatient(FiscalCode cf);
 }

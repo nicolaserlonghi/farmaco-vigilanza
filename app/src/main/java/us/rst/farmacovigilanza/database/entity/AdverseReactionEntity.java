@@ -4,13 +4,13 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import us.rst.farmacovigilanza.models.AvverseReaction;
+import us.rst.farmacovigilanza.models.AdverseReaction;
 
 /**
- * Represents the entity for {@link AvverseReaction}
+ * Represents the entity for {@link AdverseReaction}
  */
 @Entity(tableName = "avverseReactions")
-public class AvverseReactionEntity implements AvverseReaction {
+public class AdverseReactionEntity implements AdverseReaction {
     /**
      * Gets the name of the reaction
      * @return reaction name
@@ -60,7 +60,6 @@ public class AvverseReactionEntity implements AvverseReaction {
     }
 
     @PrimaryKey @NonNull
-
     private String name;
     private int levelOfGravity;
     private String description;

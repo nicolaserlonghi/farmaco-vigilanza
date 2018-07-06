@@ -7,7 +7,6 @@ import android.arch.persistence.room.PrimaryKey;
 import java.sql.Date;
 
 import us.rst.farmacovigilanza.models.FiscalCode;
-import us.rst.farmacovigilanza.models.Patient;
 import us.rst.farmacovigilanza.models.Report;
 
 /**
@@ -18,9 +17,12 @@ import us.rst.farmacovigilanza.models.Report;
         @ForeignKey(entity = PatientEntity.class,
             parentColumns = "fiscalCode",
             childColumns = "patientFiscalCode"),
-        @ForeignKey(entity = AvverseReactionEntity.class,
+        @ForeignKey(entity = AdverseReactionEntity.class,
             parentColumns = "name",
-            childColumns = "avverseReactionName")
+            childColumns = "avverseReactionName"),
+        @ForeignKey(entity = TherapyEntity.class,
+                parentColumns = "therapyId",
+                childColumns = "id")
     })
 public class ReportEntity implements Report {
     /**
@@ -119,11 +121,20 @@ public class ReportEntity implements Report {
         this.avverseReactionName = avverseReactionName;
     }
 
-    @PrimaryKey
+    @Override public int getTherapyId() {
+        return therapyId;
+    }
+
+    @Override public void setTherapyId(int id) {
+        therapyId = id;
+    }
+
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String description;
     private Date reactionDate;
     private Date reportDate;
     private FiscalCode patientFiscalCode;
     private String avverseReactionName;
+    private int therapyId;
 }

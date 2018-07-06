@@ -77,7 +77,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             Prefs.putBoolean("isLoggedIn", true);
 
             if (user.getUserType() == UserType.DOCTOR) {
-                startActivity(new Intent(this, MainDoctorActivity.class));
+                startActivity(new Intent(this, AddReportsActivity.class));
             }
             else {
                 startActivity(new Intent(this, MainPharmacologistActivity.class));

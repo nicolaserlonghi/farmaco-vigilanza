@@ -55,6 +55,6 @@ public class ManageReportViewModel extends BaseViewModel {
     }
 
     public LiveData<PatientEntity> getPatient(FiscalCode fiscalCode) {
-        return reportsRepository.getOne(fiscalCode);
+        return reportsRepository.getPatient(fiscalCode);
     }
 }

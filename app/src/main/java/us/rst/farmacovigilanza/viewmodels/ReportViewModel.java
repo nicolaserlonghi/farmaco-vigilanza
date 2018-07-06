@@ -6,13 +6,17 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+
 import java.util.Date;
 import java.util.List;
-import us.rst.farmacovigilanza.database.entity.AvverseReactionEntity;
-import us.rst.farmacovigilanza.database.entity.FactorEntity;
+
+import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
+import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
 import us.rst.farmacovigilanza.database.entity.ReportEntity;
-import us.rst.farmacovigilanza.models.AvverseReaction;
+import us.rst.farmacovigilanza.database.entity.TherapyEntity;
+import us.rst.farmacovigilanza.models.AdverseReaction;
 import us.rst.farmacovigilanza.models.FiscalCode;
 import us.rst.farmacovigilanza.repositories.ReportsRepository;
 
@@ -22,7 +26,10 @@ import us.rst.farmacovigilanza.repositories.ReportsRepository;
 public class ReportViewModel extends BaseViewModel {
 
     private final ReportsRepository reportsRepository;
-
+    private final MutableLiveData<PatientEntity> patient;
+    private final MutableLiveData<List<PatientFactorEntity>> factors;
+    private final MutableLiveData<List<TherapyEntity>> therapies;
+    private AppCompatActivity owner;
 
     /**
      * Inizializza una nuova istanza di questa classe
@@ -33,48 +40,86 @@ public class ReportViewModel extends BaseViewModel {
         super(application);
 
         this.reportsRepository = reportsRepository;
+        this.patient = new MutableLiveData<>();
+        this.factors = new MutableLiveData<>();
+        this.therapies = new MutableLiveData<>();
     }
 
     /**
      * Restituisce un oggetto osservabile di {@link PatientEntity}
-     * @param cf codice fiscale
      * @return un oggetto osservabile di {@link PatientEntity}
      */
-    public LiveData<PatientEntity> getPatient(String cf) {
-        FiscalCode fiscalCode = FiscalCode.parse(cf);
-        return reportsRepository.getOne(fiscalCode);
+    public LiveData<PatientEntity> getPatient(AppCompatActivity activity) {
+        owner = activity;
+        return patient;
     }
 
     /**
-     * Restituisce una lista osservabile di {@link FactorEntity}
+     * Avvia la ricerca di un paziente
      * @param cf codice fiscale
-     * @return una lista osservabile di {@link FactorEntity}
      */
-    public LiveData<List<FactorEntity>> getFactors(String cf) {
+    public void findPatient(String cf) {
         FiscalCode fiscalCode = FiscalCode.parse(cf);
-        return reportsRepository.getFactors(fiscalCode);
+        reportsRepository.getPatient(fiscalCode).observe(owner, patientEntity -> patient.setValue(patientEntity));
     }
 
     /**
-     * Restituisce una lista osservabile di {@link AvverseReactionEntity}
-     * @return una lista osservabile di {@link AvverseReactionEntity}
+     * Restituisce una lista osservabile di {@link PatientFactorEntity}
+     * @return una lista osservabile di {@link PatientFactorEntity}
      */
-    public LiveData<List<AvverseReactionEntity>> getAvverseReactions() {
-        return reportsRepository.getAvverseReactions();
+    public LiveData<List<PatientFactorEntity>> getFactors(AppCompatActivity activity) {
+        owner = activity;
+        return factors;
+    }
+
+    /**
+     * Avvia la ricerca dei fattori di rischio legati al paziente
+     * @param cf codice fiscale
+     */
+    public void findFactors(String cf) {
+        FiscalCode fiscalCode = FiscalCode.parse(cf);
+        reportsRepository.getFactors(fiscalCode).observe(owner, factorEntities -> factors.setValue(factorEntities));
+    }
+
+    /**
+     * Restituisce una lista osservabile di {@link TherapyEntity}
+     * @return una lista osservabile di {@link TherapyEntity}
+     */
+    public MutableLiveData<List<TherapyEntity>> getTherapies(AppCompatActivity activity) {
+        owner = activity;
+        return therapies;
+    }
+
+    /**
+     * Avvia la ricerca delle terapie al paziente
+     * @param cf codice fiscale
+     */
+    public void findTherapies(String cf) {
+        FiscalCode fiscalCode = FiscalCode.parse(cf);
+        reportsRepository.getTherapies(fiscalCode).observe(owner, therapyEntities -> therapies.setValue(therapyEntities));
+    }
+
+    /**
+     * Restituisce una lista osservabile di {@link AdverseReactionEntity}
+     * @return una lista osservabile di {@link AdverseReactionEntity}
+     */
+    public LiveData<List<AdverseReactionEntity>> getAdversReactions(AppCompatActivity activity) {
+        owner = activity;
+        return reportsRepository.getAdverseReactions();
     }
 
     /**
      * Salva la segnalazione
-     * @param fiscalCode codice fiscale
-     * @param description descrizione segnalazione
+     * @param patient paziente
+     * @param adverseReaction nome reazione avversa
      * @param reactionDate data di reazione
      * @param reportDate data di segnalazione
-     * @param avverseReaction tipologia reazione avversa
      * @param levelOfGravity livello di gravità della reazione avversa
+     * @param therapyId id della terapia
      */
-    public void saveReport(FiscalCode fiscalCode, String description, Date reactionDate, Date reportDate, AvverseReaction avverseReaction, int levelOfGravity) {
+    public void saveReport(PatientEntity patient, String adverseReaction, Date reactionDate, Date reportDate, int levelOfGravity, int therapyId) {
         reportsRepository
-            .saveReport(fiscalCode, description, reactionDate, reactionDate, avverseReaction, levelOfGravity);
+            .saveReport(patient.getFiscalCode(), adverseReaction, reactionDate, reactionDate, levelOfGravity, therapyId);
     }
 
     /**
@@ -105,9 +150,5 @@ public class ReportViewModel extends BaseViewModel {
         @NonNull
         private final Application application;
         private final ReportsRepository reportsRepository;
-    }
-
-    public LiveData<List<ReportEntity>> getReports() {
-        return reportsRepository.getReports();
     }
 }

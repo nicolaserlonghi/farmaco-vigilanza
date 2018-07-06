@@ -8,20 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.List;
 import us.rst.farmacovigilanza.R;
-import us.rst.farmacovigilanza.database.entity.TherapyEntity;
+import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
 import us.rst.farmacovigilanza.databinding.ItemRiskFactorsTherapiesBinding;
 
-public class TherapiesAdapter extends RecyclerView.Adapter<TherapiesAdapter.ViewHolder> {
-    private List<TherapyEntity> therapies;
+public class FactorsAdapter extends RecyclerView.Adapter<FactorsAdapter.ViewHolder> {
+    private List<PatientFactorEntity> factors;
     private OnDeleteClick listener;
 
-    public TherapiesAdapter(List<TherapyEntity> therapies, OnDeleteClick listener) {
-        this.therapies = therapies;
+    public FactorsAdapter(List<PatientFactorEntity> factors, OnDeleteClick listener) {
+        this.factors = factors;
         this.listener = listener;
     }
 
-    public TherapiesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ItemRiskFactorsTherapiesBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+    public FactorsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        ItemRiskFactorsTherapiesBinding binding =  DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                 R.layout.item_risk_factors_therapies, parent, false);
 
         return new ViewHolder(binding.getRoot());
@@ -36,23 +36,23 @@ public class TherapiesAdapter extends RecyclerView.Adapter<TherapiesAdapter.View
             binding = DataBindingUtil.bind(itemView);
         }
 
-        public void set(TherapyEntity therapyEntity) {
-            binding.itemRiskFactorsTextViewName.setText(therapyEntity.getMedicine());
-            binding.itemRiskFactorsButtonRemove.setOnClickListener(v -> listener.onTherapyDelete(therapyEntity.getMedicine()));
+        public void set(PatientFactorEntity patientFactorEntity) {
+            binding.itemRiskFactorsTextViewName.setText(patientFactorEntity.getFactorName() + " - " + patientFactorEntity.getLevelOfRisk());
+            binding.itemRiskFactorsButtonRemove.setOnClickListener(v -> listener.onFactorDelete(patientFactorEntity.getFactorName()));
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.set(therapies.get(position));
+        holder.set(factors.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return therapies.size();
+        return factors.size();
     }
 
     public interface OnDeleteClick {
-        void onTherapyDelete(String name);
+        void onFactorDelete(String name);
     }
 }

@@ -30,7 +30,7 @@ public class BootstrapActivity extends BaseActivity {
             // Get user type
             String userType = Prefs.getString("userType", null);
             if (UserType.valueOf(userType) == UserType.DOCTOR) {
-                startActivity(new Intent(this, MainDoctorActivity.class));
+                startActivity(new Intent(this, AddReportsActivity.class));
             }
             else {
                 startActivity(new Intent(this, MainPharmacologistActivity.class));

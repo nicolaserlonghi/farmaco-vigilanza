@@ -12,7 +12,7 @@ import android.arch.persistence.room.PrimaryKey;
                 @ForeignKey(entity = ReportEntity.class,
                         parentColumns = "id",
                         childColumns = "reportId"),
-                @ForeignKey(entity = AvverseReactionEntity.class,
+                @ForeignKey(entity = AdverseReactionEntity.class,
                         parentColumns = "name",
                         childColumns = "avverseReactionName")
         })

@@ -77,4 +77,7 @@ public interface Report {
      * @param avverseReactionName avverse reaction name
      */
     void setAvverseReactionName(String avverseReactionName);
+
+    int getTherapyId();
+    void setTherapyId(int id);
 }
