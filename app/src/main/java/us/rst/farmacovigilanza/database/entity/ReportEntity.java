@@ -21,8 +21,8 @@ import us.rst.farmacovigilanza.models.Report;
             parentColumns = "name",
             childColumns = "avverseReactionName"),
         @ForeignKey(entity = TherapyEntity.class,
-                parentColumns = "therapyId",
-                childColumns = "id")
+                parentColumns = "id",
+                childColumns = "therapyId")
     })
 public class ReportEntity implements Report {
     /**

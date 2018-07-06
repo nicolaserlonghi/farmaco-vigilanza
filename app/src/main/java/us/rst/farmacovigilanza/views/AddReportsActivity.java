@@ -173,10 +173,10 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.activity_add_reports_button_save:
                 String adverseReactionName = binding.activityAddReportsAdverseReactionNames.getSelectedItem().toString();
-                int levelOfRisk = Integer.parseInt(binding.activityManageReportsInputAdverseReactionLevelGravity.getText().toString());
+                // String = Integer.parseInt(binding.activityManageReportsInputAdverseReactionLevelGravity.getText().toString());
                 int therapyId = getViewModel().getTherapies(this).getValue().get(binding.activityAddReportsTherapiesNames.getSelectedItemPosition()).getId();
 
-                getViewModel().saveReport(patient, adverseReactionName, null, null, levelOfRisk, therapyId);
+                getViewModel().saveReport(patient, adverseReactionName, null, therapyId);
                 break;
         }
 

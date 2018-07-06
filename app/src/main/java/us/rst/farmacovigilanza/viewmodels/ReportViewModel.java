@@ -113,13 +113,11 @@ public class ReportViewModel extends BaseViewModel {
      * @param patient paziente
      * @param adverseReaction nome reazione avversa
      * @param reactionDate data di reazione
-     * @param reportDate data di segnalazione
-     * @param levelOfGravity livello di gravità della reazione avversa
      * @param therapyId id della terapia
      */
-    public void saveReport(PatientEntity patient, String adverseReaction, Date reactionDate, Date reportDate, int levelOfGravity, int therapyId) {
+    public void saveReport(PatientEntity patient, String adverseReaction, Date reactionDate, int therapyId) {
         reportsRepository
-            .saveReport(patient.getFiscalCode(), adverseReaction, reactionDate, reactionDate, levelOfGravity, therapyId);
+            .saveReport(patient.getFiscalCode(), adverseReaction, null, therapyId);
     }
 
     /**

@@ -66,16 +66,16 @@ public class ReportsRepository extends BaseRepository {
      * Salva la segnalazione
      * @param fiscalCode codice fiscale
      * @param reactionDate data di reazione
-     * @param reportDate data di segnalazione
      * @param adverseReaction nome reazione avversa
-     * @param levelOfGravity livello di gravità della reazione avversa
      */
-    public void saveReport(FiscalCode fiscalCode, String adverseReaction, Date reactionDate, Date reportDate, int levelOfGravity, int therapyId) {
+    public void saveReport(FiscalCode fiscalCode, String adverseReaction, Date reactionDate, int therapyId) {
         getAppExecutors().diskIO().execute(() -> {
             ReportEntity report = new ReportEntity();
             report.setAvverseReactionName(adverseReaction);
             report.setPatientFiscalCode(fiscalCode);
             report.setTherapyId(therapyId);
+
+            getDatabase().reportsDao().add(report);
         });
     }
 
