@@ -9,13 +9,13 @@ import us.rst.farmacovigilanza.FarmacoVigilanzaApp;
 import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
 import us.rst.farmacovigilanza.repositories.AdverseReactionRepository;
 
-public class AddAdverseReactionViewModel extends BaseViewModel {
+public class AdverseReactionViewModel extends BaseViewModel {
     /**
      * Initializes a new instance of this class
      *
      * @param application
      */
-    public AddAdverseReactionViewModel(@NonNull Application application, AdverseReactionRepository repository) {
+    public AdverseReactionViewModel(@NonNull Application application, AdverseReactionRepository repository) {
         super(application);
         this.repository = repository;
     }
@@ -46,7 +46,7 @@ public class AddAdverseReactionViewModel extends BaseViewModel {
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new AddAdverseReactionViewModel(application, repository);
+            return (T) new AdverseReactionViewModel(application, repository);
         }
 
         @NonNull

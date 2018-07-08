@@ -17,9 +17,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            android:layout_marginLeft="@dimen/spacing_medium"
+            android:layout_marginRight="@dimen/spacing_medium"
             android:layout_marginTop="@dimen/spacing_large"
-            android:layout_marginRight="@dimen/spacing_large"
-            android:layout_marginLeft="@dimen/spacing_large"
             android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
@@ -46,12 +47,23 @@
                     android:hint="@string/activity_add_adverse_reaction_description_hint"/>
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <EditText android:id="@+id/activity_add_adverse_reaction_level_of_risk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/activity_add_adverse_reaction_level_of_risk"/>
+            </android.support.design.widget.TextInputLayout>
+
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/activity_add_adverse_reaction_save_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/activity_add_adverse_reaction_save"/>
-
         </LinearLayout>
 
     </LinearLayout>

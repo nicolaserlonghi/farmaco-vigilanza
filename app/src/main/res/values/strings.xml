@@ -27,6 +27,7 @@
     <string name="activity_add_reports_no_patient">Nessun paziente trovato. Vuoi aggiungerlo?</string>
     <string name="activity_add_reports_add_patient">Aggiungi paziente</string>
     <string name="activity_add_reports_edit_patient">Modifica paziente</string>
+    <string name="activity_add_reports_add_adverse_reaction">Aggiungi reazione avversa</string>
 
     <!-- Add edit patient activity -->
     <string name="activity_add_edit_patients_title">Aggiungi o modifica pazienti</string>
@@ -51,11 +52,11 @@
     <string name="item_risk_factors_button_remove">Rimuovi</string>
     <string name="item_therapies_button_remove">Rimuovi</string>
 
-
-
+    <!-- Add reports -->
     <string name="activity_add_reports_text_view_patient_data">Dati paziente</string>
     <string name="activity_add_reports_text_view_factor">Fattori di rischio</string>
     <string name="activity_add_reports_text_view_therapy">Terapie</string>
+    <string name="activity_add_reports_edit_text_adverse_reaction_date">Data reazione avversa</string>
 
     <string name="activity_add_reports_edit_text_birthdate">Data di nascita</string>
     <string name="activity_add_reports_edit_text_province">Provincia</string>
@@ -66,14 +67,14 @@
     <string name="activity_add_reports_edit_text_frequency">Frequenza</string>
     <string name="activity_add_reports_edit_text_start_date">Inizio terapia</string>
     <string name="activity_add_reports_edit_text_end_date">Fine terapia</string>
-    <string name="activity_add_reports_edit_text_level_gravity">Livello di gravità</string>
-    <string name="activity_add_reports_button_add">Continua</string>
+
     <string name="activity_add_reports_button_modify">Modifica</string>
 
     <!-- Add adverse reaction activity -->
-    <string name="activity_add_adverse_reaction_name_hint">Nome reazione avversa</string>
-    <string name="activity_add_adverse_reaction_description_hint">Descrizione reazione avversa</string>
-    <string name="activity_add_adverse_reaction_title">Aggiungi o modifica reazione avversa</string>
+    <string name="activity_add_adverse_reaction_name_hint">Nome</string>
+    <string name="activity_add_adverse_reaction_description_hint">Descrizione</string>
+    <string name="activity_add_adverse_reaction_level_of_risk">Livello di gravità</string>
+    <string name="activity_add_adverse_reaction_title">Aggiungi reazione avversa</string>
     <string name="activity_add_adverse_reaction_save">Save</string>
 
     <!-- Pharmacologist activity -->

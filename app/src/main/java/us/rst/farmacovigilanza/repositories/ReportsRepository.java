@@ -10,7 +10,6 @@ import us.rst.farmacovigilanza.database.entity.PatientEntity;
 import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
 import us.rst.farmacovigilanza.database.entity.ReportEntity;
 import us.rst.farmacovigilanza.database.entity.TherapyEntity;
-import us.rst.farmacovigilanza.models.AdverseReaction;
 import us.rst.farmacovigilanza.models.FiscalCode;
 
 /**
@@ -65,20 +64,24 @@ public class ReportsRepository extends BaseRepository {
     /**
      * Salva la segnalazione
      * @param fiscalCode codice fiscale
-     * @param reactionDate data di reazione
-     * @param reportDate data di segnalazione
-     * @param adverseReaction nome reazione avversa
-     * @param levelOfGravity livello di gravità della reazione avversa
+     * @param adverseReactionName nome reazione avversa
+     * @param adverseReactionDate data di reazione
+     * @param therapyId identificativo terapia
      */
-    public void saveReport(FiscalCode fiscalCode, String adverseReaction, Date reactionDate, Date reportDate, int levelOfGravity, int therapyId) {
+    public void saveReport(FiscalCode fiscalCode, String adverseReactionName, Date adverseReactionDate, int therapyId) {
         getAppExecutors().diskIO().execute(() -> {
             ReportEntity report = new ReportEntity();
-            report.setAvverseReactionName(adverseReaction);
+            report.setReactionDate(adverseReactionDate);
+            report.setAdverseReactionName(adverseReactionName);
             report.setPatientFiscalCode(fiscalCode);
             report.setTherapyId(therapyId);
         });
     }
 
+    /**
+     * Restituisce un oggetto che osserva una lista di {@link ReportEntity}
+     * @return un oggetto che osserva una lista di {@link ReportEntity}
+     */
     public LiveData<List<ReportEntity>> getReports() {
         return getDatabase().reportsDao().getAll();
     }

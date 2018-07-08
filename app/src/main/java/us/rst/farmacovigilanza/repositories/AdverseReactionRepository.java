@@ -1,6 +1,5 @@
 package us.rst.farmacovigilanza.repositories;
 
-import android.arch.lifecycle.MutableLiveData;
 import us.rst.farmacovigilanza.AppExecutors;
 import us.rst.farmacovigilanza.database.AppDatabase;
 import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
@@ -17,7 +16,6 @@ public class AdverseReactionRepository extends BaseRepository {
      */
     public AdverseReactionRepository(AppDatabase database, AppExecutors appExecutors) {
         super(database, appExecutors);
-        this.avverseReactionEntityLiveData = new MutableLiveData<>();
     }
 
     /**
@@ -30,6 +28,4 @@ public class AdverseReactionRepository extends BaseRepository {
             getDatabase().avverseReactionsDao().insert(adverseReactionEntity);
         });
     }
-
-    private final MutableLiveData<AdverseReactionEntity> avverseReactionEntityLiveData;
 }

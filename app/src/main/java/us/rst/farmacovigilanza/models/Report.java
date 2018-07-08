@@ -1,6 +1,6 @@
 package us.rst.farmacovigilanza.models;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Represents a report
@@ -70,13 +70,13 @@ public interface Report {
      * Gets the name of the avverse reaction
      * @return avverse reaciton
      */
-    String getAvverseReactionName();
+    String getAdverseReactionName();
 
     /**
      * Sets the name of the avverse reaction
      * @param avverseReactionName avverse reaction name
      */
-    void setAvverseReactionName(String avverseReactionName);
+    void setAdverseReactionName(String avverseReactionName);
 
     int getTherapyId();
     void setTherapyId(int id);

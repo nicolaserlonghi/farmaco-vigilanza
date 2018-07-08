@@ -7,16 +7,12 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-
 import java.util.Date;
 import java.util.List;
-
 import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
 import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
-import us.rst.farmacovigilanza.database.entity.ReportEntity;
 import us.rst.farmacovigilanza.database.entity.TherapyEntity;
-import us.rst.farmacovigilanza.models.AdverseReaction;
 import us.rst.farmacovigilanza.models.FiscalCode;
 import us.rst.farmacovigilanza.repositories.ReportsRepository;
 
@@ -24,7 +20,6 @@ import us.rst.farmacovigilanza.repositories.ReportsRepository;
  * Classe di collegamento tra interfaccia e dati della segnalazione
  */
 public class ReportViewModel extends BaseViewModel {
-
     private final ReportsRepository reportsRepository;
     private final MutableLiveData<PatientEntity> patient;
     private final MutableLiveData<List<PatientFactorEntity>> factors;
@@ -111,24 +106,23 @@ public class ReportViewModel extends BaseViewModel {
     /**
      * Salva la segnalazione
      * @param patient paziente
-     * @param adverseReaction nome reazione avversa
+     * @param adverseReactionName nome reazione avversa
      * @param reactionDate data di reazione
-     * @param reportDate data di segnalazione
-     * @param levelOfGravity livello di gravità della reazione avversa
      * @param therapyId id della terapia
      */
-    public void saveReport(PatientEntity patient, String adverseReaction, Date reactionDate, Date reportDate, int levelOfGravity, int therapyId) {
+    public void saveReport(PatientEntity patient, String adverseReactionName, Date reactionDate, int therapyId) {
         reportsRepository
-            .saveReport(patient.getFiscalCode(), adverseReaction, reactionDate, reactionDate, levelOfGravity, therapyId);
+            .saveReport(patient.getFiscalCode(), adverseReactionName, reactionDate, therapyId);
     }
 
     /**
-     * This class Factory
+     * Factory per questo ViewModel
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
         /**
-         * Initializes a Factory for this viewmodel
-         * @param application
+         * Inizializza una nuova istanza di questa classe
+         * @param application istanza di questa applicazione
+         * @param reportsRepository istanza di {@link ReportsRepository}
          */
         public Factory(@NonNull Application application, ReportsRepository reportsRepository) {
             this.application = application;
@@ -136,10 +130,10 @@ public class ReportViewModel extends BaseViewModel {
         }
 
         /**
-         * Gets the actual viewmodel
-         * @param modelClass model of the... Viewmodel
-         * @param <T> type of the viewmodel
-         * @return the viewmodel
+         * Restituisce il ViewModel
+         * @param modelClass classe del ViewModel
+         * @param <T> tipo del ViewModel
+         * @return un'istanza del ViewModel
          */
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {

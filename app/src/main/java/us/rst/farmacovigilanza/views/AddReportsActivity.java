@@ -1,33 +1,33 @@
 package us.rst.farmacovigilanza.views;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-
+import android.widget.Toast;
+import com.pixplicity.easyprefs.library.Prefs;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Locale;
 import us.rst.farmacovigilanza.FarmacoVigilanzaApp;
 import us.rst.farmacovigilanza.Logger;
 import us.rst.farmacovigilanza.R;
 import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
-import us.rst.farmacovigilanza.database.entity.FactorEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
 import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
 import us.rst.farmacovigilanza.database.entity.TherapyEntity;
 import us.rst.farmacovigilanza.databinding.ActivityAddReportsBinding;
 import us.rst.farmacovigilanza.helpers.KeyboardHelper;
-import us.rst.farmacovigilanza.viewmodels.ManageReportViewModel;
-import us.rst.farmacovigilanza.viewmodels.BaseViewModel;
 import us.rst.farmacovigilanza.viewmodels.ReportViewModel;
 
 /**
@@ -68,9 +68,20 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
             case android.R.id.home:
                 onBackPressed();
                 return true;
+            case R.id.activity_main_menu_logout:
+                Prefs.putBoolean("isLoggedIn", true);
+                // TODO: clear backstack
+                startActivity(new Intent(this, LoginActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override
@@ -80,12 +91,7 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
         binding.activityAddReportsAddPatient.setOnClickListener(this);
         binding.activityAddReportsEditPatient.setOnClickListener(this);
         binding.activityAddReportsButtonSave.setOnClickListener(this);
-
-        /*
-        binding.activityManageReportsBtnAddCf.setOnClickListener(this);
-        binding.activityManageReportsBtnModifyPatient.setOnClickListener(this);
-        binding.activityManageReportsBtnAddAdverseReaction.setOnClickListener(this);
-        */
+        binding.activityAddReportsAddAdverseReaction.setOnClickListener(this);
 
         binding.activityAddReportsInputCf.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -130,7 +136,7 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
             else {
                 String output = "";
                 for(PatientFactorEntity f: riskFactors) {
-                    output += f.getFactorName() + " con rischio " + f.getLevelOfRisk();
+                    output += f.getFactorName() + " con rischio " + f.getLevelOfRisk() + " \n";
                 }
                 binding.activityAddReportsRiskFactors.setText(output);
             }
@@ -142,7 +148,6 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
                 adverseReactionNames.add(a.getName());
             }
 
-            // binding.activityAddEditPatientRiskFactorNames.setDrop(android.R.layout.simple_spinner_dropdown_item);
             binding.activityAddReportsAdverseReactionNames.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, adverseReactionNames));
         });
 
@@ -152,7 +157,6 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
                 therapyNames.add(a.getMedicine() + " (" + a.getUnit() + ") ogni " + a.getFrequency() + " giorni");
             }
 
-            // binding.activityAddEditPatientRiskFactorNames.setDrop(android.R.layout.simple_spinner_dropdown_item);
             binding.activityAddReportsTherapiesNames.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, therapyNames));
         });
     }
@@ -171,12 +175,25 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
                 intent.putExtra("cf", patient.getFiscalCode().toString());
                 startActivity(intent);
                 break;
+            case R.id.activity_add_reports_add_adverse_reaction:
+                startActivity(new Intent(this, AddAdverseReactionActivity.class));
+                break;
             case R.id.activity_add_reports_button_save:
                 String adverseReactionName = binding.activityAddReportsAdverseReactionNames.getSelectedItem().toString();
-                int levelOfRisk = Integer.parseInt(binding.activityManageReportsInputAdverseReactionLevelGravity.getText().toString());
+                String adverseReactionDate = binding.activityAddReportsAdverseReactionDate.getText().toString();
                 int therapyId = getViewModel().getTherapies(this).getValue().get(binding.activityAddReportsTherapiesNames.getSelectedItemPosition()).getId();
 
-                getViewModel().saveReport(patient, adverseReactionName, null, null, levelOfRisk, therapyId);
+                DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
+
+                try {
+                    getViewModel().saveReport(patient, adverseReactionName, format.parse(adverseReactionDate), therapyId);
+                } catch (ParseException e) {
+                    // TODO: mostrare errore
+                }
+
+                KeyboardHelper.hideKeyboard(this);
+                Toast.makeText(this, "Report salvato", Toast.LENGTH_LONG).show();
+
                 break;
         }
 

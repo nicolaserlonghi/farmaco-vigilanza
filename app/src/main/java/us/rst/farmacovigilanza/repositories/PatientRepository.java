@@ -11,6 +11,7 @@ import us.rst.farmacovigilanza.database.entity.FactorEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
 import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
 import us.rst.farmacovigilanza.database.entity.TherapyEntity;
+import us.rst.farmacovigilanza.models.FiscalCode;
 
 /**
  * Gestisce le interrogazioni al database per il dominio delle reazioni avverse
@@ -24,7 +25,6 @@ public class PatientRepository extends BaseRepository {
      */
     public PatientRepository(AppDatabase database, AppExecutors appExecutors) {
         super(database, appExecutors);
-        this.patientEntityLiveData = new MutableLiveData<>();
     }
 
     /**
@@ -57,5 +57,72 @@ public class PatientRepository extends BaseRepository {
         return getDatabase().factorsDao().getAll();
     }
 
-    private final MutableLiveData<PatientEntity> patientEntityLiveData;
+    /**
+     * Restituisce una lista osservabile di {@link PatientFactorEntity} collegati al paziente
+     * @param cf codice fiscale del paziente
+     * @return lista osservabile di {@link PatientFactorEntity} collegati al paziente
+     */
+    public LiveData<List<PatientFactorEntity>> getPatientFactors(String cf) {
+        return getDatabase().patientsDao().getPatientFactors(FiscalCode.parse(cf));
+    }
+
+    /**
+     * Restituisce una lista osservabile di {@link TherapyEntity}
+     * @param cf codice fiscale del paziente
+     * @return una lista osservabile di {@link TherapyEntity}
+     */
+    public LiveData<List<TherapyEntity>> getPatientTherapies(String cf) {
+        return getDatabase().patientsDao().getTherapies(FiscalCode.parse(cf));
+    }
+
+    /**
+     * Restituisce un oggetto osservabile di {@link PatientEntity}
+     * @param cf codice fiscale del paziente
+     * @return un oggetto osservabile di {@link PatientEntity}
+     */
+    public LiveData<PatientEntity> getPatient(String cf) {
+        return getDatabase().patientsDao().getOne(FiscalCode.parse(cf));
+    }
+
+    /**
+     * Cancella una terapia legata al paziente
+     * @param cf codice fiscale del paziente
+     * @param therapyName nome del farmaco legato alla terapia
+     */
+    public void deleteTherapy(String cf, String therapyName) {
+        getAppExecutors().diskIO().execute(() -> {
+            getDatabase().patientsDao().deleteTherapy(FiscalCode.parse(cf), therapyName);
+        });
+    }
+
+    /**
+     * Cancella un fattore di rischio legato al paziente
+     * @param cf codice fiscale del paziente
+     * @param factorName nome del fattore di rischio
+     */
+    public void deleteFactor(String cf, String factorName) {
+        getAppExecutors().diskIO().execute(() -> {
+            getDatabase().patientsDao().deleteFactor(FiscalCode.parse(cf), factorName);
+        });
+    }
+
+    /**
+     * Aggiunge un fattore di rischio legato al paziente
+     * @param patientFactorEntity fattore di rischio legato al paziente
+     */
+    public void addFactor(PatientFactorEntity patientFactorEntity) {
+        getAppExecutors().diskIO().execute(() -> {
+            getDatabase().factorsDao().linkToPatient(patientFactorEntity);
+        });
+    }
+
+    /**
+     * Aggiunge una terapia legata al paziente
+     * @param therapyEntity terapia legata al paziente
+     */
+    public void addTherapy(TherapyEntity therapyEntity) {
+        getAppExecutors().diskIO().execute(() -> {
+            getDatabase().therapyDao().insert(therapyEntity);
+        });
+    }
 }

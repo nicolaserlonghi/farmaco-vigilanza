@@ -5,10 +5,17 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 import us.rst.farmacovigilanza.R;
 import us.rst.farmacovigilanza.adapters.FactorsAdapter;
 import us.rst.farmacovigilanza.adapters.TherapiesAdapter;
@@ -16,6 +23,7 @@ import us.rst.farmacovigilanza.database.entity.FactorEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
 import us.rst.farmacovigilanza.database.entity.TherapyEntity;
 import us.rst.farmacovigilanza.databinding.ActivityAddEditPatientBinding;
+import us.rst.farmacovigilanza.helpers.KeyboardHelper;
 import us.rst.farmacovigilanza.models.FiscalCode;
 import us.rst.farmacovigilanza.viewmodels.PatientViewModel;
 
@@ -28,6 +36,7 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
 
     @Override protected void setToolbar() {
         setSupportActionBar((Toolbar)binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override protected PatientViewModel getViewModel() {
@@ -52,7 +61,28 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
         binding.activityAddEditPatientButtonSaveRiskFactor.setOnClickListener(this);
         binding.activityAddEditPatientButtonSaveTherapy.setOnClickListener(this);
 
-        patientEntity = new PatientEntity();
+        String cfFromReportActivity = getIntent().getStringExtra("cf");
+        if (cfFromReportActivity != null) {
+            getViewModel().setPatient(cfFromReportActivity);
+        }
+
+        currentPatient = new PatientEntity();
+
+        getViewModel().getPatient().observe(this, patient -> {
+           if (patient == null) {
+               return;
+           }
+
+           currentPatient = patient;
+           binding.activityAddEditPatientEditTextCf.setText(patient.getFiscalCode().toString());
+           binding.activityAddEditPatientEditTextBirthday.setText("" + patient.getBirthDate());
+           binding.activityAddEditPatientEditTextJob.setText(patient.getJob());
+           binding.activityAddEditPatientEditTextProvince.setText(patient.getProvince());
+           binding.activityAddEditPatientEditTextCf.setEnabled(false);
+           binding.activityAddEditPatientEditTextBirthday.setEnabled(false);
+           binding.activityAddEditPatientEditTextProvince.setEnabled(false);
+           binding.activityAddEditPatientButtonSave.setVisibility(View.GONE);
+        });
 
         getViewModel().getFactors().observe(this, factors -> {
             List<String> factorNames = new ArrayList<>();
@@ -60,7 +90,6 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
                 factorNames.add(f.getName());
             }
 
-            // binding.activityAddEditPatientRiskFactorNames.setDrop(android.R.layout.simple_spinner_dropdown_item);
             binding.activityAddEditPatientRiskFactorNames.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, factorNames));
         });
 
@@ -103,11 +132,11 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
                 binding.activityAddEditPatientNewTherapyLayout.setVisibility(View.VISIBLE);
                 break;
             case R.id.activity_add_edit_patient_button_save:
-                patientEntity.setFiscalCode(FiscalCode.parse(binding.activityAddEditPatientEditTextCf.getText().toString()));
-                patientEntity.setBirthDate(Integer.parseInt(binding.activityAddEditPatientEditTextBirthday.getText().toString()));
-                patientEntity.setJob(binding.activityAddEditPatientEditTextJob.getText().toString());
-                patientEntity.setProvince(binding.activityAddEditPatientEditTextProvince.getText().toString());
-                getViewModel().add(patientEntity);
+                currentPatient.setFiscalCode(FiscalCode.parse(binding.activityAddEditPatientEditTextCf.getText().toString()));
+                currentPatient.setBirthDate(Integer.parseInt(binding.activityAddEditPatientEditTextBirthday.getText().toString()));
+                currentPatient.setJob(binding.activityAddEditPatientEditTextJob.getText().toString());
+                currentPatient.setProvince(binding.activityAddEditPatientEditTextProvince.getText().toString());
+                getViewModel().add(currentPatient);
                 onBackPressed();
                 break;
             case R.id.activity_add_edit_patient_button_save_risk_factor:
@@ -116,18 +145,34 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
                 getViewModel().addFactor(factorName, levelOfRisk);
 
                 binding.activityAddEditPatientRiskFactorLevel.setText("");
+                binding.activityAddEditPatientNewRiskFactorLayout.setVisibility(View.GONE);
+                KeyboardHelper.hideKeyboard(this);
                 break;
             case R.id.activity_add_edit_patient_button_save_therapy:
                 String medicine = binding.activityAddEditPatientTherapyMedicine.getText().toString();
                 int unit = Integer.parseInt(binding.activityAddEditPatientTherapyUnit.getText().toString());
                 int frequency = Integer.parseInt(binding.activityAddEditPatientTherapyFrequency.getText().toString());
+                DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
 
                 TherapyEntity entity = new TherapyEntity();
                 entity.setMedicine(medicine);
                 entity.setFrequency(frequency);
                 entity.setUnit(unit);
+                try {
+                    entity.setStartDate(format.parse(binding.activityAddEditPatientTherapyStartDate.getText().toString()));
+                    entity.setEndDate(format.parse(binding.activityAddEditPatientTherapyEndDate.getText().toString()));
+                } catch (ParseException e) {
+                    // TODO: mostrare errore
+                }
 
                 getViewModel().addTherapy(entity);
+                binding.activityAddEditPatientTherapyFrequency.setText("");
+                binding.activityAddEditPatientTherapyUnit.setText("");
+                binding.activityAddEditPatientTherapyMedicine.setText("");
+                binding.activityAddEditPatientTherapyStartDate.setText("");
+                binding.activityAddEditPatientTherapyEndDate.setText("");
+                KeyboardHelper.hideKeyboard(this);
+                binding.activityAddEditPatientNewTherapyLayout.setVisibility(View.GONE);
                 break;
         }
     }
@@ -140,8 +185,18 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
         getViewModel().deleteTherapy(name);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private ActivityAddEditPatientBinding binding;
     private PatientViewModel viewModel;
-    private PatientEntity patientEntity;
+    private PatientEntity currentPatient;
 }
 

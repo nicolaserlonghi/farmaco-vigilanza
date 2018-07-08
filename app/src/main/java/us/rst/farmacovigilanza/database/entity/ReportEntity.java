@@ -4,7 +4,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-import java.sql.Date;
+import java.util.Date;
 
 import us.rst.farmacovigilanza.models.FiscalCode;
 import us.rst.farmacovigilanza.models.Report;
@@ -19,10 +19,10 @@ import us.rst.farmacovigilanza.models.Report;
             childColumns = "patientFiscalCode"),
         @ForeignKey(entity = AdverseReactionEntity.class,
             parentColumns = "name",
-            childColumns = "avverseReactionName"),
+            childColumns = "adverseReactionName"),
         @ForeignKey(entity = TherapyEntity.class,
-                parentColumns = "therapyId",
-                childColumns = "id")
+                parentColumns = "id",
+                childColumns = "therapyId")
     })
 public class ReportEntity implements Report {
     /**
@@ -109,16 +109,16 @@ public class ReportEntity implements Report {
      * Gets the name of the avverse reaction
      * @return avverse reaciton
      */
-    @Override public String getAvverseReactionName() {
-        return avverseReactionName;
+    @Override public String getAdverseReactionName() {
+        return adverseReactionName;
     }
 
     /**
      * Sets the name of the avverse reaction
-     * @param avverseReactionName avverse reaction name
+     * @param adverseReactionName avverse reaction name
      */
-    @Override public void setAvverseReactionName(String avverseReactionName) {
-        this.avverseReactionName = avverseReactionName;
+    @Override public void setAdverseReactionName(String adverseReactionName) {
+        this.adverseReactionName = adverseReactionName;
     }
 
     @Override public int getTherapyId() {
@@ -135,6 +135,6 @@ public class ReportEntity implements Report {
     private Date reactionDate;
     private Date reportDate;
     private FiscalCode patientFiscalCode;
-    private String avverseReactionName;
+    private String adverseReactionName;
     private int therapyId;
 }

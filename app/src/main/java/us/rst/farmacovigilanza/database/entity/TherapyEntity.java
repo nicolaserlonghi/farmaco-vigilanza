@@ -4,11 +4,12 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-import java.sql.Date;
+import java.util.Date;
+
 import us.rst.farmacovigilanza.models.FiscalCode;
 import us.rst.farmacovigilanza.models.Therapy;
 
-@Entity(tableName = "therapyEntity",
+@Entity(tableName = "therapies",
         foreignKeys = {
                 @ForeignKey(entity = PatientEntity.class,
                         parentColumns = "fiscalCode",
@@ -127,7 +128,7 @@ public class TherapyEntity implements Therapy {
         this.patient = cf;
     }
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private Date startDate;
     private Date endDate;

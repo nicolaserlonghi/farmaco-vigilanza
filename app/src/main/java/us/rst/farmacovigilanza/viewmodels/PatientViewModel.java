@@ -15,6 +15,7 @@ import us.rst.farmacovigilanza.database.entity.FactorEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
 import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
 import us.rst.farmacovigilanza.database.entity.TherapyEntity;
+import us.rst.farmacovigilanza.models.FiscalCode;
 import us.rst.farmacovigilanza.repositories.PatientRepository;
 
 public class PatientViewModel extends BaseViewModel {
@@ -36,7 +37,12 @@ public class PatientViewModel extends BaseViewModel {
      * Aggiunge il paziente
      * @param patientEntity paziente
      */
-    public void add(PatientEntity patientEntity){
+    public void add(PatientEntity patientEntity) {
+        if (isEditMode) {
+            // TODO: implement edit
+            return;
+        }
+
         repository.add(patientEntity, patientFactors.getValue(), patientTherapies.getValue());
     }
 
@@ -49,6 +55,13 @@ public class PatientViewModel extends BaseViewModel {
         PatientFactorEntity entity = new PatientFactorEntity();
         entity.setFactorName(name);
         entity.setLevelOfRisk(level);
+
+        if (isEditMode) {
+            entity.setPatientCf(FiscalCode.parse(cf));
+            repository.addFactor(entity);
+            return;
+        }
+
         patientFactors.getValue().add(entity);
         patientFactors.setValue(patientFactors.getValue());
     }
@@ -58,6 +71,12 @@ public class PatientViewModel extends BaseViewModel {
      * @param entity terapia legata al paziente
      */
     public void addTherapy(TherapyEntity entity) {
+        if (isEditMode) {
+            entity.setPatient(FiscalCode.parse(cf));
+            repository.addTherapy(entity);
+            return;
+        }
+
         patientTherapies.getValue().add(entity);
         patientTherapies.setValue(patientTherapies.getValue());
     }
@@ -75,15 +94,39 @@ public class PatientViewModel extends BaseViewModel {
      * @return lista osservabile di {@link PatientFactorEntity} collegati al paziente
      */
     public LiveData<List<PatientFactorEntity>> getPatientFactors() {
-        // TODO: do check "is editable"
+        if (isEditMode) {
+            return repository.getPatientFactors(cf);
+        }
+
         return patientFactors;
+    }
+
+    /**
+     * Restituisce un oggetto osservabile di {@link PatientEntity}
+     * @return un oggetto osservabile di {@link PatientEntity}
+     */
+    public LiveData<PatientEntity> getPatient() {
+        return repository.getPatient(cf);
+    }
+
+    /**
+     * Imposta il codice fiscale del paziente da modificare
+     * @param cf codice fiscale del paziente
+     */
+    public void setPatient(String cf) {
+        this.cf = cf;
+        isEditMode = true;
     }
 
     /**
      * Restituisce una lista osservabile di {@link TherapyEntity} collegati al paziente
      * @return lista osservabile di {@link TherapyEntity} collegati al paziente
      */
-    public MutableLiveData<List<TherapyEntity>> getPatientTherapies() {
+    public LiveData<List<TherapyEntity>> getPatientTherapies() {
+        if (isEditMode) {
+            return repository.getPatientTherapies(cf);
+        }
+
         return patientTherapies;
     }
 
@@ -92,6 +135,11 @@ public class PatientViewModel extends BaseViewModel {
      * @param name nome fattore di rischio
      */
     public void deleteFactor(String name) {
+        if (isEditMode) {
+            repository.deleteFactor(cf, name);
+            return;
+        }
+
         List<PatientFactorEntity> currentFactors = getPatientFactors().getValue();
         currentFactors.removeIf(patientFactorEntity -> patientFactorEntity.getFactorName() == name);
         patientFactors.setValue(currentFactors);
@@ -99,11 +147,16 @@ public class PatientViewModel extends BaseViewModel {
 
     /**
      * Rimuove una terapia legata al paziente
-     * @param name nome del farmaco
+     * @param medicineName nome del farmaco
      */
-    public void deleteTherapy(String name) {
+    public void deleteTherapy(String medicineName) {
+        if (isEditMode) {
+            repository.deleteTherapy(cf, medicineName);
+            return;
+        }
+
         List<TherapyEntity> currentFactors = getPatientTherapies().getValue();
-        currentFactors.removeIf(patientFactorEntity -> patientFactorEntity.getMedicine() == name);
+        currentFactors.removeIf(patientFactorEntity -> patientFactorEntity.getMedicine() == medicineName);
         patientTherapies.setValue(currentFactors);
     }
 
@@ -140,4 +193,6 @@ public class PatientViewModel extends BaseViewModel {
     private final PatientRepository repository;
     private MutableLiveData<List<PatientFactorEntity>> patientFactors;
     private MutableLiveData<List<TherapyEntity>> patientTherapies;
+    private String cf;
+    private boolean isEditMode;
 }

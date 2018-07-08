@@ -68,7 +68,25 @@ public class PatientFactorEntity {
         this.levelOfRisk = levelOfRisk;
     }
 
-    @PrimaryKey @NonNull
+    /**
+     * Imposta l'id unico dell'entità
+     * @return id entità
+     */
+    public int getId() {
+        return id;
+    }
+
+
+    /**
+     * Imposta l'id unico dell'entità
+     * @param id id entità
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private FiscalCode patientCf;
     private String factorName;
     private int levelOfRisk;

@@ -45,11 +45,13 @@ public class ReportsPharmacologistFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new ReportsPharmacologistAdapter(new ArrayList<>()));
 
+        /*
         reportViewModel.getReports().observe(this, reports -> {
             if(reports == null)
                 return;
 
             ((ReportsPharmacologistAdapter)recyclerView.getAdapter()).update(new ArrayList<>(reports));
         });
+        */
     }
 }

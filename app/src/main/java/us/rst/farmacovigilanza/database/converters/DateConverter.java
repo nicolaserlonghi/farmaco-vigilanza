@@ -1,7 +1,7 @@
 package us.rst.farmacovigilanza.database.converters;
 
 import android.arch.persistence.room.TypeConverter;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Handles database {@link Date} conversion

@@ -1,6 +1,6 @@
 package us.rst.farmacovigilanza.models;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Rappresenta una terapia

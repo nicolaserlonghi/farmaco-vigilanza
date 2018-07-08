@@ -13,6 +13,6 @@ public interface TherapiesDao {
     @Insert
     void insert(TherapyEntity entity);
 
-    @Query("SELECT * FROM therapyEntity WHERE patient=:cf")
+    @Query("SELECT * FROM therapies WHERE patient=:cf")
     LiveData<List<TherapyEntity>> getTherapiesLinkedToPatient(FiscalCode cf);
 }
