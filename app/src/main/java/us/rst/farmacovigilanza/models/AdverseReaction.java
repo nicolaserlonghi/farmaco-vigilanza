@@ -17,18 +17,6 @@ public interface AdverseReaction {
     void setName(String name);
 
     /**
-     * Get the level of gravity (1-5) of this reaction
-     * @return level of gravity (1-5) of this reaction
-     */
-    int getLevelOfGravity();
-
-    /**
-     * Sets the level of gravity (1-5) of this reaction
-     * @param levelOfGravity level of gravity of this reaction
-     */
-    void setLevelOfGravity(int levelOfGravity);
-
-    /**
      * Gets the description of this reaction
      * @return reaction description
      */

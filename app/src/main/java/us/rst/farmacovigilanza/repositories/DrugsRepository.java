@@ -23,7 +23,11 @@ public class DrugsRepository extends BaseRepository {
         super(database, appExecutors);
     }
 
-    public LiveData<List<DrugEntity>> getReports() {
-        return  getDatabase().drugsDao().getAll();
+    /**
+     * Restituisce una lista osservabile di farmaci
+     * @return lista osservabile di farmaci
+     */
+    public LiveData<List<String>> getDrugs() {
+        return getDatabase().drugsDao().getNames();
     }
 }

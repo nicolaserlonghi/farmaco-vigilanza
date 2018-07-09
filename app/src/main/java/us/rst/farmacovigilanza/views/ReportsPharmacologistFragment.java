@@ -11,16 +11,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import java.util.ArrayList;
+
 import us.rst.farmacovigilanza.FarmacoVigilanzaApp;
 import us.rst.farmacovigilanza.R;
-import us.rst.farmacovigilanza.adapters.ReportsPharmacologistAdapter;
+import us.rst.farmacovigilanza.adapters.ReportsAdapter;
 import us.rst.farmacovigilanza.databinding.FragmentReportsPharmacologistBinding;
 import us.rst.farmacovigilanza.helpers.SimpleDividerItemDecoration;
 import us.rst.farmacovigilanza.viewmodels.ReportViewModel;
 
 public class ReportsPharmacologistFragment extends Fragment {
-
     private ReportViewModel reportViewModel;
     private FragmentReportsPharmacologistBinding binding;
 
@@ -39,19 +38,15 @@ public class ReportsPharmacologistFragment extends Fragment {
                 ((FarmacoVigilanzaApp)getActivity().getApplication()).getDataRepository().getReportsRepository());
         reportViewModel = ViewModelProviders.of(this, factory).get(ReportViewModel.class);
 
-
         RecyclerView recyclerView = binding.recyclerView;
         recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext().getResources().getColor(R.color.divider), 3));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new ReportsPharmacologistAdapter(new ArrayList<>()));
 
-        /*
         reportViewModel.getReports().observe(this, reports -> {
             if(reports == null)
                 return;
 
-            ((ReportsPharmacologistAdapter)recyclerView.getAdapter()).update(new ArrayList<>(reports));
+            recyclerView.setAdapter(new ReportsAdapter(reports));
         });
-        */
     }
 }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import us.rst.farmacovigilanza.FarmacoVigilanzaApp;
 import us.rst.farmacovigilanza.R;
-import us.rst.farmacovigilanza.adapters.DrugsPharmacologistAdapter;
+import us.rst.farmacovigilanza.adapters.DrugsAdapter;
 import us.rst.farmacovigilanza.helpers.SimpleDividerItemDecoration;
 import us.rst.farmacovigilanza.viewmodels.DrugsViewModel;
 import us.rst.farmacovigilanza.databinding.FragmentDrugsPharmacologistBinding;
@@ -45,13 +45,12 @@ public class DrugsPharmacologistFragment extends Fragment {
         RecyclerView recyclerView = binding.recyclerView;
         recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext().getResources().getColor(R.color.divider), 3));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new DrugsPharmacologistAdapter(new ArrayList<>()));
 
-        drugsViewModel.getReports().observe(this, reports -> {
-            if(reports == null)
+        drugsViewModel.getDrugs().observe(this, drugs -> {
+            if(drugs == null)
                 return;
 
-            ((DrugsPharmacologistAdapter)recyclerView.getAdapter()).update(new ArrayList<>(reports));
+            recyclerView.setAdapter(new DrugsAdapter(drugs));
         });
     }
 }

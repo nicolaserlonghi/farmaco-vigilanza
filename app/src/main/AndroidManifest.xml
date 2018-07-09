@@ -32,7 +32,9 @@
         <activity
             android:name=".views.ReportsChronologyActivity"
             android:label="@string/activity_reports_chronology" />
-        <activity android:name=".views.MainPharmacologistActivity" />
+        <activity
+            android:name=".views.MainPharmacologistActivity"
+            android:label="@string/activity_pharmacologist_title"/>
     </application>
 
 </manifest>

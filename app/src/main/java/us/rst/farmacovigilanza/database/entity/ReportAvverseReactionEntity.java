@@ -10,7 +10,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "reportAvverseReaction",
         foreignKeys = {
                 @ForeignKey(entity = ReportEntity.class,
-                        parentColumns = "id",
+                        parentColumns = "reportId",
                         childColumns = "reportId"),
                 @ForeignKey(entity = AdverseReactionEntity.class,
                         parentColumns = "name",

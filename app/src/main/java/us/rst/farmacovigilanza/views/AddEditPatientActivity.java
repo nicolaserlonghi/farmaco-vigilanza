@@ -80,7 +80,6 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
            binding.activityAddEditPatientEditTextProvince.setText(patient.getProvince());
            binding.activityAddEditPatientEditTextCf.setEnabled(false);
            binding.activityAddEditPatientEditTextBirthday.setEnabled(false);
-           binding.activityAddEditPatientEditTextProvince.setEnabled(false);
            binding.activityAddEditPatientButtonSave.setVisibility(View.GONE);
         });
 

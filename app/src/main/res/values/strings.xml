@@ -33,7 +33,7 @@
     <string name="activity_add_edit_patients_title">Aggiungi o modifica pazienti</string>
     <string name="activity_add_edit_patient_edit_text_cf">Codice fiscale</string>
     <string name="activity_add_edit_patient_edit_text_birthday">Anno di nascita</string>
-    <string name="activity_add_edit_patient_edit_text_province">Provincia</string>
+    <string name="activity_add_edit_patient_edit_text_province">Provincia di residenza</string>
     <string name="activity_add_edit_patient_edit_text_job">Professione</string>
     <string name="activity_add_edit_patient_button_save">Salva</string>
     <string name="activity_add_edit_patient_button_add_therapies">Aggiungi Terapia Farmacologica</string>
@@ -72,13 +72,14 @@
     <!-- Add adverse reaction activity -->
     <string name="activity_add_adverse_reaction_name_hint">Nome</string>
     <string name="activity_add_adverse_reaction_description_hint">Descrizione</string>
-    <string name="activity_add_adverse_reaction_level_of_risk">Livello di gravità</string>
+    <string name="activity_add_reports_adverse_reaction_level_of_risk">Livello di gravità</string>
     <string name="activity_add_adverse_reaction_title">Aggiungi reazione avversa</string>
     <string name="activity_add_adverse_reaction_save">Save</string>
 
     <!-- Pharmacologist activity -->
-    <string name="activity_pharmacologist_tab_title_reports">Reports</string>
-    <string name="activity_pharmacologist_tab_title_drugs">Drugs</string>
+    <string name="activity_pharmacologist_title">Monitoraggio</string>
+    <string name="activity_pharmacologist_tab_title_reports">Segnalazioni</string>
+    <string name="activity_pharmacologist_tab_title_drugs">Farmaci</string>
     <!-- REFACTOR -->
     <string name="activity_reports_chronology">Cronologia segnalazioni</string>
 </resources>

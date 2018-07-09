@@ -21,6 +21,14 @@ public class DrugsViewModel extends BaseViewModel{
     }
 
     /**
+     * Restituisce una lista osservabile di farmaci
+     * @return lista osservabile di farmaci
+     */
+    public LiveData<List<String>> getDrugs() {
+        return drugsRepository.getDrugs();
+    }
+
+    /**
      * This class Factory
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
@@ -50,9 +58,5 @@ public class DrugsViewModel extends BaseViewModel{
         @NonNull
         private final Application application;
         private final DrugsRepository repository;
-    }
-
-    public LiveData<List<DrugEntity>> getReports() {
-        return drugsRepository.getReports();
     }
 }

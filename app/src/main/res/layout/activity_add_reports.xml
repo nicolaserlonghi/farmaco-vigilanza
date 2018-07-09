@@ -137,6 +137,16 @@
                             android:layout_height="wrap_content"
                             android:text="@string/activity_add_reports_add_adverse_reaction" />
 
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText android:id="@+id/activity_add_reports_adverse_reaction_level_of_risk"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:hint="@string/activity_add_reports_adverse_reaction_level_of_risk"/>
+                        </android.support.design.widget.TextInputLayout>
+
                         <!-- Adverse reaction date Label -->
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"

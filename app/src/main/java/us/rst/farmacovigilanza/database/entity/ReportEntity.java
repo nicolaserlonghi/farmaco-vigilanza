@@ -26,19 +26,19 @@ import us.rst.farmacovigilanza.models.Report;
     })
 public class ReportEntity implements Report {
     /**
-     * Gets the id of this report
-     * @return report id
+     * Gets the reportId of this report
+     * @return report reportId
      */
-    @Override public int getId() {
-        return id;
+    @Override public int getReportId() {
+        return reportId;
     }
 
     /**
-     * Sets the id for this report
-     * @param id id
+     * Sets the reportId for this report
+     * @param id reportId
      */
-    @Override public void setId(int id) {
-        this.id = id;
+    @Override public void setReportId(int id) {
+        this.reportId = id;
     }
 
     /**
@@ -86,7 +86,7 @@ public class ReportEntity implements Report {
      * @param date date
      */
     @Override public void setReportDate(Date date) {
-        this.reactionDate = date;
+        this.reportDate = date;
     }
 
     /**
@@ -121,6 +121,23 @@ public class ReportEntity implements Report {
         this.adverseReactionName = adverseReactionName;
     }
 
+
+    /**
+     * Get the level of gravity (1-5) of this reaction
+     * @return level of gravity (1-5) of this reaction
+     */
+    @Override public int getLevelOfGravity() {
+        return this.levelOfGravity;
+    }
+
+    /**
+     * Sets the level of gravity (1-5) of this reaction
+     * @param levelOfGravity level of gravity of this reaction
+     */
+    @Override public void setLevelOfGravity(int levelOfGravity) {
+        this.levelOfGravity = levelOfGravity;
+    }
+
     @Override public int getTherapyId() {
         return therapyId;
     }
@@ -130,11 +147,12 @@ public class ReportEntity implements Report {
     }
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int reportId;
     private String description;
     private Date reactionDate;
     private Date reportDate;
     private FiscalCode patientFiscalCode;
     private String adverseReactionName;
     private int therapyId;
+    private int levelOfGravity;
 }

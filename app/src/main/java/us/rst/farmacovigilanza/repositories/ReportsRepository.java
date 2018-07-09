@@ -1,6 +1,8 @@
 package us.rst.farmacovigilanza.repositories;
 
 import android.arch.lifecycle.LiveData;
+
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import us.rst.farmacovigilanza.AppExecutors;
@@ -9,6 +11,7 @@ import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
 import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
 import us.rst.farmacovigilanza.database.entity.ReportEntity;
+import us.rst.farmacovigilanza.database.entity.ReportTherapyEntity;
 import us.rst.farmacovigilanza.database.entity.TherapyEntity;
 import us.rst.farmacovigilanza.models.FiscalCode;
 
@@ -65,26 +68,30 @@ public class ReportsRepository extends BaseRepository {
      * Salva la segnalazione
      * @param fiscalCode codice fiscale
      * @param adverseReactionName nome reazione avversa
+     * @param levelOfGravity livello di gravità della segnalazione
      * @param adverseReactionDate data di reazione
      * @param therapyId identificativo terapia
      */
-    public void saveReport(FiscalCode fiscalCode, String adverseReactionName, Date adverseReactionDate, int therapyId) {
+    public void saveReport(FiscalCode fiscalCode, String adverseReactionName, int levelOfGravity, Date adverseReactionDate, int therapyId) {
         getAppExecutors().diskIO().execute(() -> {
             ReportEntity report = new ReportEntity();
             report.setReactionDate(adverseReactionDate);
+            report.setLevelOfGravity(levelOfGravity);
             report.setAdverseReactionName(adverseReactionName);
             report.setPatientFiscalCode(fiscalCode);
             report.setTherapyId(therapyId);
+            report.setReportDate(Calendar.getInstance().getTime());
+            report.setReactionDate(adverseReactionDate);
 
             getDatabase().reportsDao().add(report);
         });
     }
 
     /**
-     * Restituisce un oggetto che osserva una lista di {@link ReportEntity}
-     * @return un oggetto che osserva una lista di {@link ReportEntity}
+     * Restituisce un oggetto che osserva una lista di {@link ReportTherapyEntity}
+     * @return un oggetto che osserva una lista di {@link ReportTherapyEntity}
      */
-    public LiveData<List<ReportEntity>> getReports() {
+    public LiveData<List<ReportTherapyEntity>> getReports() {
         return getDatabase().reportsDao().getAll();
     }
 }

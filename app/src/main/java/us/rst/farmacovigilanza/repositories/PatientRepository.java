@@ -3,6 +3,8 @@ package us.rst.farmacovigilanza.repositories;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
+import com.pixplicity.easyprefs.library.Prefs;
+
 import java.util.List;
 
 import us.rst.farmacovigilanza.AppExecutors;
@@ -36,6 +38,7 @@ public class PatientRepository extends BaseRepository {
      */
     public void add(PatientEntity patientEntity, List<PatientFactorEntity> factors, List<TherapyEntity> therapies){
         getAppExecutors().diskIO().execute(() -> {
+            patientEntity.setDoctor(Prefs.getString("userId", ""));
             getDatabase().patientsDao().insert(patientEntity);
             for (PatientFactorEntity factor: factors) {
                 factor.setPatientCf(patientEntity.getFiscalCode());

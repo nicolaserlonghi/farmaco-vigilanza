@@ -47,7 +47,6 @@ public class AddAdverseReactionActivity extends BaseActivity implements View.OnC
         AdverseReactionEntity adverseReactionEntity = new AdverseReactionEntity();
         adverseReactionEntity.setName(binding.activityAddAdverseReactionNameText.getText().toString());
         adverseReactionEntity.setDescription((binding.activityAddAdverseReactionDescriptionText.getText().toString()));
-        adverseReactionEntity.setLevelOfGravity(Integer.parseInt(binding.activityAddAdverseReactionLevelOfRisk.getText().toString()));
         getViewModel().add(adverseReactionEntity);
 
         onBackPressed();

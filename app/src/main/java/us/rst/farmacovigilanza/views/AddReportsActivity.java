@@ -182,11 +182,12 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
                 String adverseReactionName = binding.activityAddReportsAdverseReactionNames.getSelectedItem().toString();
                 String adverseReactionDate = binding.activityAddReportsAdverseReactionDate.getText().toString();
                 int therapyId = getViewModel().getTherapies(this).getValue().get(binding.activityAddReportsTherapiesNames.getSelectedItemPosition()).getId();
+                int levelOfGravity = Integer.parseInt(binding.activityAddReportsAdverseReactionLevelOfRisk.getText().toString());
 
                 DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
 
                 try {
-                    getViewModel().saveReport(patient, adverseReactionName, format.parse(adverseReactionDate), therapyId);
+                    getViewModel().saveReport(patient, adverseReactionName, levelOfGravity, format.parse(adverseReactionDate), therapyId);
                 } catch (ParseException e) {
                     // TODO: mostrare errore
                 }
@@ -197,7 +198,7 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
         }
 
         /*
-        switch (v.getId()) {
+        switch (v.getReportId()) {
             case R.id.activity_manage_reports_btn_add_cf:
                 // Hide keyboard and disable button
                 binding.activityManageReportsBtnAddCf.setEnabled(false);

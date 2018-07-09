@@ -6,6 +6,7 @@ import us.rst.farmacovigilanza.FarmacoVigilanzaApp;
 import us.rst.farmacovigilanza.Logger;
 import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
 import us.rst.farmacovigilanza.database.entity.CredentialsEntity;
+import us.rst.farmacovigilanza.database.entity.DoctorEntity;
 import us.rst.farmacovigilanza.database.entity.FactorEntity;
 import us.rst.farmacovigilanza.models.Credentials.UserType;
 
@@ -34,6 +35,10 @@ public class DummyContentLoader {
                 credentialsEntity.setPassword("1234");
                 credentialsEntity.setUserType(UserType.DOCTOR);
                 application.getDataRepository().getCredentialsRepository().getDatabase().credentialsDao().insert(credentialsEntity);
+
+                DoctorEntity doctor = new DoctorEntity();
+                doctor.setId("mario.rossi");
+                application.getDataRepository().getDoctorsRepository().getDatabase().doctorsDao().insert(doctor);
 
                 // bianchi.luca --> pharmacology
                 credentialsEntity = new CredentialsEntity();

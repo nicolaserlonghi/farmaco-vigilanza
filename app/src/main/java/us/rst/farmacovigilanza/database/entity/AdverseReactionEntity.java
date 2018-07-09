@@ -28,22 +28,6 @@ public class AdverseReactionEntity implements AdverseReaction {
     }
 
     /**
-     * Get the level of gravity (1-5) of this reaction
-     * @return level of gravity (1-5) of this reaction
-     */
-    @Override public int getLevelOfGravity() {
-        return this.levelOfGravity;
-    }
-
-    /**
-     * Sets the level of gravity (1-5) of this reaction
-     * @param levelOfGravity level of gravity of this reaction
-     */
-    @Override public void setLevelOfGravity(int levelOfGravity) {
-        this.levelOfGravity = levelOfGravity;
-    }
-
-    /**
      * Gets the description of this reaction
      * @return reaction description
      */
@@ -61,6 +45,5 @@ public class AdverseReactionEntity implements AdverseReaction {
 
     @PrimaryKey @NonNull
     private String name;
-    private int levelOfGravity;
     private String description;
 }

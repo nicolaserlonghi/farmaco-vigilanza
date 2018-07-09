@@ -12,6 +12,8 @@ import java.util.List;
 import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
 import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
+import us.rst.farmacovigilanza.database.entity.ReportEntity;
+import us.rst.farmacovigilanza.database.entity.ReportTherapyEntity;
 import us.rst.farmacovigilanza.database.entity.TherapyEntity;
 import us.rst.farmacovigilanza.models.FiscalCode;
 import us.rst.farmacovigilanza.repositories.ReportsRepository;
@@ -107,12 +109,21 @@ public class ReportViewModel extends BaseViewModel {
      * Salva la segnalazione
      * @param patient paziente
      * @param adverseReactionName nome reazione avversa
+     * @param levelOfGravity livello di gravità
      * @param reactionDate data di reazione
      * @param therapyId id della terapia
      */
-    public void saveReport(PatientEntity patient, String adverseReactionName, Date reactionDate, int therapyId) {
+    public void saveReport(PatientEntity patient, String adverseReactionName, int levelOfGravity, Date reactionDate, int therapyId) {
         reportsRepository
-            .saveReport(patient.getFiscalCode(), adverseReactionName, reactionDate, therapyId);
+            .saveReport(patient.getFiscalCode(), adverseReactionName, levelOfGravity, reactionDate, therapyId);
+    }
+
+    /**
+     * Restituisce una lista osservabile di {@link ReportTherapyEntity}
+     * @return una lista osservabile di {@link ReportTherapyEntity}
+     */
+    public LiveData<List<ReportTherapyEntity>> getReports() {
+        return reportsRepository.getReports();
     }
 
     /**

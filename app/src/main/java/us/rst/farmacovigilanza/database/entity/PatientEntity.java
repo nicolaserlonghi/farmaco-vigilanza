@@ -8,72 +8,93 @@ import us.rst.farmacovigilanza.models.FiscalCode;
 import us.rst.farmacovigilanza.models.Patient;
 
 /**
- * Represents the entity of {@link Patient}
+ * Rappresenta l'entità di {@link Patient}
  */
-@Entity(tableName = "patients")
+@Entity(tableName = "patients",
+        foreignKeys = {
+                @ForeignKey(entity = DoctorEntity.class,
+                        parentColumns = "id",
+                        childColumns = "doctor")
+        })
 public class PatientEntity implements Patient {
     /**
-     * Gets the fiscal code of this patient
-     * @return fiscal code of this patient
+     * Restituisce il codice fiscale del paziente
+     * @return codice fiscale del paziente
      */
     @Override public FiscalCode getFiscalCode() {
         return fiscalCode;
     }
 
     /**
-     * Sets the fiscal code of this patient
-     * @param fiscalCode fiscal code of this patient
+     * Imposta il codice fiscale del paziente
+     * @param fiscalCode codice fiscale del paziente
      */
     @Override public void setFiscalCode(FiscalCode fiscalCode) {
         this.fiscalCode = fiscalCode;
     }
 
     /**
-     * Gets the birth date of this patient
-     * @return birth date of this patient
+     * Restituisce l'anno di nascita del paziente
+     * @return anno di nascita del paziente
      */
     @Override public int getBirthDate() {
         return this.birthDate;
     }
 
     /**
-     * Sets the birth date of this patient
-     * @param birthDate birth date of this patient
+     * Imposta l'anno di nascita del paziente
+     * @param birthDate anno di nascita del paziente
      */
     @Override public void setBirthDate(int birthDate) {
         this.birthDate = birthDate;
     }
 
     /**
-     * Gets the province where this patient lives
-     * @return province where this patient lives
+     * Restituisce la provincia di residenza del paziente
+     * @return provincia di residenza del paziente
      */
     @Override public String getProvince() {
         return province;
     }
 
     /**
-     * Sets the province where this patient lives
-     * @param province province where this patient lives
+     * Imposta la provincia di residenza del paziente
+     * @param province provincia di residenza del paziente
      */
     @Override public void setProvince(String province) {
         this.province = province;
     }
 
     /**
-     * Gets the current job of this patient
-     * @return current job of this patient
+     * Restituisce il lavoro corrente del paziente
+     * @return lavoro corrente del paziente
      */
     @Override public String getJob() {
         return job;
     }
 
     /**
-     * Sets the current job of this patient
-     * @param job current job of this patient
+     * Imposta il lavoro corrente del paziente
+     * @param job lavoro corrente del paziente
      */
     @Override public void setJob(String job) {
         this.job = job;
+    }
+
+    /**
+     * Restituisce l'id del dottore che ha in cura questo paziente
+     * @return id del dottore che ha in cura questo paziente
+     */
+    @Override public String getDoctor() {
+        return doctor;
+    }
+
+    /**
+     * Imposta l'id del dottore che ha in cura questo paziente
+     * @param doctorId id del dottore che ha in cura questo paziente
+     */
+    @Override public void setDoctor(String doctorId) {
+        this.doctor = doctorId;
     }
 
     @PrimaryKey @NonNull
@@ -81,4 +102,5 @@ public class PatientEntity implements Patient {
     private int birthDate;
     private String province;
     private String job;
+    private String doctor;
 }

@@ -10,13 +10,13 @@ public interface Report {
      * Gets the id of this report
      * @return report id
      */
-    int getId();
+    int getReportId();
 
     /**
      * Sets the id for this report
      * @param id id
      */
-    void setId(int id);
+    void setReportId(int id);
 
     /**
      * Gets the description of this report
@@ -77,6 +77,18 @@ public interface Report {
      * @param avverseReactionName avverse reaction name
      */
     void setAdverseReactionName(String avverseReactionName);
+
+    /**
+     * Get the level of gravity (1-5) of this reaction
+     * @return level of gravity (1-5) of this reaction
+     */
+    int getLevelOfGravity();
+
+    /**
+     * Sets the level of gravity (1-5) of this reaction
+     * @param levelOfGravity level of gravity of this reaction
+     */
+    void setLevelOfGravity(int levelOfGravity);
 
     int getTherapyId();
     void setTherapyId(int id);

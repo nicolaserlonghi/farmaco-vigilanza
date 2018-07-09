@@ -7,9 +7,8 @@
         android:id="@+id/drug"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="wrap_content"
         android:background="#FFFFFF">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,16 +17,14 @@
 
             <!-- Name drug -->
             <TextView
-                android:id="@+id/text_view_name_drug"
-                android:layout_width="wrap_content"
+                android:id="@+id/item_drugs_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:ellipsize="end"
-                android:maxLines="1"/>
-
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:layout_marginLeft="@dimen/spacing_large"
+                android:layout_marginRight="@dimen/spacing_large"
+                style="@style/primary_text_view" />
         </LinearLayout>
 
     </RelativeLayout>
