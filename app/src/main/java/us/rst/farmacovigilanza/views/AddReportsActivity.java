@@ -193,7 +193,6 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
 
                 KeyboardHelper.hideKeyboard(this);
                 Toast.makeText(this, "Report salvato", Toast.LENGTH_LONG).show();
-
                 break;
         }
 

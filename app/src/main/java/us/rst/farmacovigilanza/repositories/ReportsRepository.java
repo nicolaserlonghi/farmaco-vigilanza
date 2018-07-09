@@ -75,6 +75,8 @@ public class ReportsRepository extends BaseRepository {
             report.setAdverseReactionName(adverseReactionName);
             report.setPatientFiscalCode(fiscalCode);
             report.setTherapyId(therapyId);
+
+            getDatabase().reportsDao().add(report);
         });
     }
 

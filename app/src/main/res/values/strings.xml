@@ -67,7 +67,6 @@
     <string name="activity_add_reports_edit_text_frequency">Frequenza</string>
     <string name="activity_add_reports_edit_text_start_date">Inizio terapia</string>
     <string name="activity_add_reports_edit_text_end_date">Fine terapia</string>
-
     <string name="activity_add_reports_button_modify">Modifica</string>
 
     <!-- Add adverse reaction activity -->
