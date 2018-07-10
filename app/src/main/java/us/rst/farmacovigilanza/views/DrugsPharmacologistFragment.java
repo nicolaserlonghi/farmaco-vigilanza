@@ -21,8 +21,7 @@ import us.rst.farmacovigilanza.helpers.SimpleDividerItemDecoration;
 import us.rst.farmacovigilanza.viewmodels.DrugsViewModel;
 import us.rst.farmacovigilanza.databinding.FragmentDrugsPharmacologistBinding;
 
-
-public class DrugsPharmacologistFragment extends Fragment {
+public class DrugsPharmacologistFragment extends Fragment implements DrugsAdapter.DrugActionHandler {
 
     private DrugsViewModel drugsViewModel;
     private FragmentDrugsPharmacologistBinding binding;
@@ -50,7 +49,22 @@ public class DrugsPharmacologistFragment extends Fragment {
             if(drugs == null)
                 return;
 
-            recyclerView.setAdapter(new DrugsAdapter(drugs));
+            recyclerView.setAdapter(new DrugsAdapter(drugs, this));
         });
+    }
+
+    @Override
+    public void removeDrug(String drug) {
+        // TODO: server call
+    }
+
+    @Override
+    public void checkDrug(String drug) {
+        // TODO: server call
+    }
+
+    @Override
+    public void monitorDrug(String drug) {
+        // TODO: server call
     }
 }

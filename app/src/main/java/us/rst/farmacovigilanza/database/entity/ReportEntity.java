@@ -146,6 +146,16 @@ public class ReportEntity implements Report {
         therapyId = id;
     }
 
+    @Override
+    public String getDoctor() {
+        return doctor;
+    }
+
+    @Override
+    public void setDoctor(String doctorId) {
+        this.doctor = doctorId;
+    }
+
     @PrimaryKey(autoGenerate = true)
     private int reportId;
     private String description;
@@ -155,4 +165,5 @@ public class ReportEntity implements Report {
     private String adverseReactionName;
     private int therapyId;
     private int levelOfGravity;
+    private String doctor;
 }

@@ -21,11 +21,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
-                android:layout_marginBottom="@dimen/spacing_medium"
                 android:layout_marginLeft="@dimen/spacing_large"
                 android:layout_marginRight="@dimen/spacing_large"
                 style="@style/primary_text_view" />
-        </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginLeft="@dimen/spacing_large"
+                android:layout_marginRight="@dimen/spacing_large"
+                android:layout_marginBottom="@dimen/spacing_medium">
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/item_drugs_remove"
+                    app:theme="@style/contained_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/spacing_small"
+                    android:visibility="gone"
+                    android:text="@string/item_drugs_remove"/>
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/item_drugs_enable_check"
+                    app:theme="@style/contained_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="@string/item_drugs_enable_check"/>
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/item_drugs_enable_monitor"
+                    app:theme="@style/contained_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:visibility="gone"
+                    android:text="@string/item_drugs_enable_monitor"/>
+            </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
 </layout>

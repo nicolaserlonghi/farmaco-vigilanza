@@ -12,9 +12,11 @@ import us.rst.farmacovigilanza.databinding.ItemDrugsBinding;
 
 public class DrugsAdapter extends RecyclerView.Adapter<DrugsAdapter.ViewHolder> {
     private List<String> drugs;
+    private DrugActionHandler handler;
 
-    public DrugsAdapter(List<String> drugs) {
+    public DrugsAdapter(List<String> drugs, DrugActionHandler handler) {
         this.drugs = drugs;
+        this.handler = handler;
     }
 
     public DrugsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -32,8 +34,11 @@ public class DrugsAdapter extends RecyclerView.Adapter<DrugsAdapter.ViewHolder> 
             binding = DataBindingUtil.bind(itemView);
         }
 
-        public void set(String medicine) {
-            binding.itemDrugsName.setText(medicine);
+        public void set(String drug) {
+            binding.itemDrugsName.setText(drug);
+            binding.itemDrugsEnableCheck.setOnClickListener(click -> handler.checkDrug(drug));
+            binding.itemDrugsRemove.setOnClickListener(click -> handler.removeDrug(drug));
+            binding.itemDrugsEnableMonitor.setOnClickListener(click -> handler.monitorDrug(drug));
         }
     }
 
@@ -45,5 +50,11 @@ public class DrugsAdapter extends RecyclerView.Adapter<DrugsAdapter.ViewHolder> 
     @Override
     public int getItemCount() {
         return drugs.size();
+    }
+
+    public interface DrugActionHandler {
+        void removeDrug(String drug);
+        void checkDrug(String drug);
+        void monitorDrug(String drug);
     }
 }

@@ -7,7 +7,6 @@ import java.util.List;
 
 import us.rst.farmacovigilanza.AppExecutors;
 import us.rst.farmacovigilanza.database.AppDatabase;
-import us.rst.farmacovigilanza.database.entity.DrugEntity;
 
 /**
  * Gestisce le interrogazioni al database per il dominio dei pazienti

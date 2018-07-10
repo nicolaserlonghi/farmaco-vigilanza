@@ -58,28 +58,23 @@
     <string name="activity_add_reports_text_view_therapy">Terapie</string>
     <string name="activity_add_reports_edit_text_adverse_reaction_date">Data reazione avversa</string>
 
-    <string name="activity_add_reports_edit_text_birthdate">Data di nascita</string>
-    <string name="activity_add_reports_edit_text_province">Provincia</string>
-    <string name="activity_add_reports_edit_text_job">Professione</string>
-    <string name="activity_add_reports_edit_text_name">Nome</string>
-    <string name="activity_add_reports_edit_text_description">Descrizione</string>
-    <string name="activity_add_reports_edit_text_unit">Dosaggio</string>
-    <string name="activity_add_reports_edit_text_frequency">Frequenza</string>
-    <string name="activity_add_reports_edit_text_start_date">Inizio terapia</string>
-    <string name="activity_add_reports_edit_text_end_date">Fine terapia</string>
-    <string name="activity_add_reports_button_modify">Modifica</string>
-
     <!-- Add adverse reaction activity -->
     <string name="activity_add_adverse_reaction_name_hint">Nome</string>
     <string name="activity_add_adverse_reaction_description_hint">Descrizione</string>
     <string name="activity_add_reports_adverse_reaction_level_of_risk">Livello di gravità</string>
     <string name="activity_add_adverse_reaction_title">Aggiungi reazione avversa</string>
     <string name="activity_add_adverse_reaction_save">Save</string>
+    <string name="item_drugs_remove">Ritira dal commercio</string>
+    <string name="item_drugs_enable_check">Fase di controllo</string>
+    <string name="item_drugs_enable_monitor">Monitoraggio più attento</string>
 
     <!-- Pharmacologist activity -->
     <string name="activity_pharmacologist_title">Monitoraggio</string>
     <string name="activity_pharmacologist_tab_title_reports">Segnalazioni</string>
     <string name="activity_pharmacologist_tab_title_drugs">Farmaci</string>
-    <!-- REFACTOR -->
+
+    <!-- Reports chronology -->
     <string name="activity_reports_chronology">Cronologia segnalazioni</string>
+
+    <string name="menu_doctor_show_reports">Mostra segnalazioni</string>
 </resources>

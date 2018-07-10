@@ -2,6 +2,8 @@ package us.rst.farmacovigilanza.repositories;
 
 import android.arch.lifecycle.LiveData;
 
+import com.pixplicity.easyprefs.library.Prefs;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -82,6 +84,7 @@ public class ReportsRepository extends BaseRepository {
             report.setTherapyId(therapyId);
             report.setReportDate(Calendar.getInstance().getTime());
             report.setReactionDate(adverseReactionDate);
+            report.setDoctor(Prefs.getString("userId", ""));
 
             getDatabase().reportsDao().add(report);
         });
@@ -93,5 +96,14 @@ public class ReportsRepository extends BaseRepository {
      */
     public LiveData<List<ReportTherapyEntity>> getReports() {
         return getDatabase().reportsDao().getAll();
+    }
+
+    /**
+     * Restituisce un oggetto che osserva una lista di {@link ReportTherapyEntity}
+     * @param doctorId id del dottore che ha "firmato" le segnalazioni
+     * @return un oggetto che osserva una lista di {@link ReportTherapyEntity}
+     */
+    public LiveData<List<ReportTherapyEntity>> getReportsByDoctor(String doctorId) {
+        return getDatabase().reportsDao().getByDoctor(doctorId);
     }
 }

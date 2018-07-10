@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import us.rst.farmacovigilanza.database.entity.DrugEntity;
 import us.rst.farmacovigilanza.repositories.DrugsRepository;
 
 public class DrugsViewModel extends BaseViewModel{

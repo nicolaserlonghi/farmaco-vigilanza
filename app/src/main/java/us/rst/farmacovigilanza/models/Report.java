@@ -92,4 +92,7 @@ public interface Report {
 
     int getTherapyId();
     void setTherapyId(int id);
+
+    String getDoctor();
+    void setDoctor(String doctorId);
 }

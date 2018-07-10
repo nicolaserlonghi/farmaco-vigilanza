@@ -127,6 +127,15 @@ public class ReportViewModel extends BaseViewModel {
     }
 
     /**
+     * Restituisce un oggetto che osserva una lista di {@link ReportTherapyEntity}
+     * @param doctorId id del dottore che ha "firmato" le segnalazioni
+     * @return un oggetto che osserva una lista di {@link ReportTherapyEntity}
+     */
+    public LiveData<List<ReportTherapyEntity>> getReportsByDoctor(String doctorId) {
+        return reportsRepository.getReportsByDoctor(doctorId);
+    }
+
+    /**
      * Factory per questo ViewModel
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {

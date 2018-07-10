@@ -73,6 +73,9 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
                 // TODO: clear backstack
                 startActivity(new Intent(this, LoginActivity.class));
                 return true;
+            case R.id.menu_doctor_show_reports:
+                startActivity(new Intent(this, ReportsChronologyActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -80,7 +83,7 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_doctor, menu);
         return true;
     }
 

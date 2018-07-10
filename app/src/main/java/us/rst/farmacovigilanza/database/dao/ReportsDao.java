@@ -15,6 +15,9 @@ public interface ReportsDao {
     @Query("SELECT reports.*, therapies.* FROM reports JOIN therapies ON reports.therapyId = therapies.id")
     LiveData<List<ReportTherapyEntity>> getAll();
 
+    @Query("SELECT reports.*, therapies.* FROM reports JOIN therapies ON reports.therapyId = therapies.id WHERE reports.doctor=:doctorId")
+    LiveData<List<ReportTherapyEntity>> getByDoctor(String doctorId);
+
     @Insert
     void add(ReportEntity report);
 }
