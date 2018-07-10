@@ -12,6 +12,7 @@ import us.rst.farmacovigilanza.database.dao.DoctorsDao;
 import us.rst.farmacovigilanza.database.dao.DrugsDao;
 import us.rst.farmacovigilanza.database.dao.FactorsDao;
 import us.rst.farmacovigilanza.database.dao.PatientsDao;
+import us.rst.farmacovigilanza.database.dao.ProposalsDao;
 import us.rst.farmacovigilanza.database.dao.ReportsDao;
 import us.rst.farmacovigilanza.database.dao.TherapiesDao;
 import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
@@ -20,12 +21,13 @@ import us.rst.farmacovigilanza.database.entity.DoctorEntity;
 import us.rst.farmacovigilanza.database.entity.FactorEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
 import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
+import us.rst.farmacovigilanza.database.entity.ProposalEntity;
 import us.rst.farmacovigilanza.database.entity.ReportEntity;
 import us.rst.farmacovigilanza.database.entity.TherapyEntity;
 
 @Database(entities = { AdverseReactionEntity.class, DoctorEntity.class, FactorEntity.class,
         PatientEntity.class, PatientFactorEntity.class, ReportEntity.class,
-    CredentialsEntity.class, TherapyEntity.class }, version = 1)
+    CredentialsEntity.class, TherapyEntity.class, ProposalEntity.class }, version = 1)
 @TypeConverters({ DateConverter.class, FiscalCodeConverter.class, UserTypeConverter.class })
 public abstract class AppDatabase extends RoomDatabase {
     public abstract DoctorsDao doctorsDao();
@@ -36,4 +38,5 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract AdverseReactionsDao avverseReactionsDao();
     public abstract ReportsDao reportsDao();
     public abstract TherapiesDao therapyDao();
+    public abstract ProposalsDao proposalsDao();
 }

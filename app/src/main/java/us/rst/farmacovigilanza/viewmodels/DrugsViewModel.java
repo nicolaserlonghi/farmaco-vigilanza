@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
+import us.rst.farmacovigilanza.database.entity.ProposalEntity;
 import us.rst.farmacovigilanza.repositories.DrugsRepository;
 
 public class DrugsViewModel extends BaseViewModel{
@@ -25,6 +26,18 @@ public class DrugsViewModel extends BaseViewModel{
      */
     public LiveData<List<String>> getDrugs() {
         return drugsRepository.getDrugs();
+    }
+
+    /**
+     * Agginge una proposta al database
+     * @param drug nome farmaco
+     * @param type tipo di proposta (rimozione, monitoraggio, controllo)
+     */
+    public void addProposal(String drug, String type) {
+        ProposalEntity entity = new ProposalEntity();
+        entity.setDrug(drug);
+        entity.setType(type);
+        drugsRepository.addProposal(entity);
     }
 
     /**

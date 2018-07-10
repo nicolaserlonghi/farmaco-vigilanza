@@ -6,4 +6,8 @@
         android:id="@+id/activity_main_menu_logout"
         android:title="@string/activity_main_doctor_menu_logout"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_pharmacologist_filter_by_gravity"
+        android:title="@string/menu_pharmacologist_filter_by_gravity"
+        app:showAsAction="never" />
 </menu>

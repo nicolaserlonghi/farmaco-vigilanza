@@ -22,6 +22,7 @@ import us.rst.farmacovigilanza.viewmodels.ReportViewModel;
 public class ReportsPharmacologistFragment extends Fragment {
     private ReportViewModel reportViewModel;
     private FragmentReportsPharmacologistBinding binding;
+    private boolean isFiltered = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,15 +39,24 @@ public class ReportsPharmacologistFragment extends Fragment {
                 ((FarmacoVigilanzaApp)getActivity().getApplication()).getDataRepository().getReportsRepository());
         reportViewModel = ViewModelProviders.of(this, factory).get(ReportViewModel.class);
 
-        RecyclerView recyclerView = binding.recyclerView;
-        recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext().getResources().getColor(R.color.divider), 3));
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext().getResources().getColor(R.color.divider), 3));
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         reportViewModel.getReports().observe(this, reports -> {
             if(reports == null)
                 return;
 
-            recyclerView.setAdapter(new ReportsAdapter(reports));
+            binding.recyclerView.setAdapter(new ReportsAdapter(reports));
         });
+    }
+
+    public void filterByGravity() {
+        if (isFiltered) {
+            ((ReportsAdapter)binding.recyclerView.getAdapter()).resetFilters();
+        }
+        else {
+            ((ReportsAdapter)binding.recyclerView.getAdapter()).filterByGravity();
+        }
+        isFiltered = !isFiltered;
     }
 }

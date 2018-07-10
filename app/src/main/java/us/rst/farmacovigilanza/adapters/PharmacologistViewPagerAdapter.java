@@ -8,7 +8,8 @@ import us.rst.farmacovigilanza.views.DrugsPharmacologistFragment;
 import us.rst.farmacovigilanza.views.ReportsPharmacologistFragment;
 
 public class PharmacologistViewPagerAdapter extends FragmentStatePagerAdapter {
-
+    private DrugsPharmacologistFragment drugsPharmacologistFragment;
+    private ReportsPharmacologistFragment reportsPharmacologistFragment;
     private int numberOfTabs;
 
     public PharmacologistViewPagerAdapter(FragmentManager fm, int numberOfTabs) {
@@ -20,10 +21,10 @@ public class PharmacologistViewPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                ReportsPharmacologistFragment reportsPharmacologistFragment = new ReportsPharmacologistFragment();
+                reportsPharmacologistFragment = new ReportsPharmacologistFragment();
                 return reportsPharmacologistFragment;
             case 1:
-                DrugsPharmacologistFragment drugsPharmacologistFragment = new DrugsPharmacologistFragment();
+                drugsPharmacologistFragment = new DrugsPharmacologistFragment();
                 return drugsPharmacologistFragment;
             default:
                 return null;
@@ -33,5 +34,9 @@ public class PharmacologistViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return numberOfTabs;
+    }
+
+    public void filterByGravity() {
+        reportsPharmacologistFragment.filterByGravity();
     }
 }

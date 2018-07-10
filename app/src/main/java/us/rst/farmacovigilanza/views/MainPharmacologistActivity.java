@@ -18,8 +18,8 @@ import us.rst.farmacovigilanza.viewmodels.BaseViewModel;
 import us.rst.farmacovigilanza.databinding.MainActivityPharmacologistBinding;
 
 public class MainPharmacologistActivity extends BaseActivity {
-
     private MainActivityPharmacologistBinding binding;
+    private PharmacologistViewPagerAdapter adapter;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -38,6 +38,9 @@ public class MainPharmacologistActivity extends BaseActivity {
                 Prefs.putBoolean("isLoggedIn", true);
                 // TODO: clear backstack
                 startActivity(new Intent(this, LoginActivity.class));
+                return true;
+            case R.id.menu_pharmacologist_filter_by_gravity:
+                adapter.filterByGravity();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -80,8 +83,8 @@ public class MainPharmacologistActivity extends BaseActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         // Set viewPager adapter
-        final ViewPager viewPager = (ViewPager)binding.activityPharmacologistViewPager;
-        final PharmacologistViewPagerAdapter adapter = new PharmacologistViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        ViewPager viewPager = binding.activityPharmacologistViewPager;
+        adapter = new PharmacologistViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
 
         // Listener of gesture to change tab

@@ -45,8 +45,8 @@
     <string name="activity_add_edit_patient_button_save_risk_factor">Salva</string>
     <string name="activity_add_edit_patient_button_save_therapy">Salva</string>
     <string name="activity_add_edit_patient_therapy_medicine">Farmaco</string>
-    <string name="activity_add_edit_patient_therapy_frequency">Frequenza</string>
-    <string name="activity_add_edit_patient_therapy_unit">Quantità</string>
+    <string name="activity_add_edit_patient_therapy_frequency">Frequenza (quante volte al giorno?)</string>
+    <string name="activity_add_edit_patient_therapy_unit">Quantità al giorno</string>
     <string name="activity_add_edit_patient_therapy_start_date">Data inizio</string>
     <string name="activity_add_edit_patient_therapy_end_date">Data fine</string>
     <string name="item_risk_factors_button_remove">Rimuovi</string>
@@ -64,9 +64,6 @@
     <string name="activity_add_reports_adverse_reaction_level_of_risk">Livello di gravità</string>
     <string name="activity_add_adverse_reaction_title">Aggiungi reazione avversa</string>
     <string name="activity_add_adverse_reaction_save">Save</string>
-    <string name="item_drugs_remove">Ritira dal commercio</string>
-    <string name="item_drugs_enable_check">Fase di controllo</string>
-    <string name="item_drugs_enable_monitor">Monitoraggio più attento</string>
 
     <!-- Pharmacologist activity -->
     <string name="activity_pharmacologist_title">Monitoraggio</string>
@@ -76,5 +73,12 @@
     <!-- Reports chronology -->
     <string name="activity_reports_chronology">Cronologia segnalazioni</string>
 
+    <!-- Item drugs -->
+    <string name="item_drugs_remove">Ritira</string>
+    <string name="item_drugs_enable_check">Controlla</string>
+    <string name="item_drugs_enable_monitor">Monitora</string>
+
+    <!-- Menus -->
     <string name="menu_doctor_show_reports">Mostra segnalazioni</string>
+    <string name="menu_pharmacologist_filter_by_gravity">Mostra segnalazioni gravi in settimana</string>
 </resources>

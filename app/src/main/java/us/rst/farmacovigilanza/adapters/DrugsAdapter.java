@@ -39,6 +39,14 @@ public class DrugsAdapter extends RecyclerView.Adapter<DrugsAdapter.ViewHolder> 
             binding.itemDrugsEnableCheck.setOnClickListener(click -> handler.checkDrug(drug));
             binding.itemDrugsRemove.setOnClickListener(click -> handler.removeDrug(drug));
             binding.itemDrugsEnableMonitor.setOnClickListener(click -> handler.monitorDrug(drug));
+            binding.getRoot().setOnClickListener(click -> {
+                if (binding.itemDrugsButtons.getVisibility() == View.VISIBLE) {
+                    binding.itemDrugsButtons.setVisibility(View.GONE);
+                }
+                else {
+                    binding.itemDrugsButtons.setVisibility(View.VISIBLE);
+                }
+            });
         }
     }
 
