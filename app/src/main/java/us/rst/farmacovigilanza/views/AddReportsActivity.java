@@ -1,9 +1,12 @@
 package us.rst.farmacovigilanza.views;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,17 +30,21 @@ import us.rst.farmacovigilanza.database.entity.PatientEntity;
 import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
 import us.rst.farmacovigilanza.database.entity.TherapyEntity;
 import us.rst.farmacovigilanza.databinding.ActivityAddReportsBinding;
+import us.rst.farmacovigilanza.helpers.DatePickerFragment;
 import us.rst.farmacovigilanza.helpers.KeyboardHelper;
+import us.rst.farmacovigilanza.helpers.SnackBarHelper;
 import us.rst.farmacovigilanza.viewmodels.ReportViewModel;
 
 /**
  * Binds the UI with the code-behind
  */
-public class AddReportsActivity extends BaseActivity implements View.OnClickListener {
+public class AddReportsActivity extends BaseActivity implements View.OnClickListener, DatePickerFragment.InterfaceCommunicator {
 
     private ActivityAddReportsBinding binding;
     private ReportViewModel viewModel;
     private PatientEntity patient;
+    private boolean doubleBackToExitPressedOnce = false;
+    private String adverseReactionDate = null;
 
     @Override protected int getLayoutId() {
         return R.layout.activity_add_reports;
@@ -94,7 +101,9 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
         binding.activityAddReportsAddPatient.setOnClickListener(this);
         binding.activityAddReportsEditPatient.setOnClickListener(this);
         binding.activityAddReportsButtonSave.setOnClickListener(this);
+        binding.activityAddReportsButtonSave.setOnClickListener(this);
         binding.activityAddReportsAddAdverseReaction.setOnClickListener(this);
+        binding.activityAddReportsAdverseReactionDate.setOnClickListener(this);
 
         binding.activityAddReportsInputCf.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -102,17 +111,16 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
             @Override public void afterTextChanged(Editable s) { }
 
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() < 16) {
-                    binding.activityAddReportsNoPatientLayout.setVisibility(View.GONE);
-                    binding.activityAddReportsPatientLayout.setVisibility(View.GONE);
+                if (s.length() == 16) {
+                    Logger.v(AddReportsActivity.class.getSimpleName(), "CF is " + s);
+                    getViewModel().findPatient(s.toString());
+                    getViewModel().findFactors(s.toString());
+                    getViewModel().findTherapies(s.toString());
 
                     return;
                 }
 
-                Logger.v(AddReportsActivity.class.getSimpleName(), "CF is " + s);
-                getViewModel().findPatient(s.toString());
-                getViewModel().findFactors(s.toString());
-                getViewModel().findTherapies(s.toString());
+                hideAllSection();
             }
         });
 
@@ -170,6 +178,8 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.activity_add_reports_add_patient:
                 KeyboardHelper.hideKeyboard(AddReportsActivity.this);
+                binding.activityAddReportsInputCf.setText("");
+                hideAllSection();
                 startActivity(new Intent(this, AddEditPatientActivity.class));
                 break;
             case R.id.activity_add_reports_edit_patient:
@@ -183,73 +193,86 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.activity_add_reports_button_save:
                 String adverseReactionName = binding.activityAddReportsAdverseReactionNames.getSelectedItem().toString();
-                String adverseReactionDate = binding.activityAddReportsAdverseReactionDate.getText().toString();
+                adverseReactionDate = binding.activityAddReportsAdverseReactionDate.getText().toString();
                 int therapyId = getViewModel().getTherapies(this).getValue().get(binding.activityAddReportsTherapiesNames.getSelectedItemPosition()).getId();
-                int levelOfGravity = Integer.parseInt(binding.activityAddReportsAdverseReactionLevelOfRisk.getText().toString());
+                String levelOfGravityString = binding.activityAddReportsAdverseReactionLevelOfRisk.getText().toString();
+
+                if(adverseReactionDate.isEmpty() || adverseReactionName.isEmpty() || levelOfGravityString.isEmpty()) {
+                    KeyboardHelper.hideKeyboard(this);
+                    SnackBarHelper.showShort(v, getString(R.string.error_empty_field));
+                    return;
+                }
+
+                int levelOfGravity = 0;
+                try {
+                    levelOfGravity = Integer.parseInt(levelOfGravityString);
+                } catch (NumberFormatException e) {
+                    KeyboardHelper.hideKeyboard(this);
+                    SnackBarHelper.showShort(v, getString(R.string.activity_add_reports_snackbar_gravity_level_error));
+                    return;
+                }
+                if(levelOfGravity < 1 || levelOfGravity > 6) {
+                    KeyboardHelper.hideKeyboard(this);
+                    SnackBarHelper.showShort(v, getString(R.string.activity_add_reports_snackbar_gravity_level_error));
+                    return;
+                }
 
                 DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
-
                 try {
                     getViewModel().saveReport(patient, adverseReactionName, levelOfGravity, format.parse(adverseReactionDate), therapyId);
                 } catch (ParseException e) {
-                    // TODO: mostrare errore
+                    KeyboardHelper.hideKeyboard(this);
+                    SnackBarHelper.showShort(v, getString(R.string.error_date));
+                    return;
                 }
 
                 KeyboardHelper.hideKeyboard(this);
-                Toast.makeText(this, "Report salvato", Toast.LENGTH_LONG).show();
+                binding.activityAddReportsAdverseReactionDate.setText("");
+                binding.activityAddReportsAdverseReactionLevelOfRisk.setText("");
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
+                builder.setTitle(getString(R.string.activity_add_reports_report_add_correctly))
+                        .setPositiveButton(getString(R.string.button_ok), (dialog, which) -> {
+                            // do nothing
+                        })
+                        .show();
+                break;
+            case R.id.activity_add_reports_adverse_reaction_date:
+                KeyboardHelper.hideKeyboard(this);
+                android.support.v4.app.DialogFragment adverseReactionDateFragment = new DatePickerFragment(0);
+                ((DatePickerFragment)adverseReactionDateFragment).setInterfaceCommunicator(this);
+                adverseReactionDateFragment.show(getSupportFragmentManager(), "datePicker");
                 break;
         }
+    }
 
-        /*
-        switch (v.getReportId()) {
-            case R.id.activity_manage_reports_btn_add_cf:
-                // Hide keyboard and disable button
-                binding.activityManageReportsBtnAddCf.setEnabled(false);
-                KeyboardHelper.hideKeyboard(AddReportsActivity.this);
-                String cf = binding.activityManageReportsInputCf.getText().toString();
-                if(cf.isEmpty()) {
-                    SnackBarHelper.showShort(v, getResources().getString(R.string.error_empty_field));
-                    binding.activityManageReportsBtnAddCf.setEnabled(false);
-                    return;
-                }
-                viewModel.getPatient(new FiscalCode(cf)).observe(this, patient -> {
-                    if(patient == null) {
-                        return;
-                    }
+    public void hideAllSection() {
+        binding.activityAddReportsNoPatientLayout.setVisibility(View.GONE);
+        binding.activityAddReportsPatientLayout.setVisibility(View.GONE);
+        binding.activityAddReportsCardViewAdverseReaction.setVisibility(View.GONE);
+        binding.activityAddReportsNoPatientLayout.setVisibility(View.GONE);
+        binding.activityAddReportsCardViewTherapy.setVisibility(View.GONE);
+        binding.activityAddReportsButtonSave.setVisibility(View.GONE);
+    }
 
-                    this.patient = patient;
-                    binding.activityManageReportsInputBirthdate.setText(patient.getBirthDate());
-                    binding.activityManageReportsInputProvince.setText(patient.getProvince());
-                    binding.activityManageReportsInputJob.setText(patient.getJob());
-                    binding.activityManageReportsCardViewDataPatientTitle.setVisibility((View.VISIBLE));
-                    binding.activityManageReportsCardViewDataPatient.setVisibility(View.VISIBLE);
-                    binding.activityManageReportsCardViewFactorTitle.setVisibility(View.VISIBLE);
-                    binding.activityManageReportsRecyclerViewFactor.setVisibility(View.VISIBLE);
-                    binding.activityManageReportsCardViewTherapyTitle.setVisibility(View.VISIBLE);
-                    binding.activityManageReportsCardViewTherapyTitle.setVisibility(View.VISIBLE);
-                    binding.activityManageReportsCardViewAdverseReactionTitle.setVisibility(View.VISIBLE);
-                    binding.activityManageReportsCardViewAdverseReaction.setVisibility(View.VISIBLE);
-
-                    // TODO: Setto i valori dei fattori di rischio
-                });
-                break;
-            case R.id.activity_manage_reports_btn_modify_patient:
-                // TODO: Chiamo la classe di aggiunta/modifica paziente
-                break;
-            case  R.id.activity_manage_reports_btn_add_adverse_reaction:
-                // Hide keyboard and disable button
-                binding.activityManageReportsBtnAddCf.setEnabled(false);
-                String name_reaction = binding.activityManageReportsInputAdverseReactionName.getText().toString();
-                String level_reaction = binding.activityManageReportsInputAdverseReactionLevelGravity.getText().toString();
-                String description = binding.activityManageReportsInputAdverseReactionDescription.getText().toString();
-                if(name_reaction.isEmpty() || level_reaction.isEmpty()) {
-                    SnackBarHelper.showShort(v, getResources().getString(R.string.error_empty_field));
-                    binding.activityManageReportsBtnAddCf.setEnabled(false);
-                    return;
-                }
-                // TODO: setReaction();
-                break;
+    // Control back press to exit
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            // Close application
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            return;
         }
-        */
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, getString(R.string.toast_to_exit), Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce=false, 2500);
+    }
+
+    @Override
+    public void onResult(int type, int year, int month, int day) {
+        adverseReactionDate = day + "/" + month + "/" + year;
+        binding.activityAddReportsAdverseReactionDate.setText(adverseReactionDate);
     }
 }

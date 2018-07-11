@@ -48,7 +48,8 @@
                                 android:id="@+id/activity_add_edit_patient_edit_text_cf"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="text"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="16"
                                 android:hint="@string/activity_add_edit_patient_edit_text_cf"/>
                         </android.support.design.widget.TextInputLayout>
 
@@ -262,6 +263,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:inputType="text"
+                                    android:windowSoftInputMode="stateHidden"
+                                    android:focusable="false"
                                     android:layout_marginTop="@dimen/spacing_medium"
                                     android:layout_marginBottom="@dimen/spacing_medium"
                                     android:hint="@string/activity_add_edit_patient_therapy_start_date"/>
@@ -276,6 +279,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:inputType="text"
+                                    android:windowSoftInputMode="stateHidden"
+                                    android:focusable="false"
                                     android:layout_marginTop="@dimen/spacing_medium"
                                     android:layout_marginBottom="@dimen/spacing_medium"
                                     android:hint="@string/activity_add_edit_patient_therapy_end_date"/>
