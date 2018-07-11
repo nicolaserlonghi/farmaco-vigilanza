@@ -2,13 +2,23 @@ package us.rst.farmacovigilanza.database;
 
 import android.app.Application;
 import android.support.annotation.NonNull;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 import us.rst.farmacovigilanza.FarmacoVigilanzaApp;
 import us.rst.farmacovigilanza.Logger;
 import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
 import us.rst.farmacovigilanza.database.entity.CredentialsEntity;
 import us.rst.farmacovigilanza.database.entity.DoctorEntity;
 import us.rst.farmacovigilanza.database.entity.FactorEntity;
+import us.rst.farmacovigilanza.database.entity.PatientEntity;
+import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
+import us.rst.farmacovigilanza.database.entity.PharmacologistEntity;
+import us.rst.farmacovigilanza.database.entity.TherapyEntity;
 import us.rst.farmacovigilanza.models.Credentials.UserType;
+import us.rst.farmacovigilanza.models.FiscalCode;
 
 /**
  * Classe di supporto per l'inserimento di dati di test per la demo al cliente
@@ -77,6 +87,43 @@ public class DummyContentLoader {
                 adverseReactionEntity.setName("Insufficienza renale");
                 adverseReactionEntity.setDescription("Incapacità dei reni di adempiere alle proprie funzioni");
                 application.getDataRepository().getAdverseReactionRepository().add(adverseReactionEntity);
+
+                PatientEntity patient = new PatientEntity();
+                patient.setDoctor("mario.rossi");
+                patient.setBirthDate(1968);
+                patient.setFiscalCode(FiscalCode.parse("aaabbb11c22d333e"));
+                patient.setJob("Operaio");
+                patient.setProvince("Verona");
+
+                SimpleDateFormat date = new SimpleDateFormat("dd/MM/YYYY");
+
+                List<TherapyEntity> therapies = new ArrayList<>();
+                TherapyEntity therapy = new TherapyEntity();
+                therapy.setPatient(FiscalCode.parse("aaabbb11c22d333e"));
+                therapy.setFrequency(2);
+                therapy.setMedicine("Biopasan");
+                therapy.setUnit(2);
+                therapy.setStartDate(date.parse("10/07/2014"));
+                therapy.setEndDate(date.parse("10/07/2018"));
+                therapies.add(therapy);
+
+                therapy = new TherapyEntity();
+                therapy.setPatient(FiscalCode.parse("aaabbb11c22d333e"));
+                therapy.setFrequency(1);
+                therapy.setMedicine("Gilacal");
+                therapy.setUnit(3);
+                therapy.setStartDate(date.parse("10/02/2017"));
+                therapy.setEndDate(date.parse("31/12/2018"));
+                therapies.add(therapy);
+
+                List<PatientFactorEntity> patientFactorEntities = new ArrayList<>();
+                PatientFactorEntity patientFactorEntity = new PatientFactorEntity();
+                patientFactorEntity.setPatientCf(FiscalCode.parse("aaabbb11c22d333e"));
+                patientFactorEntity.setFactorName("Fumatore");
+                patientFactorEntity.setLevelOfRisk(4);
+                patientFactorEntities.add(patientFactorEntity);
+
+                application.getDataRepository().getPatientRepository().add(patient, patientFactorEntities, therapies);
             }
             catch (Exception ex) {
                 Logger.w(DummyContentLoader.class.getSimpleName(), ex.getMessage());

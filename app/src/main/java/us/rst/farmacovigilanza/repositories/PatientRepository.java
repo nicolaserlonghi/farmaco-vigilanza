@@ -38,7 +38,7 @@ public class PatientRepository extends BaseRepository {
      */
     public void add(PatientEntity patientEntity, List<PatientFactorEntity> factors, List<TherapyEntity> therapies){
         getAppExecutors().diskIO().execute(() -> {
-            patientEntity.setDoctor(Prefs.getString("userId", ""));
+            patientEntity.setDoctor(Prefs.getString("userId", "mario.rossi"));
             getDatabase().patientsDao().insert(patientEntity);
             for (PatientFactorEntity factor: factors) {
                 factor.setPatientCf(patientEntity.getFiscalCode());
