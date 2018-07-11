@@ -29,7 +29,16 @@ public class ProposalEntity implements Proposal {
         this.drug = drug;
     }
 
-    @PrimaryKey @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @PrimaryKey(autoGenerate = true)
+    int id;
     String drug;
     String type;
 }

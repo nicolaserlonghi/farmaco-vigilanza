@@ -42,10 +42,10 @@ public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.ViewHold
         }
 
         public void set(ReportTherapyEntity entity) {
-            DateFormat format = new SimpleDateFormat("dd/mm/YYYY");
+            DateFormat format = new SimpleDateFormat("dd/MM/YYYY");
 
             binding.itemReportsTitle.setText(entity.getReport().getAdverseReactionName() + " con rischio " + entity.getReport().getLevelOfGravity());
-            binding.itemReportsDate.setText("Data segnalazione: " + format.format(entity.getReport().getReactionDate()) + "\n" +
+            binding.itemReportsDate.setText("Data segnalazione: " + format.format(entity.getReport().getReportDate()) + "\n" +
                     "Data reazione: " + format.format(entity.getReport().getReactionDate()));
             binding.itemReportsPatient.setText("Paziente: " + entity.getReport().getPatientFiscalCode());
             binding.itemReportsTherapy.setText("Farmaco: " + entity.getTherapyEntity().getMedicine());
