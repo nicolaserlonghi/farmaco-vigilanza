@@ -52,7 +52,7 @@ public class DummyContentLoader {
 
                 // bianchi.luca --> pharmacology
                 credentialsEntity = new CredentialsEntity();
-                credentialsEntity.setId("bianchi.luca");
+                credentialsEntity.setId("luca.bianchi");
                 credentialsEntity.setPassword("1234");
                 credentialsEntity.setUserType(UserType.PHARMACOLOGIST);
                 application.getDataRepository().getCredentialsRepository().getDatabase().credentialsDao().insert(credentialsEntity);
