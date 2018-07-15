@@ -2,6 +2,7 @@ package us.rst.farmacovigilanza.repositories;
 
 import android.arch.lifecycle.LiveData;
 
+import android.arch.lifecycle.MutableLiveData;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.Calendar;
@@ -105,5 +106,13 @@ public class ReportsRepository extends BaseRepository {
      */
     public LiveData<List<ReportTherapyEntity>> getReportsByDoctor(String doctorId) {
         return getDatabase().reportsDao().getByDoctor(doctorId);
+    }
+
+    /**
+     * Restituisce un oggetto che notifica l'interfaccia di eventuali avvisi da mostrare al farmacologo
+     * @return un oggetto che notifica l'interfaccia di eventuali avvisi da mostrare al farmacologo
+     */
+    public LiveData<Integer> getAlerts() {
+        return getDatabase().reportsDao().getAlerts(null);
     }
 }

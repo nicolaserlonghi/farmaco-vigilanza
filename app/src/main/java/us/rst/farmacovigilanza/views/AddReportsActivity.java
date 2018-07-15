@@ -101,7 +101,6 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
         binding.activityAddReportsAddPatient.setOnClickListener(this);
         binding.activityAddReportsEditPatient.setOnClickListener(this);
         binding.activityAddReportsButtonSave.setOnClickListener(this);
-        binding.activityAddReportsButtonSave.setOnClickListener(this);
         binding.activityAddReportsAddAdverseReaction.setOnClickListener(this);
         binding.activityAddReportsAdverseReactionDate.setOnClickListener(this);
 
@@ -141,7 +140,7 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
         });
 
         getViewModel().getFactors(this).observe(AddReportsActivity.this, riskFactors -> {
-            if (riskFactors == null) {
+            if (riskFactors == null || riskFactors.size() == 0) {
                 binding.activityAddReportsRiskFactors.setText("Nessun fattore di rischio");
             }
             else {
@@ -168,18 +167,23 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
                 therapyNames.add(a.getMedicine() + " (" + a.getUnit() + ") ogni " + a.getFrequency() + " giorni");
             }
 
+            if (therapyEntities.size() == 0) {
+                therapyNames.add("Nessuna terapia in corso");
+                binding.activityAddReportsButtonSave.setVisibility(View.GONE);
+            }
+            else {
+                binding.activityAddReportsButtonSave.setVisibility(View.VISIBLE);
+            }
+
             binding.activityAddReportsTherapiesNames.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, therapyNames));
         });
     }
 
     @Override
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.activity_add_reports_add_patient:
                 KeyboardHelper.hideKeyboard(AddReportsActivity.this);
-                binding.activityAddReportsInputCf.setText("");
-                hideAllSection();
                 startActivity(new Intent(this, AddEditPatientActivity.class));
                 break;
             case R.id.activity_add_reports_edit_patient:
@@ -252,22 +256,6 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
         binding.activityAddReportsNoPatientLayout.setVisibility(View.GONE);
         binding.activityAddReportsCardViewTherapy.setVisibility(View.GONE);
         binding.activityAddReportsButtonSave.setVisibility(View.GONE);
-    }
-
-    // Control back press to exit
-    @Override
-    public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            // Close application
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            return;
-        }
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, getString(R.string.toast_to_exit), Toast.LENGTH_SHORT).show();
-        new Handler().postDelayed(() -> doubleBackToExitPressedOnce=false, 2500);
     }
 
     @Override

@@ -26,11 +26,11 @@
 
     <!-- Add edit reports -->
     <string name="activity_add_reports_title">Nuova segnalazione</string>
-    <string name="activity_add_reports_edit_text_cf">Inserisci il codice fiscale</string>
+    <string name="activity_add_reports_edit_text_cf">Codice fiscale</string>
     <string name="activity_add_reports_no_patient">Nessun paziente trovato. Vuoi aggiungerlo?</string>
     <string name="activity_add_reports_add_patient">Aggiungi paziente</string>
     <string name="activity_add_reports_edit_patient">Modifica paziente</string>
-    <string name="activity_add_reports_add_adverse_reaction">Aggiungi reazione avversa</string>
+    <string name="activity_add_reports_add_adverse_reaction">+</string>
 
     <!-- Add edit patient activity -->
     <string name="activity_add_edit_patients_title">Aggiungi o modifica pazienti</string>
@@ -58,6 +58,7 @@
     <string name="activity_add_edit_patient_snackbar_birthdate_error">L\'anno di nascita deve essere composto solo da numeri!</string>
     <string name="activity_add_edit_patient_snackbar_risck_level_error">Il livello di rischio deve essere compreso tra 1 e 5!</string>
     <string name="activity_add_edit_patient_snackbar_unit_frequency_error">La frequenza e la quantità devono essere composti da soli numeri!</string>
+    <string name="activity_add_reports_snackbar_therapy_error">Seleziona una terapia</string>
 
     <!-- Add reports -->
     <string name="activity_add_reports_text_view_patient_data">Dati paziente</string>
@@ -81,6 +82,7 @@
 
     <!-- Reports chronology -->
     <string name="activity_reports_chronology">Cronologia segnalazioni</string>
+    <string name="activity_reports_chronology_alert">Ci sono delle segnalazioni da analizzare!</string>
 
     <!-- Item drugs -->
     <string name="item_drugs_remove">Ritira</string>

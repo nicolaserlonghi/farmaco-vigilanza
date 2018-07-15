@@ -53,6 +53,16 @@ public class PatientRepository extends BaseRepository {
     }
 
     /**
+     * Edits a patient
+     * @param patientEntity patient
+     */
+    public void edit(PatientEntity patientEntity) {
+        getAppExecutors().diskIO().execute(() -> {
+            getDatabase().patientsDao().edit(patientEntity.getFiscalCode(), patientEntity.getJob(), patientEntity.getProvince());
+        });
+    }
+
+    /**
      * Restituisce una lista osservabile di tutti i {@link FactorEntity}
      * @return lista di {@link FactorEntity} osservabile
      */

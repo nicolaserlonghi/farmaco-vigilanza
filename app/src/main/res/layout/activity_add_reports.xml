@@ -127,18 +127,24 @@
                         android:orientation="vertical"
                         android:layout_margin="@dimen/spacing_medium">
 
-                        <android.support.v7.widget.AppCompatSpinner
-                            android:id="@+id/activity_add_reports_adverse_reaction_names"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/spacing_medium"/>
+                            android:orientation="horizontal">
+                            <android.support.v7.widget.AppCompatSpinner
+                                android:id="@+id/activity_add_reports_adverse_reaction_names"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
-                        <android.support.v7.widget.AppCompatButton
-                            android:id="@+id/activity_add_reports_add_adverse_reaction"
-                            app:theme="@style/contained_button"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/activity_add_reports_add_adverse_reaction" />
+                            <android.support.v7.widget.AppCompatButton
+                                android:id="@+id/activity_add_reports_add_adverse_reaction"
+                                app:theme="@style/contained_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/activity_add_reports_add_adverse_reaction" />
+                        </LinearLayout>
 
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
@@ -184,8 +190,7 @@
                         <android.support.v7.widget.AppCompatSpinner
                             android:id="@+id/activity_add_reports_therapies_names"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/spacing_medium"/>
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
 

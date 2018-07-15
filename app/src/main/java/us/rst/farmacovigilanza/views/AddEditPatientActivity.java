@@ -87,7 +87,6 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
            binding.activityAddEditPatientEditTextProvince.setText(patient.getProvince());
            binding.activityAddEditPatientEditTextCf.setEnabled(false);
            binding.activityAddEditPatientEditTextBirthday.setEnabled(false);
-           binding.activityAddEditPatientButtonSave.setVisibility(View.GONE);
         });
 
         getViewModel().getFactors().observe(this, factors -> {
@@ -163,6 +162,7 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
                 currentPatient.setBirthDate(birthDate);
                 currentPatient.setJob(job);
                 currentPatient.setProvince(province);
+
                 getViewModel().add(currentPatient);
                 onBackPressed();
                 break;
@@ -186,7 +186,6 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
                 }
 
                 getViewModel().addFactor(factorName, levelOfRisk);
-
                 binding.activityAddEditPatientRiskFactorLevel.setText("");
                 binding.activityAddEditPatientButtonAddRiskFactor.setVisibility(View.VISIBLE);
                 binding.activityAddEditPatientNewRiskFactorLayout.setVisibility(View.GONE);

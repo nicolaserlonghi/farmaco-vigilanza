@@ -136,6 +136,14 @@ public class ReportViewModel extends BaseViewModel {
     }
 
     /**
+     * Restituisce un oggetto che notifica l'interfaccia di eventuali avvisi da mostrare al farmacologo
+     * @return un oggetto che notifica l'interfaccia di eventuali avvisi da mostrare al farmacologo
+     */
+    public LiveData<Integer> getAlerts() {
+        return reportsRepository.getAlerts();
+    }
+
+    /**
      * Factory per questo ViewModel
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {

@@ -29,6 +29,15 @@ public interface PatientsDao {
     @Query("DELETE FROM patientFactor WHERE patientCf=:fiscalCode AND factorName=:factorName")
     void deleteFactor(FiscalCode fiscalCode, String factorName);
 
+    @Query("SELECT SUM(id) FROM therapies WHERE patient=:fiscalCode AND startDate=:year")
+    LiveData<Integer> getTherapiesByYear(FiscalCode fiscalCode, int year);
+
+    @Query("SELECT SUM(reportId) FROM reports WHERE patientFiscalCode=:fiscalCode AND reportDate=:year")
+    LiveData<Integer> getReprotsByYear(FiscalCode fiscalCode, int year);
+
     @Insert
     void insert(PatientEntity doctor);
+
+    @Query("UPDATE patients SET job=:job, province=:province WHERE fiscalCode=:fiscalCode")
+    void edit(FiscalCode fiscalCode, String job, String province);
 }

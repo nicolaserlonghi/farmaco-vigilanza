@@ -39,7 +39,7 @@ public class PatientViewModel extends BaseViewModel {
      */
     public void add(PatientEntity patientEntity) {
         if (isEditMode) {
-            // TODO: implement edit
+            repository.edit(patientEntity);
             return;
         }
 
