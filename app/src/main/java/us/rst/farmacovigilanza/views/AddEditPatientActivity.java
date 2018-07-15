@@ -30,6 +30,7 @@ import us.rst.farmacovigilanza.helpers.DatePickerFragment;
 import us.rst.farmacovigilanza.helpers.KeyboardHelper;
 import us.rst.farmacovigilanza.helpers.SnackBarHelper;
 import us.rst.farmacovigilanza.models.FiscalCode;
+import us.rst.farmacovigilanza.models.Therapy;
 import us.rst.farmacovigilanza.viewmodels.PatientViewModel;
 
 public class AddEditPatientActivity extends BaseActivity implements View.OnClickListener,
@@ -113,6 +114,7 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
         });
 
         getViewModel().getPatientTherapies().observe(this, therapies -> {
+            this.therapies = therapies;
             if (therapies == null || therapies.size() == 0) {
                 binding.activityAddEditPatientNoTherapiesText.setVisibility(View.VISIBLE);
                 binding.activityAddEditPatientRecyclerViewTherapies.setVisibility(View.GONE);
@@ -143,7 +145,7 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
                 String job = binding.activityAddEditPatientEditTextJob.getText().toString();
                 String province = binding.activityAddEditPatientEditTextProvince.getText().toString();
                 String birthdDateString = binding.activityAddEditPatientEditTextBirthday.getText().toString();
-                if(fiscalCode.isEmpty() || birthdDateString.isEmpty() || job.isEmpty() || province.isEmpty()) {
+                if(fiscalCode.isEmpty() || birthdDateString.isEmpty() || job.isEmpty() || province.isEmpty() || therapies.size() == 0) {
                     SnackBarHelper.showShort(v, getString(R.string.error_empty_field));
                     return;
                 }
@@ -296,5 +298,6 @@ public class AddEditPatientActivity extends BaseActivity implements View.OnClick
     private PatientEntity currentPatient;
     private String startDateString = null;
     private String endDateString = null;
+    private List<TherapyEntity> therapies;
 }
 
