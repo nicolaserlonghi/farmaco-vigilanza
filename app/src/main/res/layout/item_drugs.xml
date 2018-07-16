@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+    </data>
+    <RelativeLayout
+        android:id="@+id/drug"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Name drug -->
+            <TextView
+                android:id="@+id/item_drugs_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginLeft="@dimen/spacing_large"
+                android:layout_marginRight="@dimen/spacing_large"
+                android:layout_marginBottom="@dimen/spacing_small"
+                style="@style/primary_text_view" />
+
+            <LinearLayout
+                android:id="@+id/item_drugs_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/spacing_large"
+                android:layout_marginRight="@dimen/spacing_large"
+                android:layout_marginBottom="@dimen/spacing_medium">
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/item_drugs_remove"
+                    app:theme="@style/contained_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/item_drugs_remove"/>
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/item_drugs_enable_check"
+                    app:theme="@style/contained_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/item_drugs_enable_check"/>
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/item_drugs_enable_monitor"
+                    app:theme="@style/contained_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/item_drugs_enable_monitor"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

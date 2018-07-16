@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    <data>
+
+    </data>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".views.MainActivity"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- CardView add CF -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/activity_add_reports_card_view_cf"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    android:layout_marginLeft="@dimen/spacing_medium"
+                    android:layout_marginRight="@dimen/spacing_medium"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    card_view:cardCornerRadius="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="@dimen/spacing_medium">
+
+                        <!-- CF Label -->
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_medium">
+                            <EditText android:id="@+id/activity_add_reports_input_cf"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="16"
+                                android:hint="@string/activity_add_reports_edit_text_cf" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <!-- TODO: labels -->
+                        <LinearLayout
+                            android:id="@+id/activity_add_reports_no_patient_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_medium"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/activity_add_reports_no_patient"
+                                android:layout_margin="@dimen/spacing_medium"
+                                style="@style/secondary_text_view" />
+                            <android.support.v7.widget.AppCompatButton
+                                android:id="@+id/activity_add_reports_add_patient"
+                                app:theme="@style/contained_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/activity_add_reports_add_patient" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/activity_add_reports_patient_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_medium"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+                            <TextView
+                                android:id="@+id/activity_add_reports_year_job"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Anno - Professione"
+                                android:layout_marginLeft="@dimen/spacing_medium"
+                                android:layout_marginRight="@dimen/spacing_medium"
+                                style="@style/secondary_text_view" />
+                            <TextView
+                                android:id="@+id/activity_add_reports_risk_factors"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/spacing_medium"
+                                android:layout_marginRight="@dimen/spacing_medium"
+                                android:layout_marginBottom="@dimen/spacing_medium"
+                                android:text="Fattori di rischio"
+                                android:maxLines="100"
+                                style="@style/secondary_text_view" />
+                            <android.support.v7.widget.AppCompatButton
+                                android:id="@+id/activity_add_reports_edit_patient"
+                                app:theme="@style/contained_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/activity_add_reports_edit_patient" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <!-- CardView adverse reaction -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/activity_add_reports_card_view_adverse_reaction"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    card_view:cardCornerRadius="4dp"
+                    android:visibility="gone" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="@dimen/spacing_medium">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <android.support.v7.widget.AppCompatSpinner
+                                android:id="@+id/activity_add_reports_adverse_reaction_names"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
+
+                            <android.support.v7.widget.AppCompatButton
+                                android:id="@+id/activity_add_reports_add_adverse_reaction"
+                                app:theme="@style/contained_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/activity_add_reports_add_adverse_reaction" />
+                        </LinearLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText android:id="@+id/activity_add_reports_adverse_reaction_level_of_risk"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:hint="@string/activity_add_reports_adverse_reaction_level_of_risk"/>
+                        </android.support.design.widget.TextInputLayout>
+
+                        <!-- Adverse reaction date Label -->
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText android:id="@+id/activity_add_reports_adverse_reaction_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:windowSoftInputMode="stateHidden"
+                                android:focusable="false"
+                                android:hint="@string/activity_add_reports_edit_text_adverse_reaction_date" />
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <!-- CardView therapy -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/activity_add_reports_card_view_therapy"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    card_view:cardCornerRadius="4dp"
+                    android:visibility="gone" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="@dimen/spacing_medium">
+
+                        <android.support.v7.widget.AppCompatSpinner
+                            android:id="@+id/activity_add_reports_therapies_names"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <!-- Pulsante salvataggio -->
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/activity_add_reports_button_save"
+                    app:theme="@style/contained_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:visibility="gone"
+                    android:text="@string/activity_add_edit_patient_button_save"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

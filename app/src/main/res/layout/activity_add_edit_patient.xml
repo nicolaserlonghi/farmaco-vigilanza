@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    <data>
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--Card View Dati paziente -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/activity_add_edit_patient_card_view_patient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    android:layout_marginLeft="@dimen/spacing_medium"
+                    android:layout_marginRight="@dimen/spacing_medium"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    card_view:cardCornerRadius="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="@dimen/spacing_medium">
+
+                        <!-- Codice Fiscale -->
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_medium"
+                            android:layout_marginRight="@dimen/spacing_medium"
+                            android:layout_marginTop="@dimen/spacing_medium">
+                            <EditText
+                                android:id="@+id/activity_add_edit_patient_edit_text_cf"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="16"
+                                android:hint="@string/activity_add_edit_patient_edit_text_cf"/>
+                        </android.support.design.widget.TextInputLayout>
+
+                        <!-- Anno di nascita -->
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_medium"
+                            android:layout_marginRight="@dimen/spacing_medium">
+                            <EditText
+                                android:id="@+id/activity_add_edit_patient_edit_text_birthday"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:hint="@string/activity_add_edit_patient_edit_text_birthday"/>
+                        </android.support.design.widget.TextInputLayout>
+
+                        <!-- Provincia -->
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_medium"
+                            android:layout_marginRight="@dimen/spacing_medium">
+                            <EditText
+                                android:id="@+id/activity_add_edit_patient_edit_text_province"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:hint="@string/activity_add_edit_patient_edit_text_province"/>
+                        </android.support.design.widget.TextInputLayout>
+
+                        <!-- Professione -->
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_medium"
+                            android:layout_marginRight="@dimen/spacing_medium"
+                            android:layout_marginBottom="@dimen/spacing_medium">
+                            <EditText
+                                android:id="@+id/activity_add_edit_patient_edit_text_job"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:hint="@string/activity_add_edit_patient_edit_text_job"/>
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <!-- Card View Fattori di Rischio -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/activity_add_edit_patient_card_view_factors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    card_view:cardCornerRadius="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="@dimen/spacing_medium">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/activity_add_edit_patient_recycler_view_factors"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="vertical"
+                            android:visibility="gone"/>
+
+                        <TextView
+                            android:id="@+id/activity_add_edit_patient_no_factor_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/activity_add_edit_patient_no_factor"
+                            android:layout_margin="@dimen/spacing_medium"
+                            style="@style/secondary_text_view" />
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/activity_add_edit_patient_button_add_risk_factor"
+                            app:theme="@style/contained_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/activity_add_edit_patient_button_add_risk_factor"/>
+
+                        <LinearLayout
+                            android:id="@+id/activity_add_edit_patient_new_risk_factor_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_medium"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+
+                            <!-- Risk factor name -->
+                            <android.support.v7.widget.AppCompatSpinner
+                                android:id="@+id/activity_add_edit_patient_risk_factor_names"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_medium"/>
+
+                            <!-- Risk factor level -->
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <EditText
+                                    android:id="@+id/activity_add_edit_patient_risk_factor_level"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="text"
+                                    android:layout_marginTop="@dimen/spacing_medium"
+                                    android:layout_marginBottom="@dimen/spacing_medium"
+                                    android:hint="@string/activity_add_edit_patient_risk_factor_level"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.v7.widget.AppCompatButton
+                                android:id="@+id/activity_add_edit_patient_button_save_risk_factor"
+                                app:theme="@style/contained_button"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/activity_add_edit_patient_button_save_risk_factor"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/activity_add_edit_patient_card_view_therapies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    card_view:cardCornerRadius="4dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="@dimen/spacing_medium">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/activity_add_edit_patient_recycler_view_therapies"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="vertical"
+                            android:visibility="gone"/>
+
+                        <TextView
+                            android:id="@+id/activity_add_edit_patient_no_therapies_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/activity_add_edit_patient_no_therapies"
+                            android:layout_margin="@dimen/spacing_medium"
+                            style="@style/secondary_text_view" />
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/activity_add_edit_patient_button_add_therapies"
+                            app:theme="@style/contained_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/activity_add_edit_patient_button_add_therapies"/>
+
+                        <LinearLayout
+                            android:id="@+id/activity_add_edit_patient_new_therapy_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_medium"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+
+                            <!-- Medicine name -->
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <EditText
+                                    android:id="@+id/activity_add_edit_patient_therapy_medicine"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="text"
+                                    android:layout_marginTop="@dimen/spacing_medium"
+                                    android:layout_marginBottom="@dimen/spacing_medium"
+                                    android:hint="@string/activity_add_edit_patient_therapy_medicine"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <!-- Therapy Unit -->
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <EditText
+                                    android:id="@+id/activity_add_edit_patient_therapy_unit"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="text"
+                                    android:layout_marginTop="@dimen/spacing_medium"
+                                    android:layout_marginBottom="@dimen/spacing_medium"
+                                    android:hint="@string/activity_add_edit_patient_therapy_unit"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <!-- Therapy frequency -->
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <EditText
+                                    android:id="@+id/activity_add_edit_patient_therapy_frequency"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="text"
+                                    android:layout_marginTop="@dimen/spacing_medium"
+                                    android:layout_marginBottom="@dimen/spacing_medium"
+                                    android:hint="@string/activity_add_edit_patient_therapy_frequency"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <!-- Therapy start date -->
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <EditText
+                                    android:id="@+id/activity_add_edit_patient_therapy_start_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="text"
+                                    android:windowSoftInputMode="stateHidden"
+                                    android:focusable="false"
+                                    android:layout_marginTop="@dimen/spacing_medium"
+                                    android:layout_marginBottom="@dimen/spacing_medium"
+                                    android:hint="@string/activity_add_edit_patient_therapy_start_date"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <!-- Therapy end date -->
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <EditText
+                                    android:id="@+id/activity_add_edit_patient_therapy_end_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="text"
+                                    android:windowSoftInputMode="stateHidden"
+                                    android:focusable="false"
+                                    android:layout_marginTop="@dimen/spacing_medium"
+                                    android:layout_marginBottom="@dimen/spacing_medium"
+                                    android:hint="@string/activity_add_edit_patient_therapy_end_date"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.v7.widget.AppCompatButton
+                                android:id="@+id/activity_add_edit_patient_button_save_therapy"
+                                app:theme="@style/contained_button"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/activity_add_edit_patient_button_save_therapy"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <!-- Pulsante salvataggio -->
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/activity_add_edit_patient_button_save"
+                    app:theme="@style/contained_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:text="@string/activity_add_edit_patient_button_save"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>
