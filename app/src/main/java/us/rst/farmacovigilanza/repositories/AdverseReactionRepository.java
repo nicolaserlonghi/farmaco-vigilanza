@@ -1,6 +1,9 @@
 package us.rst.farmacovigilanza.repositories;
 
+import java.util.concurrent.Executors;
+
 import us.rst.farmacovigilanza.AppExecutors;
+import us.rst.farmacovigilanza.Logger;
 import us.rst.farmacovigilanza.database.AppDatabase;
 import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
 
@@ -25,7 +28,12 @@ public class AdverseReactionRepository extends BaseRepository {
      */
     public void add(AdverseReactionEntity adverseReactionEntity){
         getAppExecutors().diskIO().execute(() -> {
-            getDatabase().avverseReactionsDao().insert(adverseReactionEntity);
+            try {
+                getDatabase().avverseReactionsDao().insert(adverseReactionEntity);
+            }
+            catch (Exception ex) {
+                Logger.e(AdverseReactionRepository.class.getSimpleName(), ex.getMessage());
+            }
         });
     }
 }

@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import us.rst.farmacovigilanza.AppExecutors;
+import us.rst.farmacovigilanza.Logger;
 import us.rst.farmacovigilanza.database.AppDatabase;
 import us.rst.farmacovigilanza.database.entity.AdverseReactionEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
@@ -77,17 +78,22 @@ public class ReportsRepository extends BaseRepository {
      */
     public void saveReport(FiscalCode fiscalCode, String adverseReactionName, int levelOfGravity, Date adverseReactionDate, int therapyId) {
         getAppExecutors().diskIO().execute(() -> {
-            ReportEntity report = new ReportEntity();
-            report.setReactionDate(adverseReactionDate);
-            report.setLevelOfGravity(levelOfGravity);
-            report.setAdverseReactionName(adverseReactionName);
-            report.setPatientFiscalCode(fiscalCode);
-            report.setTherapyId(therapyId);
-            report.setReportDate(Calendar.getInstance().getTime());
-            report.setReactionDate(adverseReactionDate);
-            report.setDoctor(Prefs.getString("userId", ""));
+            try {
+                ReportEntity report = new ReportEntity();
+                report.setReactionDate(adverseReactionDate);
+                report.setLevelOfGravity(levelOfGravity);
+                report.setAdverseReactionName(adverseReactionName);
+                report.setPatientFiscalCode(fiscalCode);
+                report.setTherapyId(therapyId);
+                report.setReportDate(Calendar.getInstance().getTime());
+                report.setReactionDate(adverseReactionDate);
+                report.setDoctor(Prefs.getString("userId", ""));
 
-            getDatabase().reportsDao().add(report);
+                getDatabase().reportsDao().add(report);
+            }
+            catch (Exception ex) {
+                Logger.e(ReportsRepository.class.getSimpleName(), ex.getMessage());
+            }
         });
     }
 

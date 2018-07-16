@@ -11,11 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import us.rst.farmacovigilanza.FarmacoVigilanzaApp;
+import us.rst.farmacovigilanza.Logger;
 import us.rst.farmacovigilanza.database.entity.FactorEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
 import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
 import us.rst.farmacovigilanza.database.entity.TherapyEntity;
 import us.rst.farmacovigilanza.models.FiscalCode;
+import us.rst.farmacovigilanza.repositories.AdverseReactionRepository;
 import us.rst.farmacovigilanza.repositories.PatientRepository;
 
 public class PatientViewModel extends BaseViewModel {
@@ -61,6 +63,15 @@ public class PatientViewModel extends BaseViewModel {
             repository.addFactor(entity);
             return;
         }
+
+        boolean alreadySaved = false;
+        for (PatientFactorEntity patientFactorEntity: patientFactors.getValue()) {
+            if (patientFactorEntity.getFactorName() == name) {
+                alreadySaved = true;
+            }
+        }
+
+        if (alreadySaved) return;
 
         patientFactors.getValue().add(entity);
         patientFactors.setValue(patientFactors.getValue());

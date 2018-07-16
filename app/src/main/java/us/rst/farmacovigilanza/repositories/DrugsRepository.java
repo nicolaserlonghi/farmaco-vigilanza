@@ -2,10 +2,9 @@ package us.rst.farmacovigilanza.repositories;
 
 
 import android.arch.lifecycle.LiveData;
-
 import java.util.List;
-
 import us.rst.farmacovigilanza.AppExecutors;
+import us.rst.farmacovigilanza.Logger;
 import us.rst.farmacovigilanza.database.AppDatabase;
 import us.rst.farmacovigilanza.database.entity.ProposalEntity;
 
@@ -37,7 +36,12 @@ public class DrugsRepository extends BaseRepository {
      */
     public void addProposal(ProposalEntity proposalEntity) {
         getAppExecutors().diskIO().execute(() -> {
-            getDatabase().proposalsDao().insert(proposalEntity);
+            try {
+                getDatabase().proposalsDao().insert(proposalEntity);
+            }
+            catch (Exception ex) {
+                Logger.e(DrugsRepository.class.getSimpleName(), ex.getMessage());
+            }
         });
     }
 

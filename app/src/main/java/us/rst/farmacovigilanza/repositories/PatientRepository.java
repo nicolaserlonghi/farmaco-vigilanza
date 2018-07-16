@@ -8,12 +8,14 @@ import com.pixplicity.easyprefs.library.Prefs;
 import java.util.List;
 
 import us.rst.farmacovigilanza.AppExecutors;
+import us.rst.farmacovigilanza.Logger;
 import us.rst.farmacovigilanza.database.AppDatabase;
 import us.rst.farmacovigilanza.database.entity.FactorEntity;
 import us.rst.farmacovigilanza.database.entity.PatientEntity;
 import us.rst.farmacovigilanza.database.entity.PatientFactorEntity;
 import us.rst.farmacovigilanza.database.entity.TherapyEntity;
 import us.rst.farmacovigilanza.models.FiscalCode;
+import us.rst.farmacovigilanza.viewmodels.PatientViewModel;
 
 /**
  * Gestisce le interrogazioni al database per il dominio delle reazioni avverse
@@ -38,16 +40,21 @@ public class PatientRepository extends BaseRepository {
      */
     public void add(PatientEntity patientEntity, List<PatientFactorEntity> factors, List<TherapyEntity> therapies){
         getAppExecutors().diskIO().execute(() -> {
-            patientEntity.setDoctor(Prefs.getString("userId", "mario.rossi"));
-            getDatabase().patientsDao().insert(patientEntity);
-            for (PatientFactorEntity factor: factors) {
-                factor.setPatientCf(patientEntity.getFiscalCode());
-                getDatabase().factorsDao().linkToPatient(factor);
-            }
+            try {
+                patientEntity.setDoctor(Prefs.getString("userId", "mario.rossi"));
+                getDatabase().patientsDao().insert(patientEntity);
+                for (PatientFactorEntity factor : factors) {
+                    factor.setPatientCf(patientEntity.getFiscalCode());
+                    getDatabase().factorsDao().linkToPatient(factor);
+                }
 
-            for (TherapyEntity therapy: therapies) {
-                therapy.setPatient(patientEntity.getFiscalCode());
-                getDatabase().therapyDao().insert(therapy);
+                for (TherapyEntity therapy : therapies) {
+                    therapy.setPatient(patientEntity.getFiscalCode());
+                    getDatabase().therapyDao().insert(therapy);
+                }
+            }
+            catch (Exception ex) {
+                Logger.e(PatientRepository.class.getSimpleName(), ex.getMessage());
             }
         });
     }
@@ -125,7 +132,12 @@ public class PatientRepository extends BaseRepository {
      */
     public void addFactor(PatientFactorEntity patientFactorEntity) {
         getAppExecutors().diskIO().execute(() -> {
-            getDatabase().factorsDao().linkToPatient(patientFactorEntity);
+            try {
+                getDatabase().factorsDao().linkToPatient(patientFactorEntity);
+            }
+            catch(Exception ex) {
+                Logger.e(PatientRepository.class.getSimpleName(), ex.getMessage());
+            }
         });
     }
 
@@ -135,7 +147,12 @@ public class PatientRepository extends BaseRepository {
      */
     public void addTherapy(TherapyEntity therapyEntity) {
         getAppExecutors().diskIO().execute(() -> {
-            getDatabase().therapyDao().insert(therapyEntity);
+            try {
+                getDatabase().therapyDao().insert(therapyEntity);
+            }
+            catch (Exception ex) {
+                Logger.e(PatientRepository.class.getSimpleName(), ex.getMessage());
+            }
         });
     }
 }

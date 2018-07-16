@@ -11,6 +11,7 @@ import us.rst.farmacovigilanza.models.FiscalCode;
  * Represents the many to many relationship between patients and factors
  */
 @Entity(tableName = "patientFactor",
+        primaryKeys = { "patientCf", "factorName" },
         foreignKeys = {
                 @ForeignKey(entity = PatientEntity.class,
                         parentColumns = "fiscalCode",
@@ -68,26 +69,9 @@ public class PatientFactorEntity {
         this.levelOfRisk = levelOfRisk;
     }
 
-    /**
-     * Imposta l'id unico dell'entità
-     * @return id entità
-     */
-    public int getId() {
-        return id;
-    }
-
-
-    /**
-     * Imposta l'id unico dell'entità
-     * @param id id entità
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @NonNull
     private FiscalCode patientCf;
+    @NonNull
     private String factorName;
     private int levelOfRisk;
 }
