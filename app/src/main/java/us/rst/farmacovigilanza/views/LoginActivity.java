@@ -44,6 +44,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         // Listener login button
         binding.activityLoginBtnLogin.setOnClickListener(this);
+
+
     }
 
     @Override public void onClick(View v) {

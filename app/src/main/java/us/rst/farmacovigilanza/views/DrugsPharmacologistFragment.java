@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -51,18 +52,33 @@ public class DrugsPharmacologistFragment extends Fragment implements DrugsAdapte
     @Override
     public void removeDrug(String drug) {
         viewModel.addProposal(drug, "remove");
-        // TODO: aggiungere popup su schermo tipo "Segnalazione inviata"
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.AppCompatAlertDialogStyle);
+        builder.setTitle(getString(R.string.drugs_pharamacologist_fragment_sent))
+                .setPositiveButton(getString(R.string.button_ok), (dialog, which) -> {
+                    // do nothing
+                })
+                .show();
     }
 
     @Override
     public void checkDrug(String drug) {
         viewModel.addProposal(drug, "check");
-        // TODO: aggiungere popup su schermo tipo "Segnalazione inviata"
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.AppCompatAlertDialogStyle);
+        builder.setTitle(getString(R.string.drugs_pharamacologist_fragment_sent))
+                .setPositiveButton(getString(R.string.button_ok), (dialog, which) -> {
+                    // do nothing
+                })
+                .show();
     }
 
     @Override
     public void monitorDrug(String drug) {
         viewModel.addProposal(drug, "monitor");
-        // TODO: aggiungere popup su schermo tipo "Segnalazione inviata"
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.AppCompatAlertDialogStyle);
+        builder.setTitle(getString(R.string.drugs_pharamacologist_fragment_sent))
+                .setPositiveButton(getString(R.string.button_ok), (dialog, which) -> {
+                    // do nothing
+                })
+                .show();
     }
 }

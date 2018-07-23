@@ -79,6 +79,7 @@
     <string name="activity_pharmacologist_title">Monitoraggio</string>
     <string name="activity_pharmacologist_tab_title_reports">Segnalazioni</string>
     <string name="activity_pharmacologist_tab_title_drugs">Farmaci</string>
+    <string name="drugs_pharamacologist_fragment_sent">Segnalazione inviata</string>
 
     <!-- Reports chronology -->
     <string name="activity_reports_chronology">Cronologia segnalazioni</string>

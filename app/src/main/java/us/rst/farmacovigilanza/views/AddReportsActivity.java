@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -76,9 +77,11 @@ public class AddReportsActivity extends BaseActivity implements View.OnClickList
                 onBackPressed();
                 return true;
             case R.id.activity_main_menu_logout:
-                Prefs.putBoolean("isLoggedIn", true);
-                // TODO: clear backstack
-                startActivity(new Intent(this, LoginActivity.class));
+                Prefs.putBoolean("isLoggedIn", false);
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
                 return true;
             case R.id.menu_doctor_show_reports:
                 startActivity(new Intent(this, ReportsChronologyActivity.class));

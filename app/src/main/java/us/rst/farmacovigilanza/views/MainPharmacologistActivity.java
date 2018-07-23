@@ -35,9 +35,11 @@ public class MainPharmacologistActivity extends BaseActivity {
                 onBackPressed();
                 return true;
             case R.id.activity_main_menu_logout:
-                Prefs.putBoolean("isLoggedIn", true);
-                // TODO: clear backstack
-                startActivity(new Intent(this, LoginActivity.class));
+                Prefs.putBoolean("isLoggedIn", false);
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
                 return true;
             case R.id.menu_pharmacologist_filter_by_gravity:
                 adapter.filterByGravity();

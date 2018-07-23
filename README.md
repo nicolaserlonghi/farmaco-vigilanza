@@ -16,3 +16,5 @@ This repository contains the source code of an Android App for a university proj
 - [Elena Ramon](https://github.com/elenaramon)
 - [Nicola Serlonghi](https://github.com/nicolaserlonghi)
 - [Francesco Tonini](https://github.com/francescotonini)
+
+We tried to follow those rules, but we failed. Please forgive us.
